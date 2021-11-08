@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /* Program Data
 
@@ -16,44 +16,43 @@ export const quizData = {
   // the questions in the quiz
   questions: [
     {
-      text: 'What are the different ways to declare a JS variable?',
+      text: "What are the different ways to declare a JS variable?",
       answers: {
-        a: 'constant, let, variable',
-        b: 'var, const, let, function',
-        c: 'var, let, const',
+        a: "constant, let, variable",
+        b: "var, const, let, function",
+        c: "var, let, const",
       },
-      correct: 'c',
-      selected: null,
+      correct: "c",
+      selected: "a",
       links: [
         {
-          text: 'javascript.info',
-          href: 'https://javascript.info/variables',
+          text: "javascript.info",
+          href: "https://javascript.info/variables",
         },
         {
-          text: 'Tyler McGinnis',
-          href: 'https://ui.dev/var-let-const/',
+          text: "Tyler McGinnis",
+          href: "https://ui.dev/var-let-const/",
         },
       ],
     },
     {
-      text: 'What does `typeof` do?',
+      text: "What does `typeof` do?",
       answers: {
-        a: 'changes the type of a primitive value',
-        b: 'returns a string describing the type of a value',
-        c: 'determines if a value is primitive',
-        d: 'can tell the difference between arrays and objects',
+        a: "changes the type of a primitive value",
+        b: "returns a string describing the type of a value",
+        c: "determines if a value is primitive",
+        d: "can tell the difference between arrays and objects",
       },
-      correct: 'b',
-      selected: null,
+      correct: "b",
+      selected: "b",
       links: [
         {
-          text: 'javascript.info',
-          href: 'https://javascript.info/types#type-typeof',
+          text: "javascript.info",
+          href: "https://javascript.info/types#type-typeof",
         },
         {
-          text: 'MDN',
-          href:
-            'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof',
+          text: "MDN",
+          href: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof",
         },
       ],
     },

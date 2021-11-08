@@ -1,0 +1,11 @@
+{{! EVERY TIME YOU CHANGE SOMETHING RUN THIS COMMAND IN VIEWS FOLDER:
+ handlebars question.handlebars -f question.precompiled.js
+}}
+
+<h1>{{question}}</h1>
+<ul class="answers">
+  {{#each answersObject}}
+    <li>{{this.key}} {{this.answer}}</li>
+  {{/each}}
+</ul>
+<a id="nextQuestionButton" href="?page={{pathname}}">Next question</a>
