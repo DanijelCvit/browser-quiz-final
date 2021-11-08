@@ -1,6 +1,6 @@
 'use strict';
 
-import { QUESTION_CONTAINER_ID } from '../constants.js';
+import { QUESTION_CONTAINER_ID, ANSWER_LABEL_ID } from '../constants.js';
 import { createQuestionElement } from '../views/questionViews.js';
 import { clearDOMElement, getDOMElement } from '../utils/DOMUtils.js';
 import { quizData } from '../data.js';
@@ -16,7 +16,15 @@ export const showCurrentQuestion = () => {
 };
 
 export const handleNextQuestion = () => {
-  quizData.currentQuestionIndex = quizData.currentQuestionIndex + 1;
-
+  if (quizData.currentQuestionIndex < quizData.questions.length - 1) {
+    quizData.currentQuestionIndex = quizData.currentQuestionIndex + 1;
+  }
   showCurrentQuestion();
+};
+
+
+export const handleSelectAnswer = (e) => {
+  let selectedItem = e.currentTarget;
+  console.log(selectedItem.getAttribute('for'));
+  quizData.questions[quizData.currentQuestionIndex].selected = selectedItem.getAttribute('for');
 };

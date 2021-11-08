@@ -57,6 +57,26 @@ export const quizData = {
         },
       ],
     },
+    {
+      text: 'What are the different ways to declare a JS variable?',
+      answers: {
+        a: 'constant, let, variable',
+        b: 'var, const, let, function',
+        c: 'var, let, const',
+      },
+      correct: 'c',
+      selected: null,
+      links: [
+        {
+          text: 'javascript.info',
+          href: 'https://javascript.info/variables',
+        },
+        {
+          text: 'Tyler McGinnis',
+          href: 'https://ui.dev/var-let-const/',
+        },
+      ],
+    },
     // Add more questions here
   ],
 };
