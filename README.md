@@ -8,8 +8,6 @@ We have already implemented a very basic UI that can go through the questions to
 
 To run this project locally you will need to open `index.html` in your browser using a local server. LiveServer, `http-server`, `study-lenses`, or any other local static server will work.
 
-Run `npm run compile` to compile all templates.
-
 ## Installing Dependencies
 
 There are no dependencies needed to run the website, everything is prepared to work with vanilla JavaScript. However, if you want to install prettier for this project then run (generally you always want to do this if you see a `package.json` file):
