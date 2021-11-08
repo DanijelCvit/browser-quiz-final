@@ -1,10 +1,10 @@
 {{! EVERY TIME YOU CHANGE SOMETHING RUN THIS COMMAND IN VIEWS FOLDER:
- handlebars results.handlebars -f results.precompiled.js
+ npm run compile
 }}
 
 <h1>Results</h1>
-<ul class="results">
+<ul class='results'>
   {{#each results}}
-    <li>selected: {{this.selected}} correct: {{this.correct}}</li>
+    <li>selected: {{this.selected}}, correct: {{this.correct}}</li>
   {{/each}}
 </ul>
