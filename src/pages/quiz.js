@@ -1,5 +1,5 @@
-import { QUESTION_TEMPLATE } from "../constants.js";
-import { quizData } from "../data.js";
+import { quizData } from '../data.js';
+import quizString from '../views/question.html.js';
 
 export const quiz = (qNumber) => {
   let pathname = `quiz&question=${qNumber + 1}`;
@@ -16,10 +16,11 @@ export const quiz = (qNumber) => {
     answer,
   }));
 
-  // quizData.currentQuestionIndex++;
+  // Generate new HTML
+  const quizTemplate = Handlebars.compile(quizString);
 
-  // Generate question HTML
-  document.getElementById("app").innerHTML = QUESTION_TEMPLATE({
+  // Add HTML to app
+  document.getElementById('app').innerHTML = quizTemplate({
     answersObject,
     question: quizData.questions[qNumber].text,
     pathname,

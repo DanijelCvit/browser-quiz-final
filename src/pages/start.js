@@ -1,6 +1,9 @@
-import { START_TEMPLATE } from "../constants.js";
+import startString from '../views/start.html.js';
 
 export const start = () => {
-  // Generate start HTML
-  document.getElementById("app").innerHTML = START_TEMPLATE({});
+  // Generate new HTML
+  const startTemplate = Handlebars.compile(startString);
+
+  // Add HTML to app
+  document.getElementById('app').innerHTML = startTemplate({});
 };

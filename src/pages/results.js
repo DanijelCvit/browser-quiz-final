@@ -1,5 +1,5 @@
-import { RESULTS_TEMPLATE } from "../constants.js";
-import { quizData } from "../data.js";
+import { quizData } from '../data.js';
+import resultString from '../views/results.html.js';
 
 export const results = () => {
   const results = quizData.questions.map(({ correct, selected }) => ({
@@ -7,8 +7,11 @@ export const results = () => {
     selected,
   }));
 
-  // Generate results HTML
-  document.getElementById("app").innerHTML = RESULTS_TEMPLATE({
+  // Generate new HTML
+  const resultTemplate = Handlebars.compile(resultString);
+
+  // Add HTML to app
+  document.getElementById('app').innerHTML = resultTemplate({
     results,
   });
 };
