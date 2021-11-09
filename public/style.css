@@ -11,3 +11,24 @@
   max-height: 80vh;
   overflow: auto;
 }
+
+.answerList {
+  list-style-type: none;
+}
+
+.answer {
+  margin: 20px;
+  font-size: 25px;
+  border: 2px solid #333;
+  border-radius: 10px;
+}
+
+.label {
+  margin: 10px;
+  width: 100%;
+  height: 100%;
+}
+
+.input {
+  display: none;
+}
