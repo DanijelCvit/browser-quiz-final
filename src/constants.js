@@ -11,3 +11,8 @@
 export const QUESTION_CONTAINER_ID = 'question-container';
 export const QUIZ_CONTAINER_ID = 'quiz-container';
 export const NEXT_QUESTION_BUTTON_ID = 'next-question-button';
+export const ANSWER_ITEM = 'answer';
+export const ANSWER_INPUT = 'input';
+export const ANSWER_LABEL = 'label';
+export const ANSWER_LABEL_ID = 'label-id';
+

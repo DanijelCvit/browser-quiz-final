@@ -29,3 +29,4 @@ const setupQuizHTML = () => {
 };
 
 window.addEventListener('load', initializeQuiz);
+setupQuizHTML();
