@@ -1,22 +1,23 @@
 {
-  "name": "js-quiz-starter",
+  "name": "browser-quiz",
   "version": "1.0.0",
+  "description": "This repository functions as the basis of the quiz project in the [Browsers module](https://github.com/HackYourFuture/Browsers). Before the first group meeting, have a look through this code and try to understand how it works and how it is organised. We will explain the idea behind the structure below as well as the Backlog (which will identify what is needed to be implemented).",
+  "main": "index.js",
   "scripts": {
-    "document": "node ./lib/document.js",
-    "test": "node ./lib/test.js",
-    "test-ci": "node ./lib/test.js CI"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/HackYourFuture/browser-quiz-project-starter.git"
+    "url": "git+https://github.com/tomasvanrijsse/browser-quiz.git"
   },
+  "keywords": [],
   "author": "",
-  "license": "MIT",
+  "license": "ISC",
   "bugs": {
-    "url": "https://github.com/HackYourFuture/browser-quiz-project-starter/issues"
+    "url": "https://github.com/tomasvanrijsse/browser-quiz/issues"
   },
-  "homepage": "https://github.com/HackYourFuture/browser-quiz-project-starter",
+  "homepage": "https://github.com/tomasvanrijsse/browser-quiz#readme",
   "devDependencies": {
-    "prettier": "^2.2.1"
+    "handlebars": "^4.7.7"
   }
 }
