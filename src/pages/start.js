@@ -1,9 +1,9 @@
-import startString from '../views/start.html.js';
+import { createStart } from '../views/start.html.js';
 
 export const start = () => {
   // Generate new HTML
-  const startTemplate = Handlebars.compile(startString);
+  const startTemplate = createStart();
 
   // Add HTML to app
-  document.getElementById('app').innerHTML = startTemplate({});
+  document.getElementById('app').innerHTML = startTemplate;
 };
