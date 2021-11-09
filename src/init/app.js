@@ -42,7 +42,7 @@ const router = () => {
     currentQuestion < quizData.questions.length;
 
   // Check quiz route for valid number
-  if (routeExists === 'quiz') {
+  if (currentPage === 'quiz') {
     if (hasQuestion && isValidNumber) {
       return quiz(+currentQuestion);
     } else {
