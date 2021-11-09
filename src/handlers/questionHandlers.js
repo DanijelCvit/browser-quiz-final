@@ -4,7 +4,6 @@ import { QUESTION_CONTAINER_ID, ANSWER_LABEL_ID } from '../constants.js';
 import { createQuestionElement } from '../views/questionViews.js';
 import { clearDOMElement, getDOMElement } from '../utils/DOMUtils.js';
 import { quizData } from '../data.js';
-
 export const showCurrentQuestion = () => {
   const currentQuestion = quizData.questions[quizData.currentQuestionIndex];
 
@@ -22,9 +21,12 @@ export const handleNextQuestion = () => {
   showCurrentQuestion();
 };
 
-
 export const handleSelectAnswer = (e) => {
   let selectedItem = e.currentTarget;
-  console.log(selectedItem.getAttribute('for'));
-  quizData.questions[quizData.currentQuestionIndex].selected = selectedItem.getAttribute('for');
+  const selectedAnswer = selectedItem.getAttribute('for');
+  localStorage.setItem('answer1', selectedAnswer);
+  console.log(selectedAnswer);
+  quizData.questions[
+    quizData.currentQuestionIndex
+  ].selected = selectedItem.getAttribute('for');
 };
