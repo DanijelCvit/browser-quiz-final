@@ -1,4 +1,4 @@
-const createList = (results) => {
+const createListItems = (results) => {
   let list = '';
   for (const { selected, correct } of results) {
     list += `
