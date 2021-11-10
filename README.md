@@ -33,7 +33,7 @@ index.html
 - `public` this contains the static files (images, stylesheets) that can be used by our `index.html` file
 - `src` this contains all of our JavaScript code
   - `init` this contains our initialisation code. Generally this code should only run once and starts the application.
-  This is also where check the ?page=something from the url and load one page from /src/pages
+    This is also where check the ?page=something from the url and load one page from /src/pages
   - `pages` all the logic needed for a single page (e.g. home, quiz or results) in plain javascript files.
   - `utils` this contains code that are pure functions and can be used throughout the application. These functions take data and give back a result. They should not interact with anything outside of their scope!
   - `views` this contains code to define what the DOM will look like. They will create the DOM element and give it back. They should never read from/write to the dom, that is what the handlers do.
@@ -64,5 +64,3 @@ So what should be built? Below is a collection of user stories you can choose fr
 - [ ] A user can remove questions from the quiz
 - [ ] A user can add questions to the quiz
 - [ ] Anything else you can think of... go nuts!
-
-

@@ -190,7 +190,7 @@ export const quizData = {
     {
       text: 'How to write an IF statement in JavaScript?',
       answers: {
-        a: 'if (i == 5)  {}',
+        a: 'if (i == 5) {}  ',
         b: 'if i = 5 then',
         c: 'if i = 5',
         d: 'if i == 5 then',
