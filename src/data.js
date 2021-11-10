@@ -20,8 +20,8 @@ export const quizData = {
       answers: {
         a: 'p {text-size:bold;}',
         b: 'p {font-weight:bold;}  ',
-        c: '<p style="font-size:bold;">',
-        d: '<p style="text-size:bold;">',
+        c: '&lt;p style="font-size:bold;"&gt;',
+        d: '&lt; style="text-size:bold;"&gt;',
       },
       correct: 'b',
       selected: null,
@@ -53,8 +53,7 @@ export const quizData = {
         },
         {
           text: 'MDN',
-          href:
-            'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof',
+          href: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof',
         },
       ],
     },
@@ -105,10 +104,10 @@ export const quizData = {
     {
       text: 'Inside which HTML element do we put the JavaScript?',
       answers: {
-        a: '<scripting>  ',
-        b: '<js>',
-        c: '<javascript>',
-        d: '<script>  ',
+        a: '&lt;scripting&gt;  ',
+        b: '&lt;js&gt;',
+        c: '&lt;javascript&gt',
+        d: '&lt;script&gt  ',
       },
       correct: 'd',
       selected: null,
@@ -124,8 +123,7 @@ export const quizData = {
       ],
     },
     {
-      text:
-        'What is the correct JavaScript syntax to change the content of the HTML element below?',
+      text: 'What is the correct JavaScript syntax to change the content of the HTML element below?',
       answers: {
         a: '#demo.innerHTML = "Hello World!";  ',
         b: 'document.getElementById("demo").innerHTML = "Hello World!";  ',
@@ -148,10 +146,10 @@ export const quizData = {
     {
       text: 'Where is the correct place to insert a JavaScript?',
       answers: {
-        a: 'The <head> section',
-        b: 'The <body> section',
-        c: 'Both the <head> section and the <body> section are correct  ',
-        d: 'The <title> section',
+        a: 'The &lt;head&gt; section',
+        b: 'The &lt;body&gt; section',
+        c: 'Both the &lt;head&gt; section and the &lt;body&gt; section are correct  ',
+        d: 'The &lt;title&gt; section',
       },
       correct: 'c',
       selected: null,
