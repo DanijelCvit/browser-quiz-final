@@ -10,7 +10,7 @@ const createListItems = (results) => {
 };
 
 export const createResults = (results) => {
-  return `
+  return String.raw`
   <h1>Results</h1>
   <ul class='results'>
     ${createListItems(results)}

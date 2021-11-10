@@ -6,7 +6,7 @@ import {
 } from '../constants.js';
 
 export const createQuestion = (question, answers, pathname) => {
-  return `
+  return String.raw`
   <div class="item" data-aos="fade-up">
 <h1>${question}</h1>
 <ul class="answerList">
@@ -40,6 +40,7 @@ export const createQuestion = (question, answers, pathname) => {
 
 </ul>
 <a class=" btn btn-block btn-dark btn-block" id="nextQuestionButton" href="?page=${pathname}">Next question</a>
+<a class=" btn btn-block btn-dark btn-block" id="SubmitQuestion" href="?page=${pathname}">Submit</a>
 </div>
 `;
 };
