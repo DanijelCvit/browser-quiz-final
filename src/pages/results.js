@@ -15,5 +15,3 @@ export const results = () => {
   // Add HTML to app
   document.getElementById('app').innerHTML = resultTemplate;
 };
-
-

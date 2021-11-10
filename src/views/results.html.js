@@ -27,10 +27,12 @@ const checkAnswer = (results) => {
 };
 
 export const createResults = (results) => {
-  return `
+  return String.raw`
+<div class="item" data-aos="fade-up">
 <h1>Results</h1>
 <ol class='results'>
   ${createListItems(results)}
 </ol>
-<p>Correct answers :${checkAnswer(results)} / ${results.length}</p>`;
+<p>Correct answers :${checkAnswer(results)} / ${results.length}</p>
+</div>`;
 };
