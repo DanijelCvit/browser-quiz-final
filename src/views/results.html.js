@@ -8,9 +8,22 @@ const createListItems = (results) => {
     `;
     }
     console.log(localStorage);
-    return list;
   };
+  return list;
 }
+
+
+let resultCounter = 0;
+const checkAnswer = (results) => {
+  for (const item of results) {
+    if (localStorage[results.indexOf(item)] === item.correct) {
+      resultCounter += 1;
+    }
+  }
+  console.log(resultCounter);
+  return resultCounter;
+}
+
 
 export const createResults = (results) => {
   return `
@@ -18,5 +31,5 @@ export const createResults = (results) => {
 <ol class='results'>
   ${createListItems(results)}
 </ol>
-`;
+<p>Correct answers :${checkAnswer(results)} / ${results.length}</p>`;
 };

@@ -31,9 +31,8 @@ export const quiz = (qNumber) => {
   document.addEventListener('click', (event) => {
     if (event.target.id === ANSWER_LABEL_ID) {
       let selectedItem = event.target;
-      quizData.questions[quizData.currentQuestionIndex].selected =
-        selectedItem.getAttribute('for');
-      localStorage.setItem(qNumber, quizData.questions[quizData.currentQuestionIndex].selected);
+      localStorage.setItem(qNumber, selectedItem.getAttribute('for'));
+      console.log(selectedItem.getAttribute('for'))
     }
   });
 };

@@ -16,13 +16,3 @@ export const results = () => {
 };
 
 
-// let resultCounter = 0;
-// export const checkAnswer = () => {
-
-//   if (quizData.questions[quizData.currentQuestionIndex].correct === quizData.questions[quizData.currentQuestionIndex].selected) {
-//     resultCounter++
-//     console.log('right', resultCounter)
-//   } else {
-//     console.log('wrong')
-//   }
-// }
