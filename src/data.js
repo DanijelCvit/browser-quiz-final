@@ -12,30 +12,28 @@
 */
 
 export const quizData = {
-  currentQuestionIndex: 0,
   // the questions in the quiz
   questions: [
-    // {
-    //   text: 'Which is the correct CSS syntax?',
-    //   answers: {
-    //     a: 'p {text-size:bold;}',
-    //     b: 'p {font-weight:bold;}',
-    //     c: '<p style="font-size: bold;">',
-    //     d: '<p style="text-size:bold;">',
-    //   },
-    //   correct: 'b',
-    //   selected: null,
-    //   links: [
-    //     {
-    //       text: 'w3schools',
-    //       href: 'https://www.w3schools.com/quiztest',
-    //     },
-    //     {
-    //       text: 'Tyler McGinnis',
-    //       href: 'https://ui.dev/var-let-const/',
-    //     },
-    //   ],
-    // },
+    {
+      text: 'Which is the correct CSS syntax?',
+      answers: {
+        a: 'p {text-size:bold;}',
+        b: 'p {font-weight:bold;}  ',
+        c: '&lt;p style="font-size:bold;"&gt;',
+        d: '&lt; style="text-size:bold;"&gt;',
+      },
+      correct: 'b',
+      links: [
+        {
+          text: 'w3schools',
+          href: 'https://www.w3schools.com/quiztest',
+        },
+        {
+          text: 'Tyler McGinnis',
+          href: 'https://ui.dev/var-let-const/',
+        },
+      ],
+    },
     {
       text: 'What does `typeof` do?',
       answers: {
@@ -45,7 +43,6 @@ export const quizData = {
         d: 'can tell the difference between arrays and objects',
       },
       correct: 'b',
-      selected: null,
       links: [
         {
           text: 'javascript.info',
@@ -53,8 +50,7 @@ export const quizData = {
         },
         {
           text: 'MDN',
-          href:
-            'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof',
+          href: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof',
         },
       ],
     },
@@ -69,7 +65,6 @@ export const quizData = {
         d: 'ESLint',
       },
       correct: 'd',
-      selected: null,
       links: [
         {
           text: 'sitepoint',
@@ -90,7 +85,6 @@ export const quizData = {
         d: 'onchange',
       },
       correct: 'b',
-      selected: null,
       links: [
         {
           text: 'sitepoint',
@@ -102,38 +96,15 @@ export const quizData = {
         },
       ],
     },
-    // {
-    //   text: 'Inside which HTML element do we put the JavaScript?',
-    //   answers: {
-    //     a: '<scripting>',
-    //     b: '<js>',
-    //     c: '<javascript>',
-    //     d: '<script>',
-    //   },
-    //   correct: 'd',
-    //   selected: null,
-    //   links: [
-    //     {
-    //       text: 'w3schools',
-    //       href: 'https://www.w3schools.com/quiztest',
-    //     },
-    //     {
-    //       text: 'Tyler McGinnis',
-    //       href: 'https://ui.dev/var-let-const/',
-    //     },
-    //   ],
-    // },
     {
-      text:
-        'What is the correct JavaScript syntax to change the content of the HTML element below?',
+      text: 'Inside which HTML element do we put the JavaScript?',
       answers: {
-        a: '#demo.innerHTML = "Hello World!";  ',
-        b: 'document.getElementById("demo").innerHTML = "Hello World!";  ',
-        c: 'document.getElementByName("p").innerHTML = "Hello World!";',
-        d: 'document.getElement("p").innerHTML = "Hello World!";',
+        a: '&lt;scripting&gt;  ',
+        b: '&lt;js&gt;',
+        c: '&lt;javascript&gt',
+        d: '&lt;script&gt  ',
       },
-      correct: 'b',
-      selected: null,
+      correct: 'd',
       links: [
         {
           text: 'w3schools',
@@ -145,27 +116,46 @@ export const quizData = {
         },
       ],
     },
-    // {
-    //   text: 'Where is the correct place to insert a JavaScript?',
-    //   answers: {
-    //     a: 'The <head> section',
-    //     b: 'The <body> section',
-    //     c: 'Both the <head> section and the <body> section are correct  ',
-    //     d: 'The <title> section',
-    //   },
-    //   correct: 'c',
-    //   selected: null,
-    //   links: [
-    //     {
-    //       text: 'w3schools',
-    //       href: 'https://www.w3schools.com/quiztest',
-    //     },
-    //     {
-    //       text: 'Tyler McGinnis',
-    //       href: 'https://ui.dev/var-let-const/',
-    //     },
-    //   ],
-    // },
+    {
+      text: 'What is the correct JavaScript syntax to change the content of the HTML element below?',
+      answers: {
+        a: '#demo.innerHTML = "Hello World!";  ',
+        b: 'document.getElementById("demo").innerHTML = "Hello World!";  ',
+        c: 'document.getElementByName("p").innerHTML = "Hello World!";',
+        d: 'document.getElement("p").innerHTML = "Hello World!";',
+      },
+      correct: 'b',
+      links: [
+        {
+          text: 'w3schools',
+          href: 'https://www.w3schools.com/quiztest',
+        },
+        {
+          text: 'Tyler McGinnis',
+          href: 'https://ui.dev/var-let-const/',
+        },
+      ],
+    },
+    {
+      text: 'Where is the correct place to insert a JavaScript?',
+      answers: {
+        a: 'The &lt;head&gt; section',
+        b: 'The &lt;body&gt; section',
+        c: 'Both the &lt;head&gt; section and the &lt;body&gt; section are correct  ',
+        d: 'The &lt;title&gt; section',
+      },
+      correct: 'c',
+      links: [
+        {
+          text: 'w3schools',
+          href: 'https://www.w3schools.com/quiztest',
+        },
+        {
+          text: 'Tyler McGinnis',
+          href: 'https://ui.dev/var-let-const/',
+        },
+      ],
+    },
     {
       text: 'How do you write "Hello World" in an alert box?',
       answers: {
@@ -175,7 +165,6 @@ export const quizData = {
         d: 'alert("Hello World");  ',
       },
       correct: 'd',
-      selected: null,
       links: [
         {
           text: 'sitepoint',
@@ -196,7 +185,6 @@ export const quizData = {
         d: 'if i == 5 then',
       },
       correct: 'a',
-      selected: null,
       links: [
         {
           text: 'sitepoint',
@@ -217,7 +205,6 @@ export const quizData = {
         d: 'Creative style sheets',
       },
       correct: 'c',
-      selected: null,
       links: [
         {
           text: 'w3schools',

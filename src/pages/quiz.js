@@ -4,11 +4,11 @@ import { createQuestion } from '../views/question.html.js';
 
 export const quiz = (qNumber) => {
   // Create path for next question
-  let pathname = `quiz&question=${qNumber + 1}`;
+  let pathname = { page: 'quiz', question: qNumber };
 
   // Redirect to results if it's last question
   if (qNumber === quizData.questions.length - 1) {
-    pathname = `results`;
+    pathname.page = 'results';
   }
 
   const currentQuestionText = quizData.questions[qNumber].text;
@@ -32,7 +32,6 @@ export const quiz = (qNumber) => {
     if (event.target?.id === ANSWER_LABEL_ID) {
       let selectedItem = event.target;
       localStorage.setItem(qNumber, selectedItem.getAttribute('for'));
-      console.log(selectedItem.getAttribute('for'))
-    }
+       }
   });
 };
