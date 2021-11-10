@@ -19,5 +19,8 @@
   "homepage": "https://github.com/tomasvanrijsse/browser-quiz#readme",
   "devDependencies": {
     "handlebars": "^4.7.7"
+  },
+  "dependencies": {
+    "aos": "^2.3.4"
   }
 }
