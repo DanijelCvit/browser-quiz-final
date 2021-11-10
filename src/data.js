@@ -24,7 +24,6 @@ export const quizData = {
         d: '&lt; style="text-size:bold;"&gt;',
       },
       correct: 'b',
-      selected: null,
       links: [
         {
           text: 'w3schools',
@@ -45,7 +44,6 @@ export const quizData = {
         d: 'can tell the difference between arrays and objects',
       },
       correct: 'b',
-      selected: null,
       links: [
         {
           text: 'javascript.info',
@@ -68,7 +66,6 @@ export const quizData = {
         d: 'ESLint',
       },
       correct: 'd',
-      selected: null,
       links: [
         {
           text: 'sitepoint',
@@ -89,7 +86,6 @@ export const quizData = {
         d: 'onchange',
       },
       correct: 'b',
-      selected: null,
       links: [
         {
           text: 'sitepoint',
@@ -110,7 +106,6 @@ export const quizData = {
         d: '&lt;script&gt  ',
       },
       correct: 'd',
-      selected: null,
       links: [
         {
           text: 'w3schools',
@@ -131,7 +126,6 @@ export const quizData = {
         d: 'document.getElement("p").innerHTML = "Hello World!";',
       },
       correct: 'b',
-      selected: null,
       links: [
         {
           text: 'w3schools',
@@ -152,7 +146,6 @@ export const quizData = {
         d: 'The &lt;title&gt; section',
       },
       correct: 'c',
-      selected: null,
       links: [
         {
           text: 'w3schools',
@@ -173,7 +166,6 @@ export const quizData = {
         d: 'alert("Hello World");  ',
       },
       correct: 'd',
-      selected: null,
       links: [
         {
           text: 'sitepoint',
@@ -194,7 +186,6 @@ export const quizData = {
         d: 'if i == 5 then',
       },
       correct: 'a',
-      selected: null,
       links: [
         {
           text: 'sitepoint',
@@ -215,7 +206,6 @@ export const quizData = {
         d: 'Creative style sheets',
       },
       correct: 'c',
-      selected: null,
       links: [
         {
           text: 'w3schools',
