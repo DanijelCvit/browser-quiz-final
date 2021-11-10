@@ -11,36 +11,56 @@ export const createQuestion = (question, answers, pathname) => {
 <h1>${question}</h1>
 <ul class="answerList">
   <li class="${ANSWER_ITEM}">
-    <input class="${ANSWER_INPUT}" type="radio" id="${answers[0].key}" name="answer" />
-    <label class="${ANSWER_LABEL}" id="${ANSWER_LABEL_ID}" for="${answers[0].key}"
+    <input class="${ANSWER_INPUT}" type="radio" id="${
+    answers[0].key
+  }" name="answer" />
+    <label class="${ANSWER_LABEL}" id="${ANSWER_LABEL_ID}" for="${
+    answers[0].key
+  }"
       >${answers[0].text}</label
     >
   </li>
 
   <li class="${ANSWER_ITEM}">
-    <input class="${ANSWER_INPUT}" type="radio" id="${answers[0].key}" name="answer" />
-    <label class="${ANSWER_LABEL}" id="${ANSWER_LABEL_ID}" for="${answers[1].key}"
+    <input class="${ANSWER_INPUT}" type="radio" id="${
+    answers[0].key
+  }" name="answer" />
+    <label class="${ANSWER_LABEL}" id="${ANSWER_LABEL_ID}" for="${
+    answers[1].key
+  }"
       >${answers[1].text}</label
     >
   </li>
 
   <li class="${ANSWER_ITEM}">
-    <input class="${ANSWER_INPUT}" type="radio" id="${answers[0].key}" name="answer" />
-    <label class="${ANSWER_LABEL}" id="${ANSWER_LABEL_ID}" for="${answers[2].key}"
+    <input class="${ANSWER_INPUT}" type="radio" id="${
+    answers[0].key
+  }" name="answer" />
+    <label class="${ANSWER_LABEL}" id="${ANSWER_LABEL_ID}" for="${
+    answers[2].key
+  }"
       >${answers[2].text}</label
     >
   </li>
 
   <li class="${ANSWER_ITEM}">
-    <input class="${ANSWER_INPUT}" type="radio" id="${answers[0].key}" name="answer" />
-    <label class="${ANSWER_LABEL}" id="${ANSWER_LABEL_ID}" for="${answers[3].key}"
+    <input class="${ANSWER_INPUT}" type="radio" id="${
+    answers[0].key
+  }" name="answer" />
+    <label class="${ANSWER_LABEL}" id="${ANSWER_LABEL_ID}" for="${
+    answers[3].key
+  }"
       >${answers[3].text}</label
     >
   </li>
 
 </ul>
-<a class=" btn btn-block btn-dark btn-block" id="nextQuestionButton" href="?page=${pathname}">Next question</a>
-<a class=" btn btn-block btn-dark btn-block" id="SubmitQuestion" href="?page=${pathname}">Submit</a>
+<a class=" btn btn-block btn-dark btn-block" id="nextQuestionButton" href="?page=${
+    pathname.page
+  }&question=${pathname.question + 1}">Next question</a>
+<a class=" btn btn-block btn-dark btn-block" id="SubmitQuestion" href="?page=submit&question=${
+    pathname.question
+  }">Submit</a>
 </div>
 `;
 };

@@ -1,14 +1,14 @@
 import { quizData } from '../data.js';
-import { ANSWER_LABEL_ID, NEXT_QUESTION_BUTTON_ID } from '../constants.js';
+import { ANSWER_LABEL_ID } from '../constants.js';
 import { createQuestion } from '../views/question.html.js';
 
 export const quiz = (qNumber) => {
   // Create path for next question
-  let pathname = `quiz&question=${qNumber + 1}`;
+  let pathname = { page: 'quiz', question: qNumber };
 
   // Redirect to results if it's last question
   if (qNumber === quizData.questions.length - 1) {
-    pathname = `results`;
+    pathname.page = 'results';
   }
 
   const currentQuestionText = quizData.questions[qNumber].text;
@@ -33,8 +33,7 @@ export const quiz = (qNumber) => {
   document.addEventListener('click', (event) => {
     if (event.target?.id === ANSWER_LABEL_ID) {
       let selectedItem = event.target;
-      quizData.questions[quizData.currentQuestionIndex].selected =
-        selectedItem.getAttribute('for');
+      localStorage.setItem(qNumber, selectedItem.getAttribute('for'));
     }
   });
 };
