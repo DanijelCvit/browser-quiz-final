@@ -1,18 +1,22 @@
-const createListItems = (results) => {
+const createListItems = (correctAnswers) => {
   let list = '';
-  for (const { selected, correct } of results) {
+  for (let i = 0; i < correctAnswers.length; i++) {
     list += `
-    <li>selected: ${selected}, correct: ${correct}</li>
+    <li>selected: ${
+      localStorage[i] === undefined ? '?' : localStorage[i]
+    }, correct: ${correctAnswers[i]}</li>
 
     `;
   }
   return list;
 };
 
-export const createResults = (results) => {
-  return `
+export const createResults = (correctAnswers) => {
+  return String.raw`
+    <div class="item" data-aos="fade-up">
   <h1>Results</h1>
   <ul class='results'>
-    ${createListItems(results)}
-</ul>`;
+    ${createListItems(correctAnswers)}
+</ul></div>
+`;
 };
