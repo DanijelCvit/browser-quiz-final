@@ -24,8 +24,12 @@ export const createQuestion = (question, answers, pathname) => {
 
   <li class="${ANSWER_ITEM}">
 
-    <input class="${ANSWER_INPUT}" type="radio" id="${answers[1].key}" name="answer" />
-    <label class="${ANSWER_LABEL}" id="${ANSWER_LABEL_ID}" for="${answers[1].key}"
+    <input class="${ANSWER_INPUT}" type="radio" id="${
+    answers[1].key
+  }" name="answer" />
+    <label class="${ANSWER_LABEL}" id="${ANSWER_LABEL_ID}" for="${
+    answers[1].key
+  }"
 
       >${answers[1].text}</label
     >
@@ -33,23 +37,36 @@ export const createQuestion = (question, answers, pathname) => {
 
   <li class="${ANSWER_ITEM}">
 
-    <input class="${ANSWER_INPUT}" type="radio" id="${answers[2].key}" name="answer" />
-    <label class="${ANSWER_LABEL}" id="${ANSWER_LABEL_ID}" for="${answers[2].key}"
+    <input class="${ANSWER_INPUT}" type="radio" id="${
+    answers[2].key
+  }" name="answer" />
+    <label class="${ANSWER_LABEL}" id="${ANSWER_LABEL_ID}" for="${
+    answers[2].key
+  }"
 
       >${answers[2].text}</label
     >
   </li>
 
   <li class="${ANSWER_ITEM}">
-    <input class="${ANSWER_INPUT}" type="radio" id="${answers[3].key}" name="answer" />
-    <label class="${ANSWER_LABEL}" id="${ANSWER_LABEL_ID}" for="${answers[3].key}"
+    <input class="${ANSWER_INPUT}" type="radio" id="${
+    answers[3].key
+  }" name="answer" />
+    <label class="${ANSWER_LABEL}" id="${ANSWER_LABEL_ID}" for="${
+    answers[3].key
+  }"
 
       >${answers[3].text}</label
     >
   </li>
 
 </ul>
-<a class=" btn btn-block btn-dark btn-block" id=${NEXT_QUESTION_BUTTON_ID} href="?page=${pathname}">Next question</a>
-
-`;
+<a class=" btn btn-block btn-dark btn-block" id="nextQuestionButton" href="?page=${
+    pathname.page
+  }&question=${pathname.question + 1}">Next question</a>
+ <a class=" btn btn-block btn-dark btn-block" id="SubmitQuestion" href="?page=submit&question=${
+   pathname.question
+ }">Submit</a>
+ </div>
+ `;
 };
