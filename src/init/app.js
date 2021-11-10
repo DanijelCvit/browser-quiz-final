@@ -7,6 +7,9 @@ import { quizData } from '../data.js';
 const err = () => {
   document.getElementById('app').innerHTML = `<h1>Error: page not found<h1>`;
 };
+AOS.init({
+  duration: 1200,
+});
 
 //Router
 const router = () => {

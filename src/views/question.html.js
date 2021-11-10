@@ -7,6 +7,7 @@ import {
 
 export const createQuestion = (question, answers, pathname) => {
   return `
+  <div class="item" data-aos="fade-up">
 <h1>${question}</h1>
 <ul class="answerList">
   <li class="${ANSWER_ITEM}">
@@ -39,5 +40,6 @@ export const createQuestion = (question, answers, pathname) => {
 
 </ul>
 <a class=" btn btn-block btn-dark btn-block" id="nextQuestionButton" href="?page=${pathname}">Next question</a>
+</div>
 `;
 };
