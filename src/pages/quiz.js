@@ -29,7 +29,7 @@ export const quiz = (qNumber) => {
   document.getElementById('app').innerHTML = quizTemplate;
 
   document.addEventListener('click', (event) => {
-    if (event.target.id === ANSWER_LABEL_ID) {
+    if (event.target?.id === ANSWER_LABEL_ID) {
       let selectedItem = event.target;
       localStorage.setItem(qNumber, selectedItem.getAttribute('for'));
       console.log(selectedItem.getAttribute('for'))
