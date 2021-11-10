@@ -13,6 +13,6 @@ export const createResults = (results) => {
   return `
   <h1>Results</h1>
   <ul class='results'>
-    ${createList(results)}
+    ${createListItems(results)}
 </ul>`;
 };
