@@ -1,7 +1,9 @@
 import { quizData } from '../data.js';
-import quizString from '../views/question.html.js';
+import { ANSWER_LABEL_ID } from '../constants.js';
+import { createQuestion } from '../views/question.html.js';
 
 export const quiz = (qNumber) => {
+  // Create path for next question
   let pathname = `quiz&question=${qNumber + 1}`;
 
   // Redirect to results if it's last question
@@ -9,20 +11,30 @@ export const quiz = (qNumber) => {
     pathname = `results`;
   }
 
-  // Get keys and answers and put them in an object
-  const answersKeyValues = Object.entries(quizData.questions[qNumber].answers);
-  const answersObject = answersKeyValues.map(([key, answer]) => ({
-    key,
-    answer,
-  }));
+  const currentQuestionText = quizData.questions[qNumber].text;
+  const currentAnswersObject = quizData.questions[qNumber].answers;
+  const currentAnswersData = Object.entries(currentAnswersObject).map(
+    ([key, text]) => ({
+      key,
+      text,
+    })
+  );
 
   // Generate new HTML
-  const quizTemplate = Handlebars.compile(quizString);
+  const quizTemplate = createQuestion(
+    currentQuestionText,
+    currentAnswersData,
+    pathname
+  );
 
   // Add HTML to app
-  document.getElementById('app').innerHTML = quizTemplate({
-    answersObject,
-    question: quizData.questions[qNumber].text,
-    pathname,
+  document.getElementById('app').innerHTML = quizTemplate;
+
+  document.addEventListener('click', (event) => {
+    if (event.target?.id === ANSWER_LABEL_ID) {
+      let selectedItem = event.target;
+      quizData.questions[quizData.currentQuestionIndex].selected =
+        selectedItem.getAttribute('for');
+    }
   });
 };

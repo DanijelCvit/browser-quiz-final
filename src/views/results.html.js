@@ -1,8 +1,18 @@
-export default `
-<h1>Results</h1>
-<ul class='results'>
-  {{#each results}}
-    <li>selected: {{this.selected}}, correct: {{this.correct}}</li>
-  {{/each}}
-</ul>
-`;
+const createList = (results) => {
+  let list = '';
+  for (const { selected, correct } of results) {
+    list += `
+    <li>selected: ${selected}, correct: ${correct}</li>
+
+    `;
+  }
+  return list;
+};
+
+export const createResults = (results) => {
+  return `
+  <h1>Results</h1>
+  <ul class='results'>
+    ${createList(results)}
+</ul>`;
+};
