@@ -14,7 +14,7 @@ const router = () => {
 
   const routes = ['start', 'quiz', 'results'];
 
-  if (searchParams.toString() === '' || ! searchParams.has('page')) {
+  if (searchParams.toString() === '' || !searchParams.has('page')) {
     return start();
   }
   // Check if there are more than 2 params or other params than page/question

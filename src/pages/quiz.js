@@ -1,5 +1,5 @@
 import { quizData } from '../data.js';
-import { ANSWER_LABEL_ID } from '../constants.js';
+import { ANSWER_LABEL_ID, NEXT_QUESTION_BUTTON_ID } from '../constants.js';
 import { createQuestion } from '../views/question.html.js';
 
 export const quiz = (qNumber) => {
