@@ -1,22 +1,37 @@
 const createListItems = (correctAnswers) => {
   let list = '';
-  for (let i = 0; i < correctAnswers.length; i++) {
-    list += `
-    <li>selected: ${
-      localStorage[i] === undefined ? '?' : localStorage[i]
-    }, correct: ${correctAnswers[i]}</li>
+
+  for (const item of results) {
+    if (localStorage[results.indexOf(item)] !== item.correct) {
+      list += `
+    <h4>${item.text}</h4>
+    <li>selected: ${localStorage[results.indexOf(item)]} , correct: ${item.correct}</li>
 
     `;
-  }
+    }
+   
+  };
   return list;
+}
+
+
+let resultCounter = 0;
+const checkAnswer = (results) => {
+  for (const item of results) {
+    if (localStorage[results.indexOf(item)] === item.correct) {
+      resultCounter += 1;
+    }
+  }
+ 
+  return resultCounter;
+}
+
+export const createResults = (results) => {
+  return `
+<h1>Results</h1>
+<ol class='results'>
+  ${createListItems(results)}
+</ol>
+<p>Correct answers :${checkAnswer(results)} / ${results.length}</p>`;
 };
 
-export const createResults = (correctAnswers) => {
-  return String.raw`
-    <div class="item" data-aos="fade-up">
-  <h1>Results</h1>
-  <ul class='results'>
-    ${createListItems(correctAnswers)}
-</ul></div>
-`;
-};

@@ -1,5 +1,5 @@
 import { quizData } from '../data.js';
-import { ANSWER_LABEL_ID } from '../constants.js';
+import { ANSWER_LABEL_ID, NEXT_QUESTION_BUTTON_ID } from '../constants.js';
 import { createQuestion } from '../views/question.html.js';
 
 export const quiz = (qNumber) => {
@@ -19,14 +19,12 @@ export const quiz = (qNumber) => {
       text,
     })
   );
-
   // Generate new HTML
   const quizTemplate = createQuestion(
     currentQuestionText,
     currentAnswersData,
     pathname
   );
-
   // Add HTML to app
   document.getElementById('app').innerHTML = quizTemplate;
 
@@ -34,6 +32,6 @@ export const quiz = (qNumber) => {
     if (event.target?.id === ANSWER_LABEL_ID) {
       let selectedItem = event.target;
       localStorage.setItem(qNumber, selectedItem.getAttribute('for'));
-    }
+       }
   });
 };

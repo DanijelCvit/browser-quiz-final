@@ -15,8 +15,9 @@ AOS.init({
 //Router
 const router = () => {
   const searchParams = new URLSearchParams(window.location.search);
-
+  
   const routes = ['start', 'quiz', 'results', 'submit'];
+
 
   if (searchParams.toString() === '' || !searchParams.has('page')) {
     return start();
