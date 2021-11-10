@@ -1,5 +1,3 @@
-'use strict';
-
 /*
 
  The constants file is used to store anything 
