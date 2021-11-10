@@ -18,7 +18,7 @@ export const createSubmit = (header, pathname) => {
       <p>The correct answer is: <br/>
       ${
         quizData.questions[pathname.question].answers[
-          localStorage[pathname.question]
+          quizData.questions[pathname.question].correct
         ]
       }</p>
       <p>More info at:<br/>

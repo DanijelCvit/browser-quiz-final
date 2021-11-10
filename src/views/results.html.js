@@ -1,19 +1,19 @@
-const createListItems = (correctAnswers) => {
+const createListItems = (results) => {
   let list = '';
 
   for (const item of results) {
     if (localStorage[results.indexOf(item)] !== item.correct) {
       list += `
     <h4>${item.text}</h4>
-    <li>selected: ${localStorage[results.indexOf(item)]} , correct: ${item.correct}</li>
+    <li>selected: ${localStorage[results.indexOf(item)]} , correct: ${
+        item.correct
+      }</li>
 
     `;
     }
-   
-  };
+  }
   return list;
-}
-
+};
 
 let resultCounter = 0;
 const checkAnswer = (results) => {
@@ -22,9 +22,9 @@ const checkAnswer = (results) => {
       resultCounter += 1;
     }
   }
- 
+
   return resultCounter;
-}
+};
 
 export const createResults = (results) => {
   return `
@@ -34,4 +34,3 @@ export const createResults = (results) => {
 </ol>
 <p>Correct answers :${checkAnswer(results)} / ${results.length}</p>`;
 };
-
