@@ -14,3 +14,13 @@ export const ANSWER_INPUT = 'input';
 export const ANSWER_LABEL = 'label';
 export const ANSWER_LABEL_ID = 'label-id';
 
+let resultCounter = 0;
+const checkAnswer = (results) => {
+    for (const item of results) {
+        if (localStorage[results.indexOf(item)] === item.correct) {
+            resultCounter += 1;
+        }
+    }
+
+    return resultCounter;
+}

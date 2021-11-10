@@ -15,27 +15,27 @@ export const quizData = {
   currentQuestionIndex: 0,
   // the questions in the quiz
   questions: [
-    {
-      text: 'Which is the correct CSS syntax?',
-      answers: {
-        a: 'p {text-size:bold;}',
-        b: 'p {font-weight:bold;}  ',
-        c: '<p style="font-size:bold;">',
-        d: '<p style="text-size:bold;">',
-      },
-      correct: 'b',
-      selected: null,
-      links: [
-        {
-          text: 'w3schools',
-          href: 'https://www.w3schools.com/quiztest',
-        },
-        {
-          text: 'Tyler McGinnis',
-          href: 'https://ui.dev/var-let-const/',
-        },
-      ],
-    },
+    // {
+    //   text: 'Which is the correct CSS syntax?',
+    //   answers: {
+    //     a: 'p {text-size:bold;}',
+    //     b: 'p {font-weight:bold;}',
+    //     c: '<p style="font-size: bold;">',
+    //     d: '<p style="text-size:bold;">',
+    //   },
+    //   correct: 'b',
+    //   selected: null,
+    //   links: [
+    //     {
+    //       text: 'w3schools',
+    //       href: 'https://www.w3schools.com/quiztest',
+    //     },
+    //     {
+    //       text: 'Tyler McGinnis',
+    //       href: 'https://ui.dev/var-let-const/',
+    //     },
+    //   ],
+    // },
     {
       text: 'What does `typeof` do?',
       answers: {
@@ -102,27 +102,27 @@ export const quizData = {
         },
       ],
     },
-    {
-      text: 'Inside which HTML element do we put the JavaScript?',
-      answers: {
-        a: '<scripting>  ',
-        b: '<js>',
-        c: '<javascript>',
-        d: '<script>  ',
-      },
-      correct: 'd',
-      selected: null,
-      links: [
-        {
-          text: 'w3schools',
-          href: 'https://www.w3schools.com/quiztest',
-        },
-        {
-          text: 'Tyler McGinnis',
-          href: 'https://ui.dev/var-let-const/',
-        },
-      ],
-    },
+    // {
+    //   text: 'Inside which HTML element do we put the JavaScript?',
+    //   answers: {
+    //     a: '<scripting>',
+    //     b: '<js>',
+    //     c: '<javascript>',
+    //     d: '<script>',
+    //   },
+    //   correct: 'd',
+    //   selected: null,
+    //   links: [
+    //     {
+    //       text: 'w3schools',
+    //       href: 'https://www.w3schools.com/quiztest',
+    //     },
+    //     {
+    //       text: 'Tyler McGinnis',
+    //       href: 'https://ui.dev/var-let-const/',
+    //     },
+    //   ],
+    // },
     {
       text:
         'What is the correct JavaScript syntax to change the content of the HTML element below?',
@@ -145,27 +145,27 @@ export const quizData = {
         },
       ],
     },
-    {
-      text: 'Where is the correct place to insert a JavaScript?',
-      answers: {
-        a: 'The <head> section',
-        b: 'The <body> section',
-        c: 'Both the <head> section and the <body> section are correct  ',
-        d: 'The <title> section',
-      },
-      correct: 'c',
-      selected: null,
-      links: [
-        {
-          text: 'w3schools',
-          href: 'https://www.w3schools.com/quiztest',
-        },
-        {
-          text: 'Tyler McGinnis',
-          href: 'https://ui.dev/var-let-const/',
-        },
-      ],
-    },
+    // {
+    //   text: 'Where is the correct place to insert a JavaScript?',
+    //   answers: {
+    //     a: 'The <head> section',
+    //     b: 'The <body> section',
+    //     c: 'Both the <head> section and the <body> section are correct  ',
+    //     d: 'The <title> section',
+    //   },
+    //   correct: 'c',
+    //   selected: null,
+    //   links: [
+    //     {
+    //       text: 'w3schools',
+    //       href: 'https://www.w3schools.com/quiztest',
+    //     },
+    //     {
+    //       text: 'Tyler McGinnis',
+    //       href: 'https://ui.dev/var-let-const/',
+    //     },
+    //   ],
+    // },
     {
       text: 'How do you write "Hello World" in an alert box?',
       answers: {
