@@ -1,5 +1,10 @@
-body, html {
-  height: 100%;
+
+* {
+   height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
 }
 
 .centered {
@@ -29,12 +34,9 @@ body, html {
 
 .label {
   margin: 10px;
-  width: 100%;
-  height: 100%;
 }
 
 .input {
-  /* display: none; */
   appearance: none;
   margin: 0;
   display: inline;
@@ -43,6 +45,7 @@ body, html {
 input[type='radio']:checked ~ label {
   color: blue;
 }
+
 
 .question-page{
   text-align: center;
@@ -107,3 +110,29 @@ width: 70%;
 .try-again {
   margin-top: 50px;
 }
+=======
+.accordion-button {
+  font-size: 25px;
+}
+
+.accordion {
+  transition: ease-in;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: white;
+  box-shadow: inset 0 0 0 rgb(0, 0, 0);
+}
+
+/* Hide default accordion arrow image */
+.accordion-button::after,
+.accordion-button:not(.collapsed)::after {
+  background-image: url('');
+}
+
+/* Margin to prevent accordion covering list item border  */
+.accordion-item {
+  border-radius: 10px;
+  margin: 1px;
+}
+
