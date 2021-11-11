@@ -1,4 +1,4 @@
-import { quizData } from '../data.js';
+import { shortageData } from '../init/app.js';
 import { ANSWER_LABEL_ID } from '../constants.js';
 import { createQuestion } from '../views/question.html.js';
 
@@ -7,12 +7,12 @@ export const quiz = (qNumber) => {
   let pathname = { page: 'quiz', question: qNumber };
 
   // Redirect to results if it's last question
-  if (qNumber === quizData.questions.length - 1) {
+  if (qNumber === shortageData.length - 1) {
     pathname.page = 'results';
   }
 
-  const currentQuestionText = quizData.questions[qNumber].text;
-  const currentAnswersObject = quizData.questions[qNumber].answers;
+  const currentQuestionText = shortageData[qNumber].text;
+  const currentAnswersObject = shortageData[qNumber].answers;
   const currentAnswersData = Object.entries(currentAnswersObject).map(
     ([key, text]) => ({
       key,

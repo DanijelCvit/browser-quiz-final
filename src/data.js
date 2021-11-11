@@ -215,6 +215,168 @@ export const quizData = {
           href: 'https://www.w3schools.com/quiztest',
         },
       ],
+      text: 'Which operator is used to assign a value to a variable?',
+      answers: {
+        a: '*',
+        b: 'x',
+        c: '= ',
+        d: '-',
+      },
+      correct: 'c',
+      links: [
+        {
+          text: 'w3schools',
+          href: 'https://www.w3schools.com/quiztest',
+        },
+        {
+          text: 'w3schools',
+          href: 'https://www.w3schools.com/quiztest',
+        },
+      ],
+      text: 'How do you find the number with the highest value of x and y?',
+      answers: {
+        a: 'top(x, y)',
+        b: 'Math.max(x, y)  ',
+        c: 'ceil(x, y)',
+        d: 'Math.ceil(x, y) ',
+      },
+      correct: 'b',
+      links: [
+        {
+          text: 'w3schools',
+          href: 'https://www.w3schools.com/quiztest',
+        },
+        {
+          text: 'w3schools',
+          href: 'https://www.w3schools.com/quiztest',
+        },
+      ],
+      text: 'In HTML, which attribute is used to specify that an input field must be filled out?',
+      answers: {
+        a: 'formvalidate',
+        b: 'required  ',
+        c: 'placeholder',
+        d: 'validate',
+      },
+      correct: 'b',
+      links: [
+        {
+          text: 'w3schools',
+          href: 'https://www.w3schools.com/quiztest',
+        },
+        {
+          text: 'w3schools',
+          href: 'https://www.w3schools.com/quiztest',
+        },
+      ],
+      text: ' Which input type defines a slider control?',
+      answers: {
+        a: 'search',
+        b: 'range    ',
+        c: 'controls',
+        d: 'slider',
+      },
+      correct: 'b',
+      links: [
+        {
+          text: 'w3schools',
+          href: 'https://www.w3schools.com/quiztest',
+        },
+        {
+          text: 'w3schools',
+          href: 'https://www.w3schools.com/quiztest',
+        },
+      ],
+      text: 'How can you make a bulleted list?',
+      answers: {
+        a: '&lt; ol;"&gt;',
+        b: ' &lt;dl ;"&gt;',
+        c: ' &lt;ul ;"&gt;',
+        d: ' &lt;list ;"&gt;',
+      },
+      correct: 'c',
+      links: [
+        {
+          text: 'w3schools',
+          href: 'https://www.w3schools.com/quiztest',
+        },
+        {
+          text: 'w3schools',
+          href: 'https://www.w3schools.com/quiztest',
+        },
+      ],
+      text: 'How can you make a numbered list?',
+      answers: {
+        a: '&lt; ol;"&gt;',
+        b: ' &lt;dl ;"&gt;',
+        c: ' &lt;ul ;"&gt;',
+        d: ' &lt;list ;"&gt;',
+      },
+      correct: 'a',
+      links: [
+        {
+          text: 'w3schools',
+          href: 'https://www.w3schools.com/quiztest',
+        },
+        {
+          text: 'w3schools',
+          href: 'https://www.w3schools.com/quiztest',
+        },
+      ],
+      text: 'What is the correct HTML for making a text input field?',
+      answers: {
+        a: '&lt; textfield;"&gt;',
+        b: ' &lt;input type="text" ;"&gt;',
+        c: ' &lt;textinput type="text" ;"&gt;',
+        d: ' &lt;input type="textfield" ;"&gt;',
+      },
+      correct: 'b',
+      links: [
+        {
+          text: 'w3schools',
+          href: 'https://www.w3schools.com/quiztest',
+        },
+        {
+          text: 'w3schools',
+          href: 'https://www.w3schools.com/quiztest',
+        },
+      ],
+      text: 'What is the correct HTML for inserting an image?',
+      answers: {
+        a: '&lt; img src="image.gif" alt="MyImage";"&gt;',
+        b: ' &lt;img alt="MyImage" ;"&gt; image.gif &lt;/img ;"&gt;',
+        c: ' &lt;img href="image.gif" alt="MyImage" ;"&gt;',
+        d: ' &lt;image src="image.gif" alt="MyImage" ;"&gt;',
+      },
+      correct: 'a',
+      links: [
+        {
+          text: 'w3schools',
+          href: 'https://www.w3schools.com/quiztest',
+        },
+        {
+          text: 'w3schools',
+          href: 'https://www.w3schools.com/quiztest',
+        },
+      ],
+      text: 'What is the correct way to write a JavaScript array?',
+      answers: {
+        a: 'var colors = "red", "green", "blue"',
+        b: 'var colors = 1 = ("red"), 2 = ("green"), 3 = ("blue")',
+        c: 'var colors = (1:"red", 2:"green", 3:"blue")',
+        d: 'var colors = ["red", "green", "blue"]  ',
+      },
+      correct: 'd',
+      links: [
+        {
+          text: 'w3schools',
+          href: 'https://www.w3schools.com/quiztest',
+        },
+        {
+          text: 'w3schools',
+          href: 'https://www.w3schools.com/quiztest',
+        },
+      ],
     },
   ],
 };

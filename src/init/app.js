@@ -3,6 +3,11 @@ import { results } from '../pages/results.js';
 import { start } from '../pages/start.js';
 import { quizData } from '../data.js';
 import { submit } from '../pages/submit.js';
+import { random } from '../pages/randomQuestions.js';
+const shuffledQuestions = [...quizData.questions].sort(
+  () => Math.random() - 0.5
+);
+export const shortageData = shuffledQuestions.slice(0, 10);
 
 // Error path
 const err = () => {
@@ -15,9 +20,8 @@ AOS.init({
 //Router
 const router = () => {
   const searchParams = new URLSearchParams(window.location.search);
-  
-  const routes = ['start', 'quiz', 'results', 'submit'];
 
+  const routes = ['start', 'quiz', 'results', 'submit'];
 
   if (searchParams.toString() === '' || !searchParams.has('page')) {
     return start();

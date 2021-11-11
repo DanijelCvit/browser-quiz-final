@@ -1,17 +1,17 @@
 import { createSubmit } from '../views/submit.html.js';
-import { quizData } from '../data.js';
+import { shortageData } from '../init/app.js';
 
 export const submit = (qNumber) => {
   // Create path for next question
   let pathname = { page: 'quiz', question: qNumber };
 
   // Redirect to results if it's last question
-  if (qNumber >= quizData.questions.length - 1) {
+  if (qNumber >= shortageData.length - 1) {
     pathname.page = 'results';
   }
 
   // Check the answer and select appropriate header
-  const correctAnswer = quizData.questions[qNumber].correct;
+  const correctAnswer = shortageData[qNumber].correct;
   const isCorrect = correctAnswer === localStorage.getItem(qNumber);
   const header = isCorrect ? 'Correct' : 'Incorrect!';
 
