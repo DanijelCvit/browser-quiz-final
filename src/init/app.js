@@ -2,7 +2,6 @@ import { quiz } from '../pages/quiz.js';
 import { results } from '../pages/results.js';
 import { start } from '../pages/start.js';
 import { quizData } from '../data.js';
-import { submit } from '../pages/submit.js';
 
 // Error path
 const err = () => {
@@ -15,9 +14,8 @@ AOS.init({
 //Router
 const router = () => {
   const searchParams = new URLSearchParams(window.location.search);
-  
-  const routes = ['start', 'quiz', 'results', 'submit'];
 
+  const routes = ['start', 'quiz', 'results'];
 
   if (searchParams.toString() === '' || !searchParams.has('page')) {
     return start();
@@ -53,8 +51,6 @@ const router = () => {
     } else {
       return err();
     }
-  } else if (currentPage == 'submit') {
-    return submit(+currentQuestion);
   } else {
     return results();
   }

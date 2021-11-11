@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .centered {
   position: fixed;
   top: 50%;
@@ -25,12 +31,9 @@
 
 .label {
   margin: 10px;
-  width: 100%;
-  height: 100%;
 }
 
 .input {
-  /* display: none; */
   appearance: none;
   margin: 0;
   display: inline;
@@ -38,4 +41,29 @@
 
 input[type='radio']:checked ~ label {
   color: blue;
+}
+
+.accordion-button {
+  font-size: 25px;
+}
+
+.accordion {
+  transition: ease-in;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: white;
+  box-shadow: inset 0 0 0 rgb(0, 0, 0);
+}
+
+/* Hide default accordion arrow image */
+.accordion-button::after,
+.accordion-button:not(.collapsed)::after {
+  background-image: url('');
+}
+
+/* Margin to prevent accordion covering list item border  */
+.accordion-item {
+  border-radius: 10px;
+  margin: 1px;
 }
