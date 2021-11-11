@@ -4,6 +4,7 @@ import {
   ANSWER_LABEL,
   ANSWER_LABEL_ID,
   NEXT_QUESTION_BUTTON_ID,
+  SUBMIT_BUTTON_ID,
 } from '../constants.js';
 
 export const createQuestion = (question, answers, pathname) => {
@@ -14,7 +15,7 @@ export const createQuestion = (question, answers, pathname) => {
   <li class="${ANSWER_ITEM}">
     <input class="${ANSWER_INPUT}" type="radio" id="${
     answers[0].key
-  }" name="answer" />
+  }" name="answer" checked autofocus/>
     <label class="${ANSWER_LABEL}" id="${ANSWER_LABEL_ID}" for="${
     answers[0].key
   }"
@@ -61,12 +62,12 @@ export const createQuestion = (question, answers, pathname) => {
   </li>
 
 </ul>
-<a class=" btn btn-block btn-dark btn-block" id="nextQuestionButton" href="?page=${
+<a class=" btn btn-block btn-dark btn-block" id="${NEXT_QUESTION_BUTTON_ID}" href="?page=${
     pathname.page
   }&question=${pathname.question + 1}">Next question</a>
- <a class=" btn btn-block btn-dark btn-block" id="SubmitQuestion" href="?page=submit&question=${
-   pathname.question
- }">Submit</a>
+ <a class=" btn btn-block btn-dark btn-block" id="${SUBMIT_BUTTON_ID}" href="?page=submit&question=${
+    pathname.question
+  }">Submit</a>
  </div>
  `;
 };

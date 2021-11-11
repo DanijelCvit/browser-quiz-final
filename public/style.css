@@ -30,5 +30,12 @@
 }
 
 .input {
-  display: none;
+  /* display: none; */
+  appearance: none;
+  margin: 0;
+  display: inline;
+}
+
+input[type='radio']:checked ~ label {
+  color: blue;
 }
