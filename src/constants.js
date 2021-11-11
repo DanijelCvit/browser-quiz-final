@@ -14,3 +14,6 @@ export const ANSWER_INPUT = 'input';
 export const ANSWER_LABEL = 'label';
 export const ANSWER_LABEL_ID = 'label-id';
 export const SUBMIT_BUTTON_ID = 'SubmitQuestion';
+export const RESULT_PAGE = 'result-page';
+export const QUESTION_PAGE = 'question-page';
+export const START_PAGE = 'start-page';

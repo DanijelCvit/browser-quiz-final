@@ -60,9 +60,8 @@ document.addEventListener('keyup', (event) => {
       if (+searchParams.get('question') === quizData.questions.length - 1) {
         location.search = `?page=results`;
       } else {
-        location.search = `?page=quiz&question=${
-          +searchParams.get('question') + 1
-        }`;
+        location.search = `?page=quiz&question=${+searchParams.get('question') + 1
+          }`;
       }
     }
   }
