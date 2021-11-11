@@ -1,10 +1,11 @@
-
 * {
-   height: 100%;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
+}
+html,
+body {
+  height: 100%;
 }
 
 .centered {
@@ -46,8 +47,7 @@ input[type='radio']:checked ~ label {
   color: blue;
 }
 
-
-.question-page{
+.question-page {
   text-align: center;
 }
 
@@ -59,16 +59,16 @@ input[type='radio']:checked ~ label {
   list-style: none;
 }
 
-.result-page{
-display:flex ;
-margin-top: 40px;
-height: 70%;
-width: 70%;
+.result-page {
+  display: flex;
+  margin-top: 40px;
+  height: 70%;
+  width: 70%;
 }
 
-.incorrect-answer{
+.incorrect-answer {
   display: block;
-  width:70%;
+  width: 70%;
   height: 100%;
   padding: 30px;
   background: #777;
@@ -83,7 +83,7 @@ width: 70%;
 }
 
 .result-summary {
-  width:30%;
+  width: 30%;
   height: 100%;
   background: rgb(126, 24, 24);
   border-radius: 0 10px 10px 0;
@@ -91,26 +91,25 @@ width: 70%;
   padding: 30px;
   color: #fff;
 }
-.collapse , .card{
+.collapse,
+.card {
   width: 100%;
   color: #333;
   overflow: auto;
   font-weight: bold;
 }
 
-
 .selected {
   color: red;
   text-decoration: underline;
 }
 .correct {
-  color : green;
+  color: green;
 }
 
 .try-again {
   margin-top: 50px;
 }
-=======
 .accordion-button {
   font-size: 25px;
 }
@@ -135,4 +134,3 @@ width: 70%;
   border-radius: 10px;
   margin: 1px;
 }
-
