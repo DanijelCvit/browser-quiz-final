@@ -13,8 +13,8 @@ export const createExplanationItem = (question) => {
   const correctAnswer = quizData.questions[question].correct;
   const correctAnswerInput = document.getElementById(correctAnswer);
   const correctAnswerListItem = correctAnswerInput.parentElement;
-  const correctAnswerLabel =
-    document.getElementById(correctAnswer).nextElementSibling;
+  const correctAnswerLabel = document.getElementById(correctAnswer)
+    .nextElementSibling;
 
   // Create accordion container
   const accordionContainer = document.createElement('div');
