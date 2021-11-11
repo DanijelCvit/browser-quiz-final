@@ -1,15 +1,18 @@
+
 * {
+   height: 100%;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
 }
 
 .centered {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 
 .scrollable {
@@ -43,6 +46,71 @@ input[type='radio']:checked ~ label {
   color: blue;
 }
 
+
+.question-page{
+  text-align: center;
+}
+
+.start-page {
+  text-align: center;
+}
+
+.results {
+  list-style: none;
+}
+
+.result-page{
+display:flex ;
+margin-top: 40px;
+height: 70%;
+width: 70%;
+}
+
+.incorrect-answer{
+  display: block;
+  width:70%;
+  height: 100%;
+  padding: 30px;
+  background: #777;
+  border-radius: 10px 0 0 10px;
+  overflow: auto;
+  color: #fff;
+}
+
+.incorrect-answer h1 {
+  margin-bottom: 30px;
+  color: #000;
+}
+
+.result-summary {
+  width:30%;
+  height: 100%;
+  background: rgb(126, 24, 24);
+  border-radius: 0 10px 10px 0;
+  text-align: center;
+  padding: 30px;
+  color: #fff;
+}
+.collapse , .card{
+  width: 100%;
+  color: #333;
+  overflow: auto;
+  font-weight: bold;
+}
+
+
+.selected {
+  color: red;
+  text-decoration: underline;
+}
+.correct {
+  color : green;
+}
+
+.try-again {
+  margin-top: 50px;
+}
+=======
 .accordion-button {
   font-size: 25px;
 }
@@ -67,3 +135,4 @@ input[type='radio']:checked ~ label {
   border-radius: 10px;
   margin: 1px;
 }
+

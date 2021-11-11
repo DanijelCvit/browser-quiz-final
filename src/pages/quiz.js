@@ -76,6 +76,8 @@ const handleSubmitAnswer = () => {
   document.getElementById(NEXT_QUESTION_BUTTON_ID).focus();
 };
 
+
+
 const handleAnswerKeys = (event) => {
   const [...inputElementsArray] = document.querySelectorAll(
     "input[type='radio']"
@@ -96,5 +98,6 @@ document.addEventListener('keyup', (event) => {
     handleSubmitAnswer();
   } else if (answerKeys.includes(event.key)) {
     handleAnswerKeys(event);
+
   }
 });

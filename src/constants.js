@@ -17,3 +17,6 @@ export const ANSWER_LABEL_B_ID = 'label-b';
 export const ANSWER_LABEL_C_ID = 'label-c';
 export const ANSWER_LABEL_D_ID = 'label-d';
 export const SUBMIT_BUTTON_ID = 'SubmitQuestion';
+export const RESULT_PAGE = 'result-page';
+export const QUESTION_PAGE = 'question-page';
+export const START_PAGE = 'start-page';

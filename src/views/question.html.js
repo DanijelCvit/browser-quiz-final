@@ -4,6 +4,7 @@ import {
   ANSWER_LABEL,
   NEXT_QUESTION_BUTTON_ID,
   SUBMIT_BUTTON_ID,
+  QUESTION_PAGE,
 } from '../constants.js';
 import { quizData } from '../data.js';
 
@@ -71,24 +72,28 @@ export const createExplanationItem = (question) => {
 
 export const createQuestion = (question, answers, pathname) => {
   return String.raw`
-  <div class="item" data-aos="fade-up">
+  <div class=${QUESTION_PAGE} data-aos="fade-up">
 <h1>${question}</h1>
 <ul class="answerList">
+
   <li  class="${ANSWER_ITEM}">
     <input class="${ANSWER_INPUT}" type="radio" id="${
     answers[0].key
   }" name="answer" checked autofocus/>
     <label class="${ANSWER_LABEL}"  for="${answers[0].key}"
+
       >${answers[0].text}</label
     >
   </li>
 
   <li  class="${ANSWER_ITEM}">
 
+
     <input class="${ANSWER_INPUT}" type="radio" id="${
     answers[1].key
   }" name="answer" />
     <label class="${ANSWER_LABEL}" for="${answers[1].key}"
+
 
       >${answers[1].text}</label
     >
@@ -96,10 +101,12 @@ export const createQuestion = (question, answers, pathname) => {
 
   <li class="${ANSWER_ITEM}">
 
+
     <input class="${ANSWER_INPUT}" type="radio" id="${
     answers[2].key
   }" name="answer" />
     <label class="${ANSWER_LABEL}"  for="${answers[2].key}"
+
 
       >${answers[2].text}</label
     >
@@ -111,15 +118,18 @@ export const createQuestion = (question, answers, pathname) => {
   }" name="answer" />
     <label class="${ANSWER_LABEL}" for="${answers[3].key}"
 
+
       >${answers[3].text}</label
     >
   </li>
 
 </ul>
+
 <a class=" btn btn-block btn-dark btn-block" id="${NEXT_QUESTION_BUTTON_ID}" href="?page=${
     pathname.page
   }&question=${pathname.question + 1}">Next question</a>
  <a class=" btn btn-block btn-dark btn-block" id="${SUBMIT_BUTTON_ID}" >Submit</a>
+
  </div>
  `;
 };
