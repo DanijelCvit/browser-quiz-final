@@ -3,6 +3,7 @@ import {
   SUBMIT_BUTTON_ID,
   ANSWER_LABEL,
   NEXT_QUESTION_BUTTON_ID,
+  START_BUTTON,
 } from '../constants.js';
 import { createQuestion } from '../views/question.html.js';
 import { createExplanationItem } from '../views/question.html.js';
@@ -36,7 +37,9 @@ export const quiz = (qNumber) => {
   // Restore any saved answer from local storage
   const savedAnswer = localStorage.getItem(qNumber);
   if (savedAnswer) {
-    document.getElementById(savedAnswer).checked = true;
+    const savedAnswerElement = document.getElementById(savedAnswer);
+    savedAnswerElement.checked = true;
+    savedAnswerElement.focus();
   } else {
     document.getElementById('a').focus();
   }
@@ -111,24 +114,6 @@ document.addEventListener('click', (event) => {
   }
 });
 
-const handleSelectAnswer = (event) => {
-  const searchParams = new URLSearchParams(location.search);
-
-  if (location.search === '') {
-    location.search = `?page=quiz&question=0`;
-  } else if (event.target?.name === 'answer') {
-    storeAnswer(event.target.id);
-
-    if (+searchParams.get('question') === quizData.questions.length - 1) {
-      location.search = `?page=results`;
-    } else {
-      location.search = `?page=quiz&question=${
-        +searchParams.get('question') + 1
-      }`;
-    }
-  }
-};
-
 const handleAnswerKeys = (event) => {
   const [...inputElementsArray] = document.querySelectorAll(
     "input[type='radio']"
@@ -146,7 +131,12 @@ document.addEventListener('keyup', (event) => {
   const answerKeys = ['a', 'A', 'b', 'B', 'c', 'C', 'd', 'D'];
 
   if (event.key === 'Enter') {
-    handleSelectAnswer(event);
+    if (!location.search) {
+      document.getElementById(START_BUTTON).click();
+    } else {
+      document.getElementById(NEXT_QUESTION_BUTTON_ID).click();
+      handlePopupModal();
+    }
   } else if (event.key === 's' || event.key === 'S') {
     handleSubmitAnswer();
   } else if (answerKeys.includes(event.key)) {
