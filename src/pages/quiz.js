@@ -1,6 +1,6 @@
-import { shortageData } from '../init/app.js';
 import { ANSWER_LABEL_ID } from '../constants.js';
 import { createQuestion } from '../views/question.html.js';
+export const shortageData = JSON.parse(localStorage.getItem('questions'));
 
 export const quiz = (qNumber) => {
   // Create path for next question

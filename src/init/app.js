@@ -3,11 +3,6 @@ import { results } from '../pages/results.js';
 import { start } from '../pages/start.js';
 import { quizData } from '../data.js';
 import { submit } from '../pages/submit.js';
-import { random } from '../pages/randomQuestions.js';
-const shuffledQuestions = [...quizData.questions].sort(
-  () => Math.random() - 0.5
-);
-export const shortageData = shuffledQuestions.slice(0, 10);
 
 // Error path
 const err = () => {

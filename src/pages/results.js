@@ -1,4 +1,4 @@
-import { shortageData } from '../init/app.js';
+import { shortageData } from '../pages/quiz.js';
 
 import { createResults } from '../views/results.html.js';
 
