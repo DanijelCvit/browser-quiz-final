@@ -9,16 +9,15 @@ import {
 } from '../constants.js';
 import { quizData } from '../data.js';
 
-
 export const selectedCorrectOrIncorrectAnswer = (question, selected) => {
   // Get correct answer list element
-  const answerList = document.querySelectorAll('li')
+  const answerList = document.querySelectorAll('li');
   const correctAnswer = quizData.questions[question].correct;
 
   const correctAnswerInput = document.getElementById(correctAnswer);
   const correctAnswerListItem = correctAnswerInput.parentElement;
-  const correctAnswerLabel = document.getElementById(correctAnswer)
-    .nextElementSibling;
+  const correctAnswerLabel =
+    document.getElementById(correctAnswer).nextElementSibling;
 
   // Create accordion container
   const accordionContainer = document.createElement('div');
@@ -67,36 +66,27 @@ export const selectedCorrectOrIncorrectAnswer = (question, selected) => {
 
   // Disable submit button and other checkboxes
 
-
   if (correctAnswer === selected) {
-
     for (const item of answerList) {
       if (item.id == correctAnswer) {
-        item.classList.add('selected-correct')
+        item.classList.add('selected-correct');
       }
     }
-
   } else {
     for (const item of answerList) {
       if (item.id == selected) {
-        item.classList.add('selected-incorrect')
+        item.classList.add('selected-incorrect');
       }
       if (item.id == correctAnswer) {
-        item.classList.add('selected-correct')
-
+        item.classList.add('selected-correct');
       }
     }
   }
 
-
-
   document.getElementById(SUBMIT_BUTTON_ID).classList.add('disabled');
   const inputElementArray = document.querySelectorAll("input[type='radio']");
   inputElementArray.forEach((input) => (input.disabled = true));
-
-
 };
-
 
 export const createQuestion = (question, answers, pathname) => {
   return String.raw`
@@ -111,9 +101,7 @@ export const createQuestion = (question, answers, pathname) => {
   <li  class="${ANSWER_ITEM}">
     <input class="${ANSWER_INPUT}" type="radio" id="${
     answers[0].key
-  }" name="answer" checked autofocus/>
-
-
+  }" name="answer" />
     <label class="${ANSWER_LABEL}"  for="${answers[0].key}"
 
       >${answers[0].text}</label
@@ -161,7 +149,7 @@ export const createQuestion = (question, answers, pathname) => {
 
 </ul>
 
-<a class=" btn btn-block btn-dark btn-block" id="${NEXT_QUESTION_BUTTON_ID}" href="?page=${
+<a  class=" btn btn-block btn-dark btn-block" id="${NEXT_QUESTION_BUTTON_ID}" href="?page=${
     pathname.page
   }&question=${pathname.question + 1}">Next question</a>
  <a class=" btn btn-block btn-dark btn-block" id="${SUBMIT_BUTTON_ID}" >Submit</a>
@@ -172,7 +160,6 @@ export const createQuestion = (question, answers, pathname) => {
  </div>
  `;
 };
-
 
 export const popUpMassage = () => {
   const quizBody = document.getElementById('app');
@@ -197,25 +184,22 @@ export const popUpMassage = () => {
 };
 
 export const createExplanationVideo = (question) => {
-
   const videoLink = quizData.questions[question].video;
   const description = quizData.questions[question].description;
   const questionPage = document.querySelector('.question-page');
 
   const explanationVideoDiv = document.createElement('div');
   explanationVideoDiv.classList.add('explanation-section');
-  explanationVideoDiv.setAttribute('data-aos', "fade-left");
+  explanationVideoDiv.setAttribute('data-aos', 'fade-left');
 
   explanationVideoDiv.innerHTML = `<h3 class='mb-4'>video source<h3>
   <iframe width="100%" height="315" src="${videoLink}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   <p>${description}</p>
-  `
+  `;
 
   questionPage.appendChild(explanationVideoDiv);
 
   document.getElementById(SUBMIT_BUTTON_ID).classList.add('disabled');
   const inputElementArray = document.querySelectorAll("input[type='radio']");
   inputElementArray.forEach((input) => (input.disabled = true));
-}
-
-
+};

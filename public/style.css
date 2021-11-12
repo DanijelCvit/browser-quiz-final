@@ -51,6 +51,8 @@ input[type='radio']:checked ~ label {
 
 .main-question-page{
   width: 70%;
+input[type='radio']:checked:disabled ~ label {
+  color: red;
 }
 
 .question-page {
@@ -156,6 +158,7 @@ input[type='radio']:checked ~ label {
 }
 
 .accordion-button:not(.collapsed) {
+  color: green;
   background-color: white;
   box-shadow: inset 0 0 0 rgb(0, 0, 0);
 }

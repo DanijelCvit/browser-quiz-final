@@ -2,6 +2,7 @@ import {
   SUBMIT_BUTTON_ID,
   ANSWER_LABEL,
   NEXT_QUESTION_BUTTON_ID,
+  START_BUTTON,
 } from '../constants.js';
 
 import { popUpMassage } from '../views/question.html.js';
@@ -42,13 +43,45 @@ export const quiz = (qNumber) => {
 
   // Restore any saved answer from local storage
   const savedAnswer = localStorage.getItem(qNumber);
-  //document.getElementById(savedAnswer).checked = true;
+  if (savedAnswer) {
+    const savedAnswerElement = document.getElementById(savedAnswer);
+    savedAnswerElement.checked = true;
+    savedAnswerElement.focus();
+  } else {
+    document.getElementById('a').focus();
+  }
 
   // If user already submitted his answer show that answer again
   const submittedAnswer = localStorage.getItem(`submitted${qNumber}`);
   if (submittedAnswer === 'yes') {
     handleSubmitAnswer();
   }
+
+  // popup timer
+  popupTimer(5000);
+};
+
+const popupTimer = (delay) => {
+  setTimeout(() => {
+    localStorage.setItem(`guessed${getQuestionNumber()}`, 'no');
+  }, delay);
+};
+
+const checkAnswer = () => {
+  const currentQuestion = getQuestionNumber();
+  const selectedAnswer = localStorage.getItem(currentQuestion);
+  const correctAnswer = quizData.questions[currentQuestion].correct;
+  return selectedAnswer === correctAnswer;
+};
+
+const getQuestionNumber = () => {
+  const searchParams = new URLSearchParams(location.search);
+  return searchParams.get('question');
+};
+
+const handleSubmitAnswer = () => {
+  document.getElementById(SUBMIT_BUTTON_ID).click();
+  document.getElementById(NEXT_QUESTION_BUTTON_ID).focus();
 };
 
 const storeAnswer = (answer) => {
@@ -57,6 +90,18 @@ const storeAnswer = (answer) => {
 };
 
 //
+
+const handlePopupModal = (event) => {
+  const guessed = localStorage.getItem(`guessed${getQuestionNumber()}`);
+  const submitted = localStorage.getItem(`submitted${getQuestionNumber()}`);
+
+  if (guessed !== 'no' && submitted !== 'yes' && !checkAnswer()) {
+    const popup = new bootstrap.Modal(document.getElementById('popupModal'));
+    popup.show();
+    event.preventDefault();
+    document.getElementById(SUBMIT_BUTTON_ID).click();
+  }
+};
 
 document.addEventListener('click', (event) => {
   const searchParams = new URLSearchParams(location.search);
@@ -84,35 +129,10 @@ document.addEventListener('click', (event) => {
 
     document.getElementById(NEXT_QUESTION_BUTTON_ID).focus();
     localStorage.setItem(`submitted${searchParams.get('question')}`, 'yes');
+  } else if (event.target?.id === NEXT_QUESTION_BUTTON_ID) {
+    handlePopupModal(event);
   }
 });
-
-const handleSelectAnswer = (event) => {
-  const searchParams = new URLSearchParams(location.search);
-
-  if (location.search === '') {
-    location.search = `?page=quiz&question=0`;
-  } else if (event.target?.name === 'answer') {
-    let selectedItem = event.target;
-    localStorage.setItem(
-      searchParams.get('question'),
-      selectedItem.getAttribute('id')
-    );
-
-    if (+searchParams.get('question') === quizData.questions.length - 1) {
-      location.search = `?page=results`;
-    } else {
-      location.search = `?page=quiz&question=${
-        +searchParams.get('question') + 1
-      }`;
-    }
-  }
-};
-
-const handleSubmitAnswer = () => {
-  document.getElementById(SUBMIT_BUTTON_ID).click();
-  document.getElementById(NEXT_QUESTION_BUTTON_ID).focus();
-};
 
 const handleAnswerKeys = (event) => {
   const [...inputElementsArray] = document.querySelectorAll(
@@ -129,7 +149,12 @@ document.addEventListener('keyup', (event) => {
   const answerKeys = ['a', 'A', 'b', 'B', 'c', 'C', 'd', 'D'];
 
   if (event.key === 'Enter') {
-    handleSelectAnswer(event);
+    if (!location.search) {
+      document.getElementById(START_BUTTON).click();
+    } else {
+      document.getElementById(NEXT_QUESTION_BUTTON_ID).click();
+      handlePopupModal();
+    }
   } else if (event.key === 's' || event.key === 'S') {
     handleSubmitAnswer();
   } else if (answerKeys.includes(event.key)) {
