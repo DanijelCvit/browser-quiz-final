@@ -20,3 +20,4 @@ export const SUBMIT_BUTTON_ID = 'SubmitQuestion';
 export const RESULT_PAGE = 'result-page';
 export const QUESTION_PAGE = 'question-page';
 export const START_PAGE = 'start-page';
+export const START_BUTTON = `startButton`;

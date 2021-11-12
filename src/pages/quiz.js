@@ -35,17 +35,26 @@ export const quiz = (qNumber) => {
 
   // Restore any saved answer from local storage
   const savedAnswer = localStorage.getItem(qNumber);
-  document.getElementById(savedAnswer).checked = true;
+  if (savedAnswer) {
+    document.getElementById(savedAnswer).checked = true;
+  } else {
+    document.getElementById('a').focus();
+  }
 
   // If user already submitted his answer show that answer again
   const submittedAnswer = localStorage.getItem(`submitted${qNumber}`);
   if (submittedAnswer === 'yes') {
     handleSubmitAnswer();
   }
+
+  // popup timer
+  popupTimer(5000);
 };
 
 const popupTimer = (delay) => {
-  setTimeout(() => {}, delay);
+  setTimeout(() => {
+    localStorage.setItem(`guessed${getQuestionNumber()}`, 'no');
+  }, delay);
 };
 
 const checkAnswer = () => {
@@ -76,6 +85,18 @@ document.addEventListener('change', (event) => {
   }
 });
 
+const handlePopupModal = (event) => {
+  const guessed = localStorage.getItem(`guessed${getQuestionNumber()}`);
+  const submitted = localStorage.getItem(`submitted${getQuestionNumber()}`);
+
+  if (guessed !== 'no' && submitted !== 'yes' && !checkAnswer()) {
+    const popup = new bootstrap.Modal(document.getElementById('popupModal'));
+    popup.show();
+    event.preventDefault();
+    document.getElementById(SUBMIT_BUTTON_ID).click();
+  }
+};
+
 document.addEventListener('click', (event) => {
   const searchParams = new URLSearchParams(location.search);
 
@@ -85,6 +106,8 @@ document.addEventListener('click', (event) => {
     createExplanationItem(searchParams.get('question'));
     document.getElementById(NEXT_QUESTION_BUTTON_ID).focus();
     localStorage.setItem(`submitted${searchParams.get('question')}`, 'yes');
+  } else if (event.target?.id === NEXT_QUESTION_BUTTON_ID) {
+    handlePopupModal(event);
   }
 });
 

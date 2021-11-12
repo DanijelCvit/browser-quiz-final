@@ -127,7 +127,7 @@ export const createQuestion = (question, answers, pathname) => {
 
 </ul>
 
-<a class=" btn btn-block btn-dark btn-block" id="${NEXT_QUESTION_BUTTON_ID}" href="?page=${
+<a  class=" btn btn-block btn-dark btn-block" id="${NEXT_QUESTION_BUTTON_ID}" href="?page=${
     pathname.page
   }&question=${pathname.question + 1}">Next question</a>
  <a class=" btn btn-block btn-dark btn-block" id="${SUBMIT_BUTTON_ID}" >Submit</a>
