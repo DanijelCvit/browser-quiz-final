@@ -48,7 +48,9 @@ export const createExplanationItem = (question) => {
 
   // Create accordion body
   const accordionBody = document.createElement('div');
-  accordionBody.innerHTML = ` <iframe width="560" height="315" src="${correctAnswerVideo}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+  accordionBody.innerHTML = ` <iframe width="560" height="315" src="${correctAnswerVideo}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <p>This is the first item's accordion body. It is shown by default,
+  until the collapse plugin adds the appropriate classes that we use to style each element.</p>`;
   accordionBody.classList.add('accordion-body');
 
   accordionBody.textContent = `This is the first item's accordion body. It is shown by default, 
