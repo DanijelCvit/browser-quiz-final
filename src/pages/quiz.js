@@ -1,23 +1,34 @@
-import { quizData } from '../data.js';
 import {
   SUBMIT_BUTTON_ID,
   ANSWER_LABEL,
   NEXT_QUESTION_BUTTON_ID,
 } from '../constants.js';
+
 import { createQuestion } from '../views/question.html.js';
 import { createExplanationItem, popUpMassage } from '../views/question.html.js';
+
+
+import { selectedCorrectOrIncorrectAnswer, createExplanationVideo, createQuestion} from '../views/question.html.js';
+export const quizData = JSON.parse(localStorage.getItem('questions'));
+
+
+const handleSubmitAnswer = () => {
+  document.getElementById(SUBMIT_BUTTON_ID).click();
+  document.getElementById(NEXT_QUESTION_BUTTON_ID).focus();
+};
+
 
 export const quiz = (qNumber) => {
   // Create path for next question
   let pathname = { page: 'quiz', question: qNumber };
 
   // Redirect to results if it's last question
-  if (qNumber === quizData.questions.length - 1) {
+  if (qNumber === quizData.length - 1) {
     pathname.page = 'results';
   }
 
-  const currentQuestionText = quizData.questions[qNumber].text;
-  const currentAnswersObject = quizData.questions[qNumber].answers;
+  const currentQuestionText = quizData[qNumber].text;
+  const currentAnswersObject = quizData[qNumber].answers;
   const currentAnswersData = Object.entries(currentAnswersObject).map(
     ([key, text]) => ({
       key,
@@ -33,14 +44,46 @@ export const quiz = (qNumber) => {
 
   // Add HTML to app
   document.getElementById('app').innerHTML = quizTemplate;
+
+
+
+  // Restore any saved answer from local storage
+  const savedAnswer = localStorage.getItem(qNumber);
+  //document.getElementById(savedAnswer).checked = true;
+
+  // If user already submitted his answer show that answer again
+  const submittedAnswer = localStorage.getItem(`submitted${qNumber}`);
+  if (submittedAnswer === 'yes') {
+    handleSubmitAnswer();
+  }
+};
+
+const storeAnswer = (answer) => {
+  const searchParams = new URLSearchParams(location.search);
+  localStorage.setItem(searchParams.get('question'), answer);
+
 };
 
 //
 
+
+
+
+
+
+
+
+
+
+
+
+
 document.addEventListener('click', (event) => {
   const searchParams = new URLSearchParams(location.search);
 
+
   if (event.target?.classList.contains(ANSWER_LABEL)) {
+
     let selectedItem = event.target;
 
     localStorage.setItem(
@@ -49,8 +92,26 @@ document.addEventListener('click', (event) => {
     );
   } else if (event.target?.id === SUBMIT_BUTTON_ID) {
     createExplanationItem(searchParams.get('question'));
+
+    storeAnswer(event.target.htmlFor);
+
+  } else if (event.target?.id === SUBMIT_BUTTON_ID) {
+
+    let selectedAnswer = localStorage[searchParams.get('question')];
+    selectedCorrectOrIncorrectAnswer(searchParams.get('question'), selectedAnswer);
+
+   // createExplanationItem(searchParams.get('question'));
+    createExplanationVideo(searchParams.get('question'));
+
+    document.getElementById(NEXT_QUESTION_BUTTON_ID).focus();
+    localStorage.setItem(`submitted${searchParams.get('question')}`, 'yes');
+
   }
 });
+
+
+
+
 
 const handleSelectAnswer = (event) => {
   const searchParams = new URLSearchParams(location.search);
@@ -67,9 +128,8 @@ const handleSelectAnswer = (event) => {
     if (+searchParams.get('question') === quizData.questions.length - 1) {
       location.search = `?page=results`;
     } else {
-      location.search = `?page=quiz&question=${
-        +searchParams.get('question') + 1
-      }`;
+      location.search = `?page=quiz&question=${+searchParams.get('question') + 1
+        }`;
     }
   }
 };
