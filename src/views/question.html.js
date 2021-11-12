@@ -51,9 +51,6 @@ export const createExplanationItem = (question) => {
   accordionBody.innerHTML = ` <iframe width="560" height="315" src="${correctAnswerVideo}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
   accordionBody.classList.add('accordion-body');
 
-
-
-
   // Build accordion DOM object
   accordionHeader.appendChild(accordionButton);
   accordionBodyContainer.appendChild(accordionBody);
