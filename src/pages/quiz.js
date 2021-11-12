@@ -1,11 +1,13 @@
-import { quizData } from '../data.js';
+import { createQuestion } from '../views/question.html.js';
 import {
   SUBMIT_BUTTON_ID,
   ANSWER_LABEL,
   NEXT_QUESTION_BUTTON_ID,
 } from '../constants.js';
+
 import { createQuestion } from '../views/question.html.js';
 import { createExplanationVideo } from '../views/question.html.js';
+export const quizData = JSON.parse(localStorage.getItem('questions'));
 
 const handleSubmitAnswer = () => {
   document.getElementById(SUBMIT_BUTTON_ID).click();
@@ -17,12 +19,12 @@ export const quiz = (qNumber) => {
   let pathname = { page: 'quiz', question: qNumber };
 
   // Redirect to results if it's last question
-  if (qNumber === quizData.questions.length - 1) {
+  if (qNumber === quizData.length - 1) {
     pathname.page = 'results';
   }
 
-  const currentQuestionText = quizData.questions[qNumber].text;
-  const currentAnswersObject = quizData.questions[qNumber].answers;
+  const currentQuestionText = quizData[qNumber].text;
+  const currentAnswersObject = quizData[qNumber].answers;
   const currentAnswersData = Object.entries(currentAnswersObject).map(
     ([key, text]) => ({
       key,
