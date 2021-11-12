@@ -8,68 +8,72 @@ import {
 } from '../constants.js';
 import { quizData } from '../data.js';
 
-export const createExplanationItem = (question) => {
+export const selectedCorrectOrIncorrectAnswer = (question, selected) => {
   // Get correct answer list element
   const correctAnswer = quizData.questions[question].correct;
-  const correctAnswerVideo = quizData.questions[question].video;
-  const correctAnswerInput = document.getElementById(correctAnswer);
-  const correctAnswerListItem = correctAnswerInput.parentElement;
-  const correctAnswerLabel =
-    document.getElementById(correctAnswer).nextElementSibling;
+  console.log(correctAnswer);
+  console.log(selected);
 
-  // Create accordion container
-  const accordionContainer = document.createElement('div');
-  accordionContainer.classList.add('accordion');
-  accordionContainer.id = 'accordionPanelsStayOpenExample';
 
-  // Create accordion item
-  const accordionItem = document.createElement('div');
-  accordionItem.classList.add('accordion-item');
 
-  // Create accordion header
-  const accordionHeader = document.createElement('h2');
-  accordionHeader.classList.add('accordion-header');
-  accordionHeader.id = 'panelsStayOpen-headingOne';
 
-  // Create accordion button
-  const accordionButton = document.createElement('button');
-  accordionButton.classList.add('accordion-button', 'd-block', 'text-center');
-  accordionButton.type = 'button';
-  accordionButton.dataset.bsToggle = 'collapse';
-  accordionButton.dataset.bsTarget = '#panelsStayOpen-collapseOne';
+  // const correctAnswerVideo = quizData.questions[question].video;
+  // const correctAnswerInput = document.getElementById(correctAnswer);
+  // const correctAnswerListItem = correctAnswerInput.parentElement;
+  // const correctAnswerLabel =
+  //   document.getElementById(correctAnswer).nextElementSibling;
 
-  // Add existing label text to button
-  accordionButton.textContent = correctAnswerLabel.textContent;
+  // // Create accordion container
+  // const accordionContainer = document.createElement('div');
+  // accordionContainer.classList.add('accordion');
+  // accordionContainer.id = 'accordionPanelsStayOpenExample';
 
-  // Create accordion body container
-  const accordionBodyContainer = document.createElement('div');
-  accordionBodyContainer.id = 'panelsStayOpen-collapseOne';
-  accordionBodyContainer.classList.add('accordion-collapse', 'collapse');
+  // // Create accordion item
+  // const accordionItem = document.createElement('div');
+  // accordionItem.classList.add('accordion-item');
 
-  // Create accordion body
-  const accordionBody = document.createElement('div');
-  accordionBody.innerHTML = ` <iframe width="560" height="315" src="${correctAnswerVideo}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
-  accordionBody.classList.add('accordion-body');
+  // // Create accordion header
+  // const accordionHeader = document.createElement('h2');
+  // accordionHeader.classList.add('accordion-header');
+  // accordionHeader.id = 'panelsStayOpen-headingOne';
 
-  // Build accordion DOM object
-  accordionHeader.appendChild(accordionButton);
-  accordionBodyContainer.appendChild(accordionBody);
-  accordionItem.append(accordionHeader, accordionBodyContainer);
-  accordionContainer.appendChild(accordionItem);
+  // // Create accordion button
+  // const accordionButton = document.createElement('button');
+  // accordionButton.classList.add('accordion-button', 'd-block', 'text-center');
+  // accordionButton.type = 'button';
+  // accordionButton.dataset.bsToggle = 'collapse';
+  // accordionButton.dataset.bsTarget = '#panelsStayOpen-collapseOne';
 
-  // Clear existing elements in list
-  correctAnswerListItem.innerHTML = '';
+  // // Add existing label text to button
+  // accordionButton.textContent = correctAnswerLabel.textContent;
 
-  // Add accordion DOM object to list element
-  correctAnswerListItem.appendChild(accordionContainer);
+  // // Create accordion body container
+  // const accordionBodyContainer = document.createElement('div');
+  // accordionBodyContainer.id = 'panelsStayOpen-collapseOne';
+  // accordionBodyContainer.classList.add('accordion-collapse', 'collapse');
 
-  // Disable submit button and other checkboxes
-  document.getElementById(SUBMIT_BUTTON_ID).classList.add('disabled');
-  const inputElementArray = document.querySelectorAll("input[type='radio']");
-  inputElementArray.forEach((input) => (input.disabled = true));
+  // // Create accordion body
+  // const accordionBody = document.createElement('div');
+  // accordionBody.innerHTML = ` <iframe width="560" height="315" src="${correctAnswerVideo}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+  // accordionBody.classList.add('accordion-body');
 
-  // Auto expand accordion
-  accordionButton.click();
+  // // Build accordion DOM object
+  // accordionHeader.appendChild(accordionButton);
+  // accordionBodyContainer.appendChild(accordionBody);
+  // accordionItem.append(accordionHeader, accordionBodyContainer);
+  // accordionContainer.appendChild(accordionItem);
+
+  // // Clear existing elements in list
+  // correctAnswerListItem.innerHTML = '';
+
+  // // Add accordion DOM object to list element
+  // correctAnswerListItem.appendChild(accordionContainer);
+
+  // // Disable submit button and other checkboxes
+
+
+  // // Auto expand accordion
+  // accordionButton.click();
 };
 
 export const createQuestion = (question, answers, pathname) => {

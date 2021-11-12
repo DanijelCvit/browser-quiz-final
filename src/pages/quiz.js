@@ -5,7 +5,7 @@ import {
   NEXT_QUESTION_BUTTON_ID,
 } from '../constants.js';
 import { createQuestion } from '../views/question.html.js';
-import { createExplanationItem } from '../views/question.html.js';
+import { selectedCorrectOrIncorrectAnswer } from '../views/question.html.js';
 
 const handleSubmitAnswer = () => {
   document.getElementById(SUBMIT_BUTTON_ID).click();
@@ -60,17 +60,36 @@ document.addEventListener('change', (event) => {
   }
 });
 
+
+
+
+
+
+
+
+
+
+
+
+
 document.addEventListener('click', (event) => {
   const searchParams = new URLSearchParams(location.search);
 
+
   if (event.target?.classList.contains(ANSWER_LABEL)) {
     storeAnswer(event.target.htmlFor);
+
   } else if (event.target?.id === SUBMIT_BUTTON_ID) {
-    createExplanationItem(searchParams.get('question'));
+    let selectedAnswer = localStorage[searchParams.get('question')];
+    selectedCorrectOrIncorrectAnswer(searchParams.get('question'), selectedAnswer);
     document.getElementById(NEXT_QUESTION_BUTTON_ID).focus();
     localStorage.setItem(`submitted${searchParams.get('question')}`, 'yes');
   }
 });
+
+
+
+
 
 const handleSelectAnswer = (event) => {
   const searchParams = new URLSearchParams(location.search);
@@ -83,9 +102,8 @@ const handleSelectAnswer = (event) => {
     if (+searchParams.get('question') === quizData.questions.length - 1) {
       location.search = `?page=results`;
     } else {
-      location.search = `?page=quiz&question=${
-        +searchParams.get('question') + 1
-      }`;
+      location.search = `?page=quiz&question=${+searchParams.get('question') + 1
+        }`;
     }
   }
 };
