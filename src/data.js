@@ -34,6 +34,7 @@ export const quizData = {
         },
       ],
       description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam debitis cumque ipsa nam molestiae esse incidunt, quasi voluptatibus, voluptates, officiis tempore magni! Non optio culpa fugit necessitatibus sint, dignissimos eum!",
+      video: 'https://www.youtube.com/embed/1CqHws4WZ-M',
     },
     {
       text: 'What does `typeof` do?',
@@ -55,6 +56,8 @@ export const quizData = {
         },
       ],
       description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam debitis cumque ipsa nam molestiae esse incidunt, quasi voluptatibus, voluptates, officiis tempore magni! Non optio culpa fugit necessitatibus sint, dignissimos eum!",
+      video: 'https://www.youtube.com/embed/LrI02dTkeRo',
+
     },
 
     // Add more questions here
@@ -78,6 +81,7 @@ export const quizData = {
         },
       ],
       description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam debitis cumque ipsa nam molestiae esse incidunt, quasi voluptatibus, voluptates, officiis tempore magni! Non optio culpa fugit necessitatibus sint, dignissimos eum!",
+      video: 'https://www.youtube.com/embed/qhuFviJn-es',
 
     },
     {
@@ -100,6 +104,7 @@ export const quizData = {
         },
       ],
       description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam debitis cumque ipsa nam molestiae esse incidunt, quasi voluptatibus, voluptates, officiis tempore magni! Non optio culpa fugit necessitatibus sint, dignissimos eum!",
+      video: 'https://www.youtube.com/embed/XF1_MlZ5l6M',
 
     },
     {
@@ -122,6 +127,7 @@ export const quizData = {
         },
       ],
       description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam debitis cumque ipsa nam molestiae esse incidunt, quasi voluptatibus, voluptates, officiis tempore magni! Non optio culpa fugit necessitatibus sint, dignissimos eum!",
+      video: 'https://www.youtube.com/embed/06oqCcAnyjc',
 
     },
     {
@@ -144,6 +150,7 @@ export const quizData = {
         },
       ],
       description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam debitis cumque ipsa nam molestiae esse incidunt, quasi voluptatibus, voluptates, officiis tempore magni! Non optio culpa fugit necessitatibus sint, dignissimos eum!",
+      video: 'https://www.youtube.com/embed/hDN5IGUv3Yw',
 
     },
     {
@@ -166,6 +173,7 @@ export const quizData = {
         },
       ],
       description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam debitis cumque ipsa nam molestiae esse incidunt, quasi voluptatibus, voluptates, officiis tempore magni! Non optio culpa fugit necessitatibus sint, dignissimos eum!",
+      video: 'https://www.youtube.com/embed/06oqCcAnyjc',
 
     },
     {
@@ -188,6 +196,7 @@ export const quizData = {
         },
       ],
       description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam debitis cumque ipsa nam molestiae esse incidunt, quasi voluptatibus, voluptates, officiis tempore magni! Non optio culpa fugit necessitatibus sint, dignissimos eum!",
+      video: 'https://www.youtube.com/embed/ZmRYan3lAIo',
 
     },
     {
@@ -210,6 +219,7 @@ export const quizData = {
         },
       ],
       description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam debitis cumque ipsa nam molestiae esse incidunt, quasi voluptatibus, voluptates, officiis tempore magni! Non optio culpa fugit necessitatibus sint, dignissimos eum!",
+      video: 'https://www.youtube.com/embed/IsG4Xd6LlsM',
 
     },
     {
@@ -232,6 +242,7 @@ export const quizData = {
         },
       ],
       description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam debitis cumque ipsa nam molestiae esse incidunt, quasi voluptatibus, voluptates, officiis tempore magni! Non optio culpa fugit necessitatibus sint, dignissimos eum!",
+      video: 'https://www.youtube.com/embed/6vbgZnQrpbU',
 
     },
   ],
