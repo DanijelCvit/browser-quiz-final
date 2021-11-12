@@ -7,6 +7,11 @@ import {
 import { createQuestion } from '../views/question.html.js';
 import { createExplanationItem } from '../views/question.html.js';
 
+const handleSubmitAnswer = () => {
+  document.getElementById(SUBMIT_BUTTON_ID).click();
+  document.getElementById(NEXT_QUESTION_BUTTON_ID).focus();
+};
+
 export const quiz = (qNumber) => {
   // Create path for next question
   let pathname = { page: 'quiz', question: qNumber };
@@ -32,20 +37,38 @@ export const quiz = (qNumber) => {
   );
   // Add HTML to app
   document.getElementById('app').innerHTML = quizTemplate;
+
+  // Restore any saved answer from local storage
+  const savedAnswer = localStorage.getItem(qNumber);
+  document.getElementById(savedAnswer).checked = true;
+
+  // If user already submitted his answer show that answer again
+  const submittedAnswer = localStorage.getItem(`submitted${qNumber}`);
+  if (submittedAnswer === 'yes') {
+    handleSubmitAnswer();
+  }
 };
 
-//
+const storeAnswer = (answer) => {
+  const searchParams = new URLSearchParams(location.search);
+  localStorage.setItem(searchParams.get('question'), answer);
+};
+
+document.addEventListener('change', (event) => {
+  if (event.target?.name === 'answer') {
+    storeAnswer(event.target.id);
+  }
+});
+
 document.addEventListener('click', (event) => {
   const searchParams = new URLSearchParams(location.search);
 
   if (event.target?.classList.contains(ANSWER_LABEL)) {
-    let selectedItem = event.target;
-    localStorage.setItem(
-      searchParams.get('question'),
-      selectedItem.getAttribute('for')
-    );
+    storeAnswer(event.target.htmlFor);
   } else if (event.target?.id === SUBMIT_BUTTON_ID) {
     createExplanationItem(searchParams.get('question'));
+    document.getElementById(NEXT_QUESTION_BUTTON_ID).focus();
+    localStorage.setItem(`submitted${searchParams.get('question')}`, 'yes');
   }
 });
 
@@ -55,11 +78,7 @@ const handleSelectAnswer = (event) => {
   if (location.search === '') {
     location.search = `?page=quiz&question=0`;
   } else if (event.target?.name === 'answer') {
-    let selectedItem = event.target;
-    localStorage.setItem(
-      searchParams.get('question'),
-      selectedItem.getAttribute('id')
-    );
+    storeAnswer(event.target.id);
 
     if (+searchParams.get('question') === quizData.questions.length - 1) {
       location.search = `?page=results`;
@@ -71,13 +90,6 @@ const handleSelectAnswer = (event) => {
   }
 };
 
-const handleSubmitAnswer = () => {
-  document.getElementById(SUBMIT_BUTTON_ID).click();
-  document.getElementById(NEXT_QUESTION_BUTTON_ID).focus();
-};
-
-
-
 const handleAnswerKeys = (event) => {
   const [...inputElementsArray] = document.querySelectorAll(
     "input[type='radio']"
@@ -87,8 +99,10 @@ const handleAnswerKeys = (event) => {
   );
   selectedAnswer.checked = true;
   selectedAnswer.focus();
+  storeAnswer(selectedAnswer.id);
 };
 
+//
 document.addEventListener('keyup', (event) => {
   const answerKeys = ['a', 'A', 'b', 'B', 'c', 'C', 'd', 'D'];
 
@@ -98,6 +112,5 @@ document.addEventListener('keyup', (event) => {
     handleSubmitAnswer();
   } else if (answerKeys.includes(event.key)) {
     handleAnswerKeys(event);
-
   }
 });
