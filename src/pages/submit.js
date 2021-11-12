@@ -1,6 +1,6 @@
 import { createSubmit } from '../views/submit.html.js';
 
-import { quizData } from '../pages/quiz.js';
+import { quizData } from './quiz.js';
 export const submit = (qNumber) => {
   // Create path for next question
   let pathname = { page: 'quiz', question: qNumber };

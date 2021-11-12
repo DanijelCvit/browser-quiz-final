@@ -1,6 +1,15 @@
-import { ANSWER_LABEL_ID } from '../constants.js';
 import { createQuestion } from '../views/question.html.js';
+import {
+  SUBMIT_BUTTON_ID,
+  ANSWER_LABEL,
+  NEXT_QUESTION_BUTTON_ID,
+} from '../constants.js';
+import { createExplanationItem } from '../views/question.html.js';
 export const quizData = JSON.parse(localStorage.getItem('questions'));
+const handleSubmitAnswer = () => {
+  document.getElementById(SUBMIT_BUTTON_ID).click();
+  document.getElementById(NEXT_QUESTION_BUTTON_ID).focus();
+};
 
 export const quiz = (qNumber) => {
   // Create path for next question
@@ -27,43 +36,80 @@ export const quiz = (qNumber) => {
   );
   // Add HTML to app
   document.getElementById('app').innerHTML = quizTemplate;
+
+  // Restore any saved answer from local storage
+  const savedAnswer = localStorage.getItem(qNumber);
+  document.getElementById(savedAnswer).checked = true;
+
+  // If user already submitted his answer show that answer again
+  const submittedAnswer = localStorage.getItem(`submitted${qNumber}`);
+  if (submittedAnswer === 'yes') {
+    handleSubmitAnswer();
+  }
 };
 
-//
-document.addEventListener('click', (event) => {
+const storeAnswer = (answer) => {
   const searchParams = new URLSearchParams(location.search);
+  localStorage.setItem(searchParams.get('question'), answer);
+};
 
-  if (event.target?.id === ANSWER_LABEL_ID) {
-    let selectedItem = event.target;
-    localStorage.setItem(
-      searchParams.get('question'),
-      selectedItem.getAttribute('for')
-    );
+document.addEventListener('change', (event) => {
+  if (event.target?.name === 'answer') {
+    storeAnswer(event.target.id);
   }
 });
 
-document.addEventListener('keyup', (event) => {
+document.addEventListener('click', (event) => {
+  const searchParams = new URLSearchParams(location.search);
+
+  if (event.target?.classList.contains(ANSWER_LABEL)) {
+    storeAnswer(event.target.htmlFor);
+  } else if (event.target?.id === SUBMIT_BUTTON_ID) {
+    createExplanationItem(searchParams.get('question'));
+    document.getElementById(NEXT_QUESTION_BUTTON_ID).focus();
+    localStorage.setItem(`submitted${searchParams.get('question')}`, 'yes');
+  }
+});
+
+const handleSelectAnswer = (event) => {
   const searchParams = new URLSearchParams(location.search);
 
   if (location.search === '') {
     location.search = `?page=quiz&question=0`;
-  }
+  } else if (event.target?.name === 'answer') {
+    storeAnswer(event.target.id);
 
-  if (event.target?.name === 'answer') {
-    if (event.key === 'Enter') {
-      let selectedItem = event.target;
-      localStorage.setItem(
-        searchParams.get('question'),
-        selectedItem.getAttribute('id')
-      );
-
-      if (+searchParams.get('question') === quizData.questions.length - 1) {
-        location.search = `?page=results`;
-      } else {
-        location.search = `?page=quiz&question=${
-          +searchParams.get('question') + 1
-        }`;
-      }
+    if (+searchParams.get('question') === quizData.questions.length - 1) {
+      location.search = `?page=results`;
+    } else {
+      location.search = `?page=quiz&question=${
+        +searchParams.get('question') + 1
+      }`;
     }
+  }
+};
+
+const handleAnswerKeys = (event) => {
+  const [...inputElementsArray] = document.querySelectorAll(
+    "input[type='radio']"
+  );
+  const selectedAnswer = inputElementsArray.find(
+    (input) => input.id === event.key.toLowerCase()
+  );
+  selectedAnswer.checked = true;
+  selectedAnswer.focus();
+  storeAnswer(selectedAnswer.id);
+};
+
+//
+document.addEventListener('keyup', (event) => {
+  const answerKeys = ['a', 'A', 'b', 'B', 'c', 'C', 'd', 'D'];
+
+  if (event.key === 'Enter') {
+    handleSelectAnswer(event);
+  } else if (event.key === 's' || event.key === 'S') {
+    handleSubmitAnswer();
+  } else if (answerKeys.includes(event.key)) {
+    handleAnswerKeys(event);
   }
 });

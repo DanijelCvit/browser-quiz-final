@@ -33,6 +33,9 @@ export const quizData = {
           href: 'https://ui.dev/var-let-const/',
         },
       ],
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam debitis cumque ipsa nam molestiae esse incidunt, quasi voluptatibus, voluptates, officiis tempore magni! Non optio culpa fugit necessitatibus sint, dignissimos eum!',
+      video: 'https://www.youtube.com/embed/1CqHws4WZ-M',
     },
     {
       text: 'What does `typeof` do?',
@@ -53,6 +56,9 @@ export const quizData = {
           href: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof',
         },
       ],
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam debitis cumque ipsa nam molestiae esse incidunt, quasi voluptatibus, voluptates, officiis tempore magni! Non optio culpa fugit necessitatibus sint, dignissimos eum!',
+      video: 'https://www.youtube.com/embed/LrI02dTkeRo',
     },
 
     // Add more questions here
@@ -75,6 +81,9 @@ export const quizData = {
           href: 'https://ui.dev/var-let-const/',
         },
       ],
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam debitis cumque ipsa nam molestiae esse incidunt, quasi voluptatibus, voluptates, officiis tempore magni! Non optio culpa fugit necessitatibus sint, dignissimos eum!',
+      video: 'https://www.youtube.com/embed/qhuFviJn-es',
     },
     {
       text: 'Which event occurs when the user clicks on an HTML element?',
@@ -95,6 +104,9 @@ export const quizData = {
           href: 'https://www.w3schools.com/quiztest',
         },
       ],
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam debitis cumque ipsa nam molestiae esse incidunt, quasi voluptatibus, voluptates, officiis tempore magni! Non optio culpa fugit necessitatibus sint, dignissimos eum!',
+      video: 'https://www.youtube.com/embed/XF1_MlZ5l6M',
     },
     {
       text: 'Inside which HTML element do we put the JavaScript?',
@@ -115,6 +127,9 @@ export const quizData = {
           href: 'https://ui.dev/var-let-const/',
         },
       ],
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam debitis cumque ipsa nam molestiae esse incidunt, quasi voluptatibus, voluptates, officiis tempore magni! Non optio culpa fugit necessitatibus sint, dignissimos eum!',
+      video: 'https://www.youtube.com/embed/06oqCcAnyjc',
     },
     {
       text: 'What is the correct JavaScript syntax to change the content of the HTML element below?',
@@ -135,6 +150,9 @@ export const quizData = {
           href: 'https://ui.dev/var-let-const/',
         },
       ],
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam debitis cumque ipsa nam molestiae esse incidunt, quasi voluptatibus, voluptates, officiis tempore magni! Non optio culpa fugit necessitatibus sint, dignissimos eum!',
+      video: 'https://www.youtube.com/embed/hDN5IGUv3Yw',
     },
     {
       text: 'Where is the correct place to insert a JavaScript?',
@@ -155,6 +173,9 @@ export const quizData = {
           href: 'https://ui.dev/var-let-const/',
         },
       ],
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam debitis cumque ipsa nam molestiae esse incidunt, quasi voluptatibus, voluptates, officiis tempore magni! Non optio culpa fugit necessitatibus sint, dignissimos eum!',
+      video: 'https://www.youtube.com/embed/06oqCcAnyjc',
     },
     {
       text: 'How do you write "Hello World" in an alert box?',
@@ -175,6 +196,9 @@ export const quizData = {
           href: 'https://www.w3schools.com/quiztest',
         },
       ],
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam debitis cumque ipsa nam molestiae esse incidunt, quasi voluptatibus, voluptates, officiis tempore magni! Non optio culpa fugit necessitatibus sint, dignissimos eum!',
+      video: 'https://www.youtube.com/embed/ZmRYan3lAIo',
     },
     {
       text: 'How to write an IF statement in JavaScript?',
@@ -195,6 +219,9 @@ export const quizData = {
           href: 'https://www.w3schools.com/quiztest',
         },
       ],
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam debitis cumque ipsa nam molestiae esse incidunt, quasi voluptatibus, voluptates, officiis tempore magni! Non optio culpa fugit necessitatibus sint, dignissimos eum!',
+      video: 'https://www.youtube.com/embed/IsG4Xd6LlsM',
     },
     {
       text: 'What does CSS stand for?',
