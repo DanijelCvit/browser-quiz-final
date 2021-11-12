@@ -10,70 +10,35 @@ import { quizData } from '../data.js';
 
 export const selectedCorrectOrIncorrectAnswer = (question, selected) => {
   // Get correct answer list element
+  const answerList = document.querySelectorAll('li')
   const correctAnswer = quizData.questions[question].correct;
-  console.log(correctAnswer);
-  console.log(selected);
+
+  if (correctAnswer === selected) {
+
+    for (const item of answerList) {
+      if (item.id == correctAnswer) {
+        item.classList.add('selected-correct')
+      }
+    }
+
+  } else {
+    for (const item of answerList) {
+      if (item.id == selected) {
+        item.classList.add('selected-incorrect')
+      }
+      if (item.id == correctAnswer) {
+        item.classList.add('selected-correct')
+
+      }
+    }
+  }
 
 
+  document.getElementById(SUBMIT_BUTTON_ID).classList.add('disabled');
+  const inputElementArray = document.querySelectorAll("input[type='radio']");
+  inputElementArray.forEach((input) => (input.disabled = true));
 
 
-  // const correctAnswerVideo = quizData.questions[question].video;
-  // const correctAnswerInput = document.getElementById(correctAnswer);
-  // const correctAnswerListItem = correctAnswerInput.parentElement;
-  // const correctAnswerLabel =
-  //   document.getElementById(correctAnswer).nextElementSibling;
-
-  // // Create accordion container
-  // const accordionContainer = document.createElement('div');
-  // accordionContainer.classList.add('accordion');
-  // accordionContainer.id = 'accordionPanelsStayOpenExample';
-
-  // // Create accordion item
-  // const accordionItem = document.createElement('div');
-  // accordionItem.classList.add('accordion-item');
-
-  // // Create accordion header
-  // const accordionHeader = document.createElement('h2');
-  // accordionHeader.classList.add('accordion-header');
-  // accordionHeader.id = 'panelsStayOpen-headingOne';
-
-  // // Create accordion button
-  // const accordionButton = document.createElement('button');
-  // accordionButton.classList.add('accordion-button', 'd-block', 'text-center');
-  // accordionButton.type = 'button';
-  // accordionButton.dataset.bsToggle = 'collapse';
-  // accordionButton.dataset.bsTarget = '#panelsStayOpen-collapseOne';
-
-  // // Add existing label text to button
-  // accordionButton.textContent = correctAnswerLabel.textContent;
-
-  // // Create accordion body container
-  // const accordionBodyContainer = document.createElement('div');
-  // accordionBodyContainer.id = 'panelsStayOpen-collapseOne';
-  // accordionBodyContainer.classList.add('accordion-collapse', 'collapse');
-
-  // // Create accordion body
-  // const accordionBody = document.createElement('div');
-  // accordionBody.innerHTML = ` <iframe width="560" height="315" src="${correctAnswerVideo}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
-  // accordionBody.classList.add('accordion-body');
-
-  // // Build accordion DOM object
-  // accordionHeader.appendChild(accordionButton);
-  // accordionBodyContainer.appendChild(accordionBody);
-  // accordionItem.append(accordionHeader, accordionBodyContainer);
-  // accordionContainer.appendChild(accordionItem);
-
-  // // Clear existing elements in list
-  // correctAnswerListItem.innerHTML = '';
-
-  // // Add accordion DOM object to list element
-  // correctAnswerListItem.appendChild(accordionContainer);
-
-  // // Disable submit button and other checkboxes
-
-
-  // // Auto expand accordion
-  // accordionButton.click();
 };
 
 export const createQuestion = (question, answers, pathname) => {
@@ -82,7 +47,7 @@ export const createQuestion = (question, answers, pathname) => {
 <h1>${question}</h1>
 <ul class="answerList">
 
-  <li  class="${ANSWER_ITEM}">
+  <li id="${answers[0].key}" class="${ANSWER_ITEM}">
     <input class="${ANSWER_INPUT}" type="radio" id="${answers[0].key
     }" name="answer" checked autofocus/>
     <label class="${ANSWER_LABEL}"  for="${answers[0].key}"
@@ -91,7 +56,7 @@ export const createQuestion = (question, answers, pathname) => {
     >
   </li>
 
-  <li  class="${ANSWER_ITEM}">
+  <li  id="${answers[1].key}" class="${ANSWER_ITEM}">
 
 
     <input class="${ANSWER_INPUT}" type="radio" id="${answers[1].key
@@ -103,7 +68,7 @@ export const createQuestion = (question, answers, pathname) => {
     >
   </li>
 
-  <li class="${ANSWER_ITEM}">
+  <li id="${answers[2].key}"  class="${ANSWER_ITEM}">
 
 
     <input class="${ANSWER_INPUT}" type="radio" id="${answers[2].key
@@ -115,7 +80,7 @@ export const createQuestion = (question, answers, pathname) => {
     >
   </li>
 
-  <li  class="${ANSWER_ITEM}">
+  <li id="${answers[3].key}"   class="${ANSWER_ITEM}">
     <input class="${ANSWER_INPUT}" type="radio" id="${answers[3].key
     }" name="answer" />
     <label class="${ANSWER_LABEL}" for="${answers[3].key}"

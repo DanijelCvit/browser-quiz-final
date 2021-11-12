@@ -135,3 +135,16 @@ input[type='radio']:checked ~ label {
   border-radius: 10px;
   margin: 1px;
 }
+
+
+.selected-correct {
+  color: #fff;
+  background: green;
+  transition: 1.5s;
+}
+.selected-incorrect {
+  color: #fff;
+  background: red;
+  transition: 1.5s;
+
+}
