@@ -1,12 +1,13 @@
-import { createQuestion } from '../views/question.html.js';
 import {
   SUBMIT_BUTTON_ID,
   ANSWER_LABEL,
   NEXT_QUESTION_BUTTON_ID,
 } from '../constants.js';
 
-import { createQuestion } from '../views/question.html.js';
-import { createExplanationVideo } from '../views/question.html.js';
+import {
+  createExplanationVideo,
+  createQuestion,
+} from '../views/question.html.js';
 export const quizData = JSON.parse(localStorage.getItem('questions'));
 
 const handleSubmitAnswer = () => {
@@ -42,7 +43,7 @@ export const quiz = (qNumber) => {
 
   // Restore any saved answer from local storage
   const savedAnswer = localStorage.getItem(qNumber);
-  document.getElementById(savedAnswer).checked = true;
+  //document.getElementById(savedAnswer).checked = true;
 
   // If user already submitted his answer show that answer again
   const submittedAnswer = localStorage.getItem(`submitted${qNumber}`);
@@ -72,9 +73,6 @@ document.addEventListener('click', (event) => {
     createExplanationVideo(searchParams.get('question'));
     document.getElementById(NEXT_QUESTION_BUTTON_ID).focus();
     localStorage.setItem(`submitted${searchParams.get('question')}`, 'yes');
-
-
-
   }
 });
 
@@ -89,8 +87,9 @@ const handleSelectAnswer = (event) => {
     if (+searchParams.get('question') === quizData.questions.length - 1) {
       location.search = `?page=results`;
     } else {
-      location.search = `?page=quiz&question=${+searchParams.get('question') + 1
-        }`;
+      location.search = `?page=quiz&question=${
+        +searchParams.get('question') + 1
+      }`;
     }
   }
 };
