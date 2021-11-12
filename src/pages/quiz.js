@@ -1,11 +1,12 @@
-import { quizData } from '../data.js';
 import {
   SUBMIT_BUTTON_ID,
   ANSWER_LABEL,
   NEXT_QUESTION_BUTTON_ID,
 } from '../constants.js';
-import { createQuestion } from '../views/question.html.js';
-import { selectedCorrectOrIncorrectAnswer } from '../views/question.html.js';
+
+import { selectedCorrectOrIncorrectAnswer, createExplanationVideo, createQuestion} from '../views/question.html.js';
+export const quizData = JSON.parse(localStorage.getItem('questions'));
+
 
 const handleSubmitAnswer = () => {
   document.getElementById(SUBMIT_BUTTON_ID).click();
@@ -17,12 +18,12 @@ export const quiz = (qNumber) => {
   let pathname = { page: 'quiz', question: qNumber };
 
   // Redirect to results if it's last question
-  if (qNumber === quizData.questions.length - 1) {
+  if (qNumber === quizData.length - 1) {
     pathname.page = 'results';
   }
 
-  const currentQuestionText = quizData.questions[qNumber].text;
-  const currentAnswersObject = quizData.questions[qNumber].answers;
+  const currentQuestionText = quizData[qNumber].text;
+  const currentAnswersObject = quizData[qNumber].answers;
   const currentAnswersData = Object.entries(currentAnswersObject).map(
     ([key, text]) => ({
       key,
@@ -40,7 +41,7 @@ export const quiz = (qNumber) => {
 
   // Restore any saved answer from local storage
   const savedAnswer = localStorage.getItem(qNumber);
-  document.getElementById(savedAnswer).checked = true;
+  //document.getElementById(savedAnswer).checked = true;
 
   // If user already submitted his answer show that answer again
   const submittedAnswer = localStorage.getItem(`submitted${qNumber}`);
@@ -80,8 +81,13 @@ document.addEventListener('click', (event) => {
     storeAnswer(event.target.htmlFor);
 
   } else if (event.target?.id === SUBMIT_BUTTON_ID) {
+
     let selectedAnswer = localStorage[searchParams.get('question')];
     selectedCorrectOrIncorrectAnswer(searchParams.get('question'), selectedAnswer);
+
+   // createExplanationItem(searchParams.get('question'));
+    createExplanationVideo(searchParams.get('question'));
+
     document.getElementById(NEXT_QUESTION_BUTTON_ID).focus();
     localStorage.setItem(`submitted${searchParams.get('question')}`, 'yes');
   }
