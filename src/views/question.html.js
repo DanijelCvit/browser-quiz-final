@@ -81,7 +81,7 @@ export const createQuestion = (question, answers, pathname) => {
   <li  class="${ANSWER_ITEM}">
     <input class="${ANSWER_INPUT}" type="radio" id="${
     answers[0].key
-  }" name="answer" checked autofocus/>
+  }" name="answer" />
     <label class="${ANSWER_LABEL}"  for="${answers[0].key}"
 
       >${answers[0].text}</label

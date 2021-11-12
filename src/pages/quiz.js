@@ -7,11 +7,6 @@ import {
 import { createQuestion } from '../views/question.html.js';
 import { createExplanationItem } from '../views/question.html.js';
 
-const handleSubmitAnswer = () => {
-  document.getElementById(SUBMIT_BUTTON_ID).click();
-  document.getElementById(NEXT_QUESTION_BUTTON_ID).focus();
-};
-
 export const quiz = (qNumber) => {
   // Create path for next question
   let pathname = { page: 'quiz', question: qNumber };
@@ -47,6 +42,27 @@ export const quiz = (qNumber) => {
   if (submittedAnswer === 'yes') {
     handleSubmitAnswer();
   }
+};
+
+const popupTimer = (delay) => {
+  setTimeout(() => {}, delay);
+};
+
+const checkAnswer = () => {
+  const currentQuestion = getQuestionNumber();
+  const selectedAnswer = localStorage.getItem(currentQuestion);
+  const correctAnswer = quizData.questions[currentQuestion].correct;
+  return selectedAnswer === correctAnswer;
+};
+
+const getQuestionNumber = () => {
+  const searchParams = new URLSearchParams(location.search);
+  return searchParams.get('question');
+};
+
+const handleSubmitAnswer = () => {
+  document.getElementById(SUBMIT_BUTTON_ID).click();
+  document.getElementById(NEXT_QUESTION_BUTTON_ID).focus();
 };
 
 const storeAnswer = (answer) => {
