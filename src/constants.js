@@ -13,3 +13,4 @@ export const RESULT_PAGE = 'result-page';
 export const QUESTION_PAGE = 'question-page';
 export const MAIN_QUESTIONS_PAGE = 'main-question-page';
 export const START_PAGE = 'start-page';
+export const TOAST_BTN = 'close';
