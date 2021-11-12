@@ -5,76 +5,17 @@ import {
   NEXT_QUESTION_BUTTON_ID,
   SUBMIT_BUTTON_ID,
   QUESTION_PAGE,
+  MAIN_QUESTIONS_PAGE,
 } from '../constants.js';
 import { quizData } from '../data.js';
 
-export const createExplanationItem = (question) => {
-  // Get correct answer list element
-  const correctAnswer = quizData.questions[question].correct;
-  const correctAnswerVideo = quizData.questions[question].video;
-  const correctAnswerInput = document.getElementById(correctAnswer);
-  const correctAnswerListItem = correctAnswerInput.parentElement;
-  const correctAnswerLabel =
-    document.getElementById(correctAnswer).nextElementSibling;
-
-  // Create accordion container
-  const accordionContainer = document.createElement('div');
-  accordionContainer.classList.add('accordion');
-  accordionContainer.id = 'accordionPanelsStayOpenExample';
-
-  // Create accordion item
-  const accordionItem = document.createElement('div');
-  accordionItem.classList.add('accordion-item');
-
-  // Create accordion header
-  const accordionHeader = document.createElement('h2');
-  accordionHeader.classList.add('accordion-header');
-  accordionHeader.id = 'panelsStayOpen-headingOne';
-
-  // Create accordion button
-  const accordionButton = document.createElement('button');
-  accordionButton.classList.add('accordion-button', 'd-block', 'text-center');
-  accordionButton.type = 'button';
-  accordionButton.dataset.bsToggle = 'collapse';
-  accordionButton.dataset.bsTarget = '#panelsStayOpen-collapseOne';
-
-  // Add existing label text to button
-  accordionButton.textContent = correctAnswerLabel.textContent;
-
-  // Create accordion body container
-  const accordionBodyContainer = document.createElement('div');
-  accordionBodyContainer.id = 'panelsStayOpen-collapseOne';
-  accordionBodyContainer.classList.add('accordion-collapse', 'collapse');
-
-  // Create accordion body
-  const accordionBody = document.createElement('div');
-  accordionBody.innerHTML = ` <iframe width="560" height="315" src="${correctAnswerVideo}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
-  accordionBody.classList.add('accordion-body');
-
-  // Build accordion DOM object
-  accordionHeader.appendChild(accordionButton);
-  accordionBodyContainer.appendChild(accordionBody);
-  accordionItem.append(accordionHeader, accordionBodyContainer);
-  accordionContainer.appendChild(accordionItem);
-
-  // Clear existing elements in list
-  correctAnswerListItem.innerHTML = '';
-
-  // Add accordion DOM object to list element
-  correctAnswerListItem.appendChild(accordionContainer);
-
-  // Disable submit button and other checkboxes
-  document.getElementById(SUBMIT_BUTTON_ID).classList.add('disabled');
-  const inputElementArray = document.querySelectorAll("input[type='radio']");
-  inputElementArray.forEach((input) => (input.disabled = true));
-
-  // Auto expand accordion
-  accordionButton.click();
-};
 
 export const createQuestion = (question, answers, pathname) => {
   return String.raw`
-  <div class=${QUESTION_PAGE} data-aos="fade-up">
+
+  <div class=${MAIN_QUESTIONS_PAGE} data-aos="fade-up">
+  <div class=${QUESTION_PAGE}>
+  <div class="question-and-answers">
 <h1>${question}</h1>
 <ul class="answerList">
 
@@ -128,5 +69,31 @@ export const createQuestion = (question, answers, pathname) => {
  <a class=" btn btn-block btn-dark btn-block" id="${SUBMIT_BUTTON_ID}" >Submit</a>
 
  </div>
+
+ </div>
+ </div>
  `;
 };
+
+export const createExplanationVideo = (question) => {
+
+  const videoLink = quizData.questions[question].video;
+  const description = quizData.questions[question].description;
+  const questionPage = document.querySelector('.question-page');
+
+  const explanationVideoDiv = document.createElement('div');
+  explanationVideoDiv.classList.add('explanation-section');
+  explanationVideoDiv.setAttribute('data-aos', "fade-left");
+
+  explanationVideoDiv.innerHTML = `<h3 class='mb-4'>video source<h3>
+  <iframe width="100%" height="315" src="${videoLink}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <p>${description}</p>
+  `
+
+  questionPage.appendChild(explanationVideoDiv);
+
+  document.getElementById(SUBMIT_BUTTON_ID).classList.add('disabled');
+  const inputElementArray = document.querySelectorAll("input[type='radio']");
+  inputElementArray.forEach((input) => (input.disabled = true));
+}
+

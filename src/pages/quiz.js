@@ -4,8 +4,11 @@ import {
   ANSWER_LABEL,
   NEXT_QUESTION_BUTTON_ID,
 } from '../constants.js';
-import { createExplanationItem } from '../views/question.html.js';
+
+import { createQuestion } from '../views/question.html.js';
+import { createExplanationVideo } from '../views/question.html.js';
 export const quizData = JSON.parse(localStorage.getItem('questions'));
+
 const handleSubmitAnswer = () => {
   document.getElementById(SUBMIT_BUTTON_ID).click();
   document.getElementById(NEXT_QUESTION_BUTTON_ID).focus();
@@ -65,9 +68,13 @@ document.addEventListener('click', (event) => {
   if (event.target?.classList.contains(ANSWER_LABEL)) {
     storeAnswer(event.target.htmlFor);
   } else if (event.target?.id === SUBMIT_BUTTON_ID) {
-    createExplanationItem(searchParams.get('question'));
+    // createExplanationItem(searchParams.get('question'));
+    createExplanationVideo(searchParams.get('question'));
     document.getElementById(NEXT_QUESTION_BUTTON_ID).focus();
     localStorage.setItem(`submitted${searchParams.get('question')}`, 'yes');
+
+
+
   }
 });
 
@@ -82,9 +89,8 @@ const handleSelectAnswer = (event) => {
     if (+searchParams.get('question') === quizData.questions.length - 1) {
       location.search = `?page=results`;
     } else {
-      location.search = `?page=quiz&question=${
-        +searchParams.get('question') + 1
-      }`;
+      location.search = `?page=quiz&question=${+searchParams.get('question') + 1
+        }`;
     }
   }
 };
