@@ -11,11 +11,10 @@ import { quizData } from '../data.js';
 export const createExplanationItem = (question) => {
   // Get correct answer list element
   const correctAnswer = quizData.questions[question].correct;
-  const correctAnswerVideo = quizData.questions[question].video;
   const correctAnswerInput = document.getElementById(correctAnswer);
   const correctAnswerListItem = correctAnswerInput.parentElement;
-  const correctAnswerLabel =
-    document.getElementById(correctAnswer).nextElementSibling;
+  const correctAnswerLabel = document.getElementById(correctAnswer)
+    .nextElementSibling;
 
   // Create accordion container
   const accordionContainer = document.createElement('div');
@@ -48,7 +47,6 @@ export const createExplanationItem = (question) => {
 
   // Create accordion body
   const accordionBody = document.createElement('div');
-  accordionBody.innerHTML = ` <iframe width="560" height="315" src="${correctAnswerVideo}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
   accordionBody.classList.add('accordion-body');
 
   // Build accordion DOM object
@@ -79,8 +77,9 @@ export const createQuestion = (question, answers, pathname) => {
 <ul class="answerList">
 
   <li  class="${ANSWER_ITEM}">
-    <input class="${ANSWER_INPUT}" type="radio" id="${answers[0].key
-    }" name="answer" checked autofocus/>
+    <input class="${ANSWER_INPUT}" type="radio" id="${
+    answers[0].key
+  }" name="answer" checked autofocus/>
     <label class="${ANSWER_LABEL}"  for="${answers[0].key}"
 
       >${answers[0].text}</label
@@ -90,8 +89,9 @@ export const createQuestion = (question, answers, pathname) => {
   <li  class="${ANSWER_ITEM}">
 
 
-    <input class="${ANSWER_INPUT}" type="radio" id="${answers[1].key
-    }" name="answer" />
+    <input class="${ANSWER_INPUT}" type="radio" id="${
+    answers[1].key
+  }" name="answer" />
     <label class="${ANSWER_LABEL}" for="${answers[1].key}"
 
 
@@ -102,8 +102,9 @@ export const createQuestion = (question, answers, pathname) => {
   <li class="${ANSWER_ITEM}">
 
 
-    <input class="${ANSWER_INPUT}" type="radio" id="${answers[2].key
-    }" name="answer" />
+    <input class="${ANSWER_INPUT}" type="radio" id="${
+    answers[2].key
+  }" name="answer" />
     <label class="${ANSWER_LABEL}"  for="${answers[2].key}"
 
 
@@ -112,8 +113,9 @@ export const createQuestion = (question, answers, pathname) => {
   </li>
 
   <li  class="${ANSWER_ITEM}">
-    <input class="${ANSWER_INPUT}" type="radio" id="${answers[3].key
-    }" name="answer" />
+    <input class="${ANSWER_INPUT}" type="radio" id="${
+    answers[3].key
+  }" name="answer" />
     <label class="${ANSWER_LABEL}" for="${answers[3].key}"
 
 
@@ -123,10 +125,33 @@ export const createQuestion = (question, answers, pathname) => {
 
 </ul>
 
-<a class=" btn btn-block btn-dark btn-block" id="${NEXT_QUESTION_BUTTON_ID}" href="?page=${pathname.page
-    }&question=${pathname.question + 1}">Next question</a>
+<a class=" btn btn-block btn-dark btn-block" id="${NEXT_QUESTION_BUTTON_ID}" href="?page=${
+    pathname.page
+  }&question=${pathname.question + 1}">Next question</a>
  <a class=" btn btn-block btn-dark btn-block" id="${SUBMIT_BUTTON_ID}" >Submit</a>
 
  </div>
  `;
+};
+
+export const popUpMassage = () => {
+  const quizBody = document.getElementById('app');
+  const msgBox = document.createElement('div');
+  document.body.appendChild(msgBox);
+  quizBody.classList.add('bluer');
+  msgBox.innerHTML = `<div class="toast1" role="alert" aria-live="assertive" aria-atomic="true">
+  <div class="toast-header">
+    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close" >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="toast-body">
+    Hello, world! This is a toast message.
+  </div>
+  
+</div>`;
+  setTimeout(() => {
+    msgBox.innerHTML = '';
+    quizBody.classList.remove('bluer');
+  }, 3000);
 };
