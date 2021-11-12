@@ -1,18 +1,18 @@
 import { ANSWER_LABEL_ID } from '../constants.js';
 import { createQuestion } from '../views/question.html.js';
-export const shortageData = JSON.parse(localStorage.getItem('questions'));
+export const quizData = JSON.parse(localStorage.getItem('questions'));
 
 export const quiz = (qNumber) => {
   // Create path for next question
   let pathname = { page: 'quiz', question: qNumber };
 
   // Redirect to results if it's last question
-  if (qNumber === shortageData.length - 1) {
+  if (qNumber === quizData.length - 1) {
     pathname.page = 'results';
   }
 
-  const currentQuestionText = shortageData[qNumber].text;
-  const currentAnswersObject = shortageData[qNumber].answers;
+  const currentQuestionText = quizData[qNumber].text;
+  const currentAnswersObject = quizData[qNumber].answers;
   const currentAnswersData = Object.entries(currentAnswersObject).map(
     ([key, text]) => ({
       key,
