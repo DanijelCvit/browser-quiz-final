@@ -14,8 +14,8 @@ export const createExplanationItem = (question) => {
   const correctAnswerVideo = quizData.questions[question].video;
   const correctAnswerInput = document.getElementById(correctAnswer);
   const correctAnswerListItem = correctAnswerInput.parentElement;
-  const correctAnswerLabel = document.getElementById(correctAnswer)
-    .nextElementSibling;
+  const correctAnswerLabel =
+    document.getElementById(correctAnswer).nextElementSibling;
 
   // Create accordion container
   const accordionContainer = document.createElement('div');
@@ -49,9 +49,13 @@ export const createExplanationItem = (question) => {
   // Create accordion body
   const accordionBody = document.createElement('div');
   accordionBody.innerHTML = ` <iframe width="560" height="315" src="${correctAnswerVideo}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-  <p>This is the first item's accordion body. It is shown by default,
+  <p>This is the first item's accordion body. It is shown by default, 
   until the collapse plugin adds the appropriate classes that we use to style each element.</p>`;
   accordionBody.classList.add('accordion-body');
+
+
+
+
   // Build accordion DOM object
   accordionHeader.appendChild(accordionButton);
   accordionBodyContainer.appendChild(accordionBody);
