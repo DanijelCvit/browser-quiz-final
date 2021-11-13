@@ -79,7 +79,9 @@ body {
 }
 
 input[type='radio']:checked ~ label {
+
   color: #008f95;
+
 }
 
 .main-question-page {
@@ -133,8 +135,10 @@ input[type='radio']:checked:disabled ~ label {
 .next-question-button:hover,
 .submit-button:hover {
   transform: scale(1.1);
+
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   background-color: #008f95;
+
 }
 
 .explanation-section {

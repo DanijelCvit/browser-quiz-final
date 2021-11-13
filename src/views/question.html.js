@@ -101,8 +101,17 @@ export const createPopupMessage = (message, id) => {
 };
 
 export const createExplanationVideo = (question) => {
+  document.getElementById(SUBMIT_BUTTON_ID).classList.add('disabled');
+  const inputElementArray = document.querySelectorAll("input[type='radio']");
+  inputElementArray.forEach((input) => (input.disabled = true));
+
   const videoLink = quizData[question].video;
   const resources = quizData[question].links;
+
+  if (!videoLink) {
+    return;
+  }
+
   const questionPage = document.querySelector('.question-page');
 
   const explanationVideoDiv = document.createElement('div');
@@ -119,8 +128,5 @@ export const createExplanationVideo = (question) => {
 
   questionPage.appendChild(explanationVideoDiv);
 
-  document.getElementById(SUBMIT_BUTTON_ID).classList.add('disabled');
-  const inputElementArray = document.querySelectorAll("input[type='radio']");
-  inputElementArray.forEach((input) => (input.disabled = true));
   inputElementArray;
 };
