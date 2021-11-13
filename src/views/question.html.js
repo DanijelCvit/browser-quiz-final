@@ -15,17 +15,17 @@ export const createQuestion = (question, answers, pathname) => {
   <div class=${MAIN_QUESTIONS_PAGE} data-aos="fade-up">
   <div class=${QUESTION_PAGE}>
   <div class="question-and-answers">
-<h1>${question}</h1>
+<h1 class="mb-5">${question}</h1>
 <ul class="answerList">
 
 
   <li  class="${ANSWER_ITEM}">
-    <input class="${ANSWER_INPUT}" type="radio" id="${
-    answers[0].key
-  }" name="answer" />
+    <input class="${ANSWER_INPUT}" type="radio" id="${answers[0].key
+    }" name="answer" />
+    <span class="your-choice">a</span>
     <label class="${ANSWER_LABEL}"  for="${answers[0].key}"
 
-      >${answers[0].text}</label
+      > ${answers[0].text}</label
     >
   </li>
 
@@ -33,9 +33,9 @@ export const createQuestion = (question, answers, pathname) => {
   <li  class="${ANSWER_ITEM}">
 
 
-    <input class="${ANSWER_INPUT}" type="radio" id="${
-    answers[1].key
-  }" name="answer" />
+    <input class="${ANSWER_INPUT}" type="radio" id="${answers[1].key
+    }" name="answer" />
+    <span class="your-choice">b</span>
     <label class="${ANSWER_LABEL}" for="${answers[1].key}"
 
 
@@ -46,9 +46,9 @@ export const createQuestion = (question, answers, pathname) => {
   <li  class="${ANSWER_ITEM}">
 
 
-    <input class="${ANSWER_INPUT}" type="radio" id="${
-    answers[2].key
-  }" name="answer" />
+    <input class="${ANSWER_INPUT}" type="radio" id="${answers[2].key
+    }" name="answer" />
+    <span class="your-choice">c</span>
     <label class="${ANSWER_LABEL}"  for="${answers[2].key}"
 
 
@@ -58,10 +58,9 @@ export const createQuestion = (question, answers, pathname) => {
 
 
   <li  class="${ANSWER_ITEM}">
-    <input class="${ANSWER_INPUT}" type="radio" id="${
-    answers[3].key
-  }" name="answer" />
-
+    <input class="${ANSWER_INPUT}" type="radio" id="${answers[3].key
+    }" name="answer" />
+    <span class="your-choice">d</span>
     <label class="${ANSWER_LABEL}" for="${answers[3].key}"
 
 
@@ -71,10 +70,9 @@ export const createQuestion = (question, answers, pathname) => {
 
 </ul>
 
-<a  class=" btn btn-block btn-dark btn-block" id="${NEXT_QUESTION_BUTTON_ID}" href="?page=${
-    pathname.page
-  }&question=${pathname.question + 1}">Next question</a>
- <a class=" btn btn-block btn-dark btn-block" id="${SUBMIT_BUTTON_ID}" >Submit</a>
+<a  class="next-question-button btn btn-block btn-dark btn-block" id="${NEXT_QUESTION_BUTTON_ID}" href="?page=${pathname.page
+    }&question=${pathname.question + 1}">Next question</a>
+ <a class="submit-button btn btn-block btn-dark btn-block" id="${SUBMIT_BUTTON_ID}" >Submit</a>
 
  </div>
 
@@ -104,16 +102,19 @@ export const popupMessage = () => {
 
 export const createExplanationVideo = (question) => {
   const videoLink = quizData[question].video;
-  const description = quizData[question].description;
+  const resources = quizData[question].links;
   const questionPage = document.querySelector('.question-page');
 
   const explanationVideoDiv = document.createElement('div');
   explanationVideoDiv.classList.add('explanation-section');
   explanationVideoDiv.setAttribute('data-aos', 'fade-left');
 
-  explanationVideoDiv.innerHTML = `<h3 class='mb-4'>video source<h3>
+  explanationVideoDiv.innerHTML = `<h2 class='mb-4'>video source<h2>
   <iframe width="100%" height="315" src="${videoLink}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-  <p>${description}</p>
+  <h4>${resources[0].text}<h4>
+  <p><a href="${resources[0].href}">${resources[0].href}</a><p>
+  <h4>${resources[1].text}<h4>
+  <p><a href="${resources[1].href}">${resources[1].href}</a><p>
   `;
 
   questionPage.appendChild(explanationVideoDiv);

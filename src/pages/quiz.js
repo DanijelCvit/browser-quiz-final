@@ -54,7 +54,6 @@ export const quiz = (qNumber) => {
   if (submittedAnswer === 'yes') {
     handleSubmitAnswer();
   }
-
   // popup timer
   popupTimer(5000);
 };
