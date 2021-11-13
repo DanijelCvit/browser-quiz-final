@@ -74,7 +74,7 @@ const checkAnswer = () => {
   const currentQuestion = getQuestionNumber();
   const selectedAnswer = localStorage.getItem(currentQuestion);
   const correctAnswer = quizData[currentQuestion].correct;
-  console.log(selectedAnswer === correctAnswer);
+  selectedAnswer === correctAnswer;
   return selectedAnswer === correctAnswer;
 };
 

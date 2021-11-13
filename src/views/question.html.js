@@ -121,5 +121,5 @@ export const createExplanationVideo = (question) => {
   document.getElementById(SUBMIT_BUTTON_ID).classList.add('disabled');
   const inputElementArray = document.querySelectorAll("input[type='radio']");
   inputElementArray.forEach((input) => (input.disabled = true));
-  console.log(inputElementArray);
+  inputElementArray;
 };
