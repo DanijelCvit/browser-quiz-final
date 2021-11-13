@@ -1,21 +1,12 @@
 import { createStart } from '../views/start.html.js';
-import { quizData } from '../data.js';
-const storeRandomQuestionOrder = () => {
-  const shuffledQuestions = quizData.questions.sort(() => Math.random() - 0.5);
-  const shortageData = shuffledQuestions.slice(0, 10);
-  localStorage.setItem('questions', JSON.stringify(shortageData));
-  return shortageData;
-};
+import { storeRandomQuestionOrder } from '../data.js';
 
 export const start = () => {
   //Clear local storage of all data
   localStorage.clear();
 
-  // Pre fill local storage with default answer 'a'
-
   // Generate new HTML
   const startTemplate = createStart();
-  window.localStorage.clear();
   storeRandomQuestionOrder();
 
   // Add HTML to app

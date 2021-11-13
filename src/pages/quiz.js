@@ -1,22 +1,16 @@
+import { quizData } from '../data.js';
 import {
   SUBMIT_BUTTON_ID,
   ANSWER_LABEL,
   NEXT_QUESTION_BUTTON_ID,
+  START_BUTTON,
 } from '../constants.js';
-
-import { createQuestion } from '../views/question.html.js';
-import { createExplanationItem, popUpMassage } from '../views/question.html.js';
-
-
-import { selectedCorrectOrIncorrectAnswer, createExplanationVideo, createQuestion} from '../views/question.html.js';
-export const quizData = JSON.parse(localStorage.getItem('questions'));
-
-
-const handleSubmitAnswer = () => {
-  document.getElementById(SUBMIT_BUTTON_ID).click();
-  document.getElementById(NEXT_QUESTION_BUTTON_ID).focus();
-};
-
+import {
+  // selectedCorrectOrIncorrectAnswer,
+  createExplanationVideo,
+  createQuestion,
+} from '../views/question.html.js';
+import { popupMessage } from '../views/question.html.js';
 
 export const quiz = (qNumber) => {
   // Create path for next question
@@ -45,102 +39,85 @@ export const quiz = (qNumber) => {
   // Add HTML to app
   document.getElementById('app').innerHTML = quizTemplate;
 
-
-
   // Restore any saved answer from local storage
   const savedAnswer = localStorage.getItem(qNumber);
-
-  // document.getElementById(savedAnswer).checked = true;
-
+  if (savedAnswer && savedAnswer !== 'undefined') {
+    const savedAnswerElement = document.getElementById(savedAnswer);
+    savedAnswerElement.checked = true;
+    savedAnswerElement.focus();
+  } else {
+    document.getElementById('a').focus();
+  }
 
   // If user already submitted his answer show that answer again
   const submittedAnswer = localStorage.getItem(`submitted${qNumber}`);
   if (submittedAnswer === 'yes') {
     handleSubmitAnswer();
   }
+
+  // popup timer
+  popupTimer(5000);
 };
 
-const storeAnswer = (answer) => {
-  const searchParams = new URLSearchParams(location.search);
-  localStorage.setItem(searchParams.get('question'), answer);
-
+const popupTimer = (delay) => {
+  setTimeout(() => {
+    localStorage.setItem(`guessed${getQuestionNumber()}`, 'no');
+  }, delay);
 };
 
-//
-
-
-
-
-
-
-
-
-
-
-
-
-
-document.addEventListener('click', (event) => {
+const getQuestionNumber = () => {
   const searchParams = new URLSearchParams(location.search);
+  return searchParams.get('question');
+};
 
-
-  if (event.target?.classList.contains(ANSWER_LABEL)) {
-
-    let selectedItem = event.target;
-
-    localStorage.setItem(
-      searchParams.get('question'),
-      selectedItem.getAttribute('for')
-    );
-  } else if (event.target?.id === SUBMIT_BUTTON_ID) {
-    createExplanationItem(searchParams.get('question'));
-
-    storeAnswer(event.target.htmlFor);
-
-  } else if (event.target?.id === SUBMIT_BUTTON_ID) {
-
-    let selectedAnswer = localStorage[searchParams.get('question')];
-    selectedCorrectOrIncorrectAnswer(searchParams.get('question'), selectedAnswer);
-
-   // createExplanationItem(searchParams.get('question'));
-    createExplanationVideo(searchParams.get('question'));
-
-    document.getElementById(NEXT_QUESTION_BUTTON_ID).focus();
-    localStorage.setItem(`submitted${searchParams.get('question')}`, 'yes');
-
-  }
-});
-
-
-
-
-
-const handleSelectAnswer = (event) => {
-  const searchParams = new URLSearchParams(location.search);
-
-  if (location.search === '') {
-    location.search = `?page=quiz&question=0`;
-  } else if (event.target?.name === 'answer') {
-    let selectedItem = event.target;
-    localStorage.setItem(
-      searchParams.get('question'),
-      selectedItem.getAttribute('id')
-    );
-
-    if (+searchParams.get('question') === quizData.questions.length - 1) {
-      location.search = `?page=results`;
-    } else {
-      location.search = `?page=quiz&question=${
-        +searchParams.get('question') + 1
-      }`;
-    }
-  }
+const checkAnswer = () => {
+  const currentQuestion = getQuestionNumber();
+  const selectedAnswer = localStorage.getItem(currentQuestion);
+  const correctAnswer = quizData[currentQuestion].correct;
+  selectedAnswer === correctAnswer;
+  return selectedAnswer === correctAnswer;
 };
 
 const handleSubmitAnswer = () => {
   document.getElementById(SUBMIT_BUTTON_ID).click();
   document.getElementById(NEXT_QUESTION_BUTTON_ID).focus();
 };
+
+const storeAnswer = (answer) => {
+  const searchParams = new URLSearchParams(location.search);
+  localStorage.setItem(searchParams.get('question'), answer);
+};
+
+const handlePopupModal = (event) => {
+  const guessed = localStorage.getItem(`guessed${getQuestionNumber()}`);
+  const submitted = localStorage.getItem(`submitted${getQuestionNumber()}`);
+
+  // If user guessed and gave wrong answer within 5 seconds show popup
+  if (guessed !== 'no' && submitted !== 'yes' && !checkAnswer()) {
+    const popup = new bootstrap.Modal(document.getElementById('popupModal'));
+    popup.show();
+    event.preventDefault();
+    document.getElementById(SUBMIT_BUTTON_ID).click();
+  }
+};
+
+document.addEventListener('click', (event) => {
+  const searchParams = new URLSearchParams(location.search);
+  const submitted = localStorage.getItem(`submitted${getQuestionNumber()}`);
+
+  if (event.target?.classList.contains(ANSWER_LABEL) && submitted !== 'yes') {
+    storeAnswer(event.target.htmlFor);
+  } else if (event.target?.id === SUBMIT_BUTTON_ID) {
+    createExplanationVideo(searchParams.get('question'));
+    document.getElementById(NEXT_QUESTION_BUTTON_ID).focus();
+    localStorage.setItem(`submitted${searchParams.get('question')}`, 'yes');
+    document.querySelector(
+      `#${quizData[getQuestionNumber()].correct}~label`
+    ).style.color = 'green';
+  } else if (event.target?.id === NEXT_QUESTION_BUTTON_ID) {
+    handlePopupModal(event);
+  }
+});
 
 const handleAnswerKeys = (event) => {
   const [...inputElementsArray] = document.querySelectorAll(
@@ -157,7 +134,12 @@ document.addEventListener('keyup', (event) => {
   const answerKeys = ['a', 'A', 'b', 'B', 'c', 'C', 'd', 'D'];
 
   if (event.key === 'Enter') {
-    handleSelectAnswer(event);
+    if (!location.search) {
+      document.getElementById(START_BUTTON).click();
+    } else {
+      document.getElementById(NEXT_QUESTION_BUTTON_ID).click();
+      handlePopupModal(event);
+    }
   } else if (event.key === 's' || event.key === 'S') {
     handleSubmitAnswer();
   } else if (answerKeys.includes(event.key)) {
@@ -165,25 +147,21 @@ document.addEventListener('keyup', (event) => {
   }
 });
 
+const initializeGuessCounter = () => {
+  let multipleClickCounter = 0;
 
+  const multiplePress = (event) => {
+    const submitted = localStorage.getItem(`submitted${getQuestionNumber()}`);
 
-let multipleClickCounter = 0;
-
-const multiplePress = (event) => {
-  const searchParams = new URLSearchParams(location.search);
-
-  if (event.target?.classList.contains(ANSWER_LABEL)) {
-    let selectedItem = event.target;
-
-    localStorage.setItem(
-      searchParams.get('question'),
-      selectedItem.getAttribute('for')
-    );
-    multipleClickCounter += 1;
-    if (multipleClickCounter === 3 || multipleClickCounter > 5) {
-      popUpMassage();
+    if (event.target?.classList.contains(ANSWER_LABEL) && submitted !== 'yes') {
+      multipleClickCounter += 1;
+      if (multipleClickCounter === 3) {
+        popupMessage();
+      }
     }
-  }
-};
-document.addEventListener('click', multiplePress);
+  };
 
+  return multiplePress;
+};
+
+document.addEventListener('click', initializeGuessCounter());
