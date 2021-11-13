@@ -49,7 +49,9 @@ export const quiz = (qNumber) => {
 
   // Restore any saved answer from local storage
   const savedAnswer = localStorage.getItem(qNumber);
-  //document.getElementById(savedAnswer).checked = true;
+
+  // document.getElementById(savedAnswer).checked = true;
+
 
   // If user already submitted his answer show that answer again
   const submittedAnswer = localStorage.getItem(`submitted${qNumber}`);
@@ -128,8 +130,9 @@ const handleSelectAnswer = (event) => {
     if (+searchParams.get('question') === quizData.questions.length - 1) {
       location.search = `?page=results`;
     } else {
-      location.search = `?page=quiz&question=${+searchParams.get('question') + 1
-        }`;
+      location.search = `?page=quiz&question=${
+        +searchParams.get('question') + 1
+      }`;
     }
   }
 };
@@ -162,6 +165,8 @@ document.addEventListener('keyup', (event) => {
   }
 });
 
+
+
 let multipleClickCounter = 0;
 
 const multiplePress = (event) => {
@@ -181,3 +186,4 @@ const multiplePress = (event) => {
   }
 };
 document.addEventListener('click', multiplePress);
+

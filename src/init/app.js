@@ -1,12 +1,8 @@
+import { quizData } from '../data.js';
 import { quiz } from '../pages/quiz.js';
 import { results } from '../pages/results.js';
 import { start } from '../pages/start.js';
-import { quizData } from '../data.js';
 
-// Error path
-const err = () => {
-  document.getElementById('app').innerHTML = `<h1>Error: page not found<h1>`;
-};
 AOS.init({
   duration: 1200,
 });
@@ -14,47 +10,34 @@ AOS.init({
 //Router
 const router = () => {
   const searchParams = new URLSearchParams(window.location.search);
+  const currentPage = searchParams.get('page');
 
-  const routes = ['start', 'quiz', 'results'];
-
+  // Redirect to start on empty search or no page given
   if (searchParams.toString() === '' || !searchParams.has('page')) {
     return start();
   }
-  // Check if there are more than 2 params or other params than page/question
-  let counter = 0;
-  for (const param of searchParams) {
-    counter++;
-    if (counter > 2 || (param[0] !== 'page' && param[0] !== 'question')) {
-      return err();
-    }
+  // Return to start on invalid route
+  if (currentPage !== 'quiz' && currentPage !== 'results') {
+    return start();
   }
 
-  const hasPage = searchParams.has('page');
-  const currentPage = searchParams.get('page');
-  const routeExists = routes.find((page) => page === currentPage);
-
-  // Check if a valid route is given
-  if (!hasPage || routeExists === undefined) {
-    return err();
-  }
-  const hasQuestion = searchParams.has('question');
-  const currentQuestion = searchParams.get('question');
-  const isValidNumber =
-    currentQuestion &&
-    currentQuestion >= 0 &&
-    currentQuestion < quizData.questions.length;
-
-  // Check quiz route for valid number
   if (currentPage === 'quiz') {
-    if (hasQuestion && isValidNumber) {
-      return quiz(+currentQuestion);
+    // Check quiz route for valid number
+    const questionNumber = parseInt(searchParams.get('question'));
+    const isValidNumber =
+      questionNumber !== NaN &&
+      questionNumber >= 0 &&
+      questionNumber < quizData.questions.length;
+
+    if (searchParams.has('question') && isValidNumber) {
+      return quiz(questionNumber);
     } else {
-      return err();
+      return start();
     }
   } else {
     return results();
   }
 };
 
-// Event listeners
+// Go to router on load
 window.addEventListener('load', router);
