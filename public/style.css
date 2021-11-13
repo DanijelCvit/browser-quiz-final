@@ -1,3 +1,23 @@
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -7,7 +27,6 @@ html,
 body {
   height: 100%;
   background: #041033;
-
 }
 
 .centered {
@@ -28,7 +47,6 @@ body {
   list-style-type: none;
   width: 100%;
   margin: auto;
-
 }
 
 .answer {
@@ -36,21 +54,22 @@ body {
   margin: 20px;
   font-size: 25px;
   border-radius: 10px;
-  border:1px solid #555;
-  margin:20px auto;
+  border: 1px solid #555;
+  margin: 20px auto;
   overflow: auto;
 }
 
 .label {
   padding: 10px;
   width: 100%;
+  cursor: pointer;
 }
 
-.your-choice{
+.your-choice {
   border-right: 2px solid #555;
   border-radius: 5px 0 0 5px;
-  text-align:center;
-  padding:10px 20px;
+  text-align: center;
+  padding: 10px 20px;
 }
 
 .input {
@@ -60,7 +79,7 @@ body {
 }
 
 input[type='radio']:checked ~ label {
-  color: #0F5176;
+  color: #008f95;
 }
 
 .main-question-page {
@@ -69,6 +88,9 @@ input[type='radio']:checked ~ label {
 
 input[type='radio']:checked:disabled ~ label {
   color: red;
+  transform: translateY(-0.25em);
+  cursor: pointer;
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
 }
 
 .question-page {
@@ -82,7 +104,6 @@ input[type='radio']:checked:disabled ~ label {
   border-radius: 10px;
   box-shadow: 0 0 20px 5px #fff;
   background: #fff;
-
 }
 .question-and-answers {
   padding: 40px;
@@ -92,25 +113,28 @@ input[type='radio']:checked:disabled ~ label {
   text-align: center;
   margin-right: 40px;
   color: #333;
-  border-right: #333 1px solid;
 }
 .question-and-answers h1 {
   color: #041033;
 }
-.question-and-answers span{
+.question-and-answers span {
   background: #041033;
   color: #fff;
 }
 
-.next-question-button , .submit-button{
+.next-question-button,
+.submit-button {
   padding: 10px 20px;
   margin: 10px;
   font-weight: bold;
   transition: 1.4s;
 }
 
-.next-question-button:hover , .submit-button:hover{
-transform: scale(1.1);
+.next-question-button:hover,
+.submit-button:hover {
+  transform: scale(1.1);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background-color: #008f95;
 }
 
 .explanation-section {
@@ -120,6 +144,7 @@ transform: scale(1.1);
   color: #041033;
   font-size: 20px;
   border-radius: 0 10px 10px 0;
+  border-left: #333 1px solid;
 }
 
 .explanation-section p {
@@ -132,42 +157,35 @@ transform: scale(1.1);
   text-align: center;
 }
 
-
-
 @keyframes text {
-
-0%{
-  color: #041033;
-  margin-bottom: -120px;
-}
-30%{
-  letter-spacing: 25px;
-  margin-bottom: -120px;
-}
-85%{
-  letter-spacing: 8px;
-  margin-bottom: -120px;
-}
-
-}
-
-@keyframes text1 {
-
-  0%{
+  0% {
     color: #041033;
     margin-bottom: -120px;
   }
-  30%{
+  30% {
     letter-spacing: 25px;
     margin-bottom: -120px;
   }
-  85%{
+  85% {
     letter-spacing: 8px;
     margin-bottom: -120px;
   }
-  
-  }
+}
 
+@keyframes text1 {
+  0% {
+    color: #041033;
+    margin-bottom: -120px;
+  }
+  30% {
+    letter-spacing: 25px;
+    margin-bottom: -120px;
+  }
+  85% {
+    letter-spacing: 8px;
+    margin-bottom: -120px;
+  }
+}
 
 .start-page :first-child {
   font-size: 100px;
@@ -180,10 +198,10 @@ transform: scale(1.1);
   animation: text 3s 1;
 }
 
-.start-page :nth-child(2){
+.start-page :nth-child(2) {
   margin-bottom: 30px;
   font-size: 80px;
-  color: #43F295;
+  color: #43f295;
   font-weight: 700;
   background: #041033;
   letter-spacing: 8px;
@@ -191,7 +209,7 @@ transform: scale(1.1);
   animation: text1 3s 1;
 }
 
-.start-button{
+.start-button {
   margin-top: 40px;
   font-size: 25px;
   font-weight: bold;
@@ -201,10 +219,10 @@ transform: scale(1.1);
   border-radius: 20px;
 }
 
-.start-button:hover{
+.start-button:hover {
   margin-top: 40px;
   padding: 20px 50px;
-  background: #43F295;
+  background: #43f295;
   color: #041033;
   transform: scale(1.1);
 }
@@ -217,14 +235,12 @@ transform: scale(1.1);
   font-weight: bold;
 }
 
-
 .result-page {
   display: flex;
   margin-top: 40px;
   height: 70%;
   width: 70%;
   box-shadow: 0 0 20px 5px #fff;
-
 }
 
 .incorrect-answer {
