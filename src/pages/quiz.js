@@ -147,14 +147,21 @@ document.addEventListener('keyup', (event) => {
   }
 });
 
-const multiplePress = (event) => {
-  const searchParams = new URLSearchParams(location.search);
+const initializeGuessCounter = () => {
+  let multipleClickCounter = 0;
 
-  if (event.target?.classList.contains(ANSWER_LABEL)) {
-    multipleClickCounter += 1;
-    if (multipleClickCounter === 3) {
-      popupMessage();
+  const multiplePress = (event) => {
+    const submitted = localStorage.getItem(`submitted${getQuestionNumber()}`);
+
+    if (event.target?.classList.contains(ANSWER_LABEL) && submitted !== 'yes') {
+      multipleClickCounter += 1;
+      if (multipleClickCounter === 3) {
+        popupMessage();
+      }
     }
-  }
+  };
+
+  return multiplePress;
 };
-document.addEventListener('click', multiplePress);
+
+document.addEventListener('click', initializeGuessCounter());
