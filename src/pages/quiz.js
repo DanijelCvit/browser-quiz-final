@@ -90,7 +90,6 @@ const handleSelectAnswer = (event) => {
   const searchParams = new URLSearchParams(location.search);
   const submitted = localStorage.getItem(`submitted${getQuestionNumber()}`);
   const question = quizData[+searchParams.get('question')];
-  console.log(question);
 
   if (event.target?.classList.contains(ANSWER_LABEL) && submitted !== 'yes') {
     storeAnswer(event.target.htmlFor);
@@ -145,7 +144,6 @@ const initializeGuessCounter = () => {
 
     if (event.target?.classList.contains(ANSWER_LABEL) && submitted !== 'yes') {
       multipleClickCounter += 1;
-      console.log(multipleClickCounter);
       if (multipleClickCounter === 3) {
         toast.show();
       }
