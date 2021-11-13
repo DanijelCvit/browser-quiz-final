@@ -83,23 +83,18 @@ export const createQuestion = (question, answers, pathname) => {
  `;
 };
 
-export const popupMessage = () => {
+export const createPopupMessage = (message, id) => {
   const quizBody = document.getElementById('app');
   const msgBox = document.createElement('div');
   document.body.appendChild(msgBox);
-  quizBody.classList.add('bluer');
-  msgBox.innerHTML = `<div class="toast1 align-items-center position-absolute top-0 end-0"" role="alert" aria-live="assertive" aria-atomic="true">
+  msgBox.innerHTML = `<div id=${id} class="toast align-items-center position-absolute top-0 end-0"" role="alert" aria-live="assertive" aria-atomic="true">
   <div class="d-flex">
     <div class="toast-body">
-    &#128557; Stop guessing!
+   ${message}
    </div>
     <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
   </div>
 </div>`;
-  setTimeout(() => {
-    msgBox.innerHTML = '';
-    quizBody.classList.remove('bluer');
-  }, 3000);
 };
 
 export const createExplanationVideo = (question) => {
