@@ -2,14 +2,10 @@ import { quizData } from '../data.js';
 import { quiz } from '../pages/quiz.js';
 import { results } from '../pages/results.js';
 import { start } from '../pages/start.js';
-import { initializePopup } from '../pages/popup.js';
-
 
 AOS.init({
   duration: 1200,
 });
-
-initializePopup();
 
 //Router
 const router = () => {
@@ -32,7 +28,6 @@ const router = () => {
       questionNumber !== NaN &&
       questionNumber >= 0 &&
       questionNumber < quizData.length;
-
 
     if (searchParams.has('question') && isValidNumber) {
       return quiz(questionNumber);

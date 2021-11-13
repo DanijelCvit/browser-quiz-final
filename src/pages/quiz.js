@@ -6,11 +6,10 @@ import {
   START_BUTTON,
 } from '../constants.js';
 import {
-  // selectedCorrectOrIncorrectAnswer,
   createExplanationVideo,
+  createPopupMessage,
   createQuestion,
 } from '../views/question.html.js';
-import { popupMessage } from '../views/question.html.js';
 
 export const quiz = (qNumber) => {
   // Create path for next question
@@ -74,7 +73,6 @@ const checkAnswer = () => {
   const currentQuestion = getQuestionNumber();
   const selectedAnswer = localStorage.getItem(currentQuestion);
   const correctAnswer = quizData[currentQuestion].correct;
-  selectedAnswer === correctAnswer;
   return selectedAnswer === correctAnswer;
 };
 
@@ -88,20 +86,7 @@ const storeAnswer = (answer) => {
   localStorage.setItem(searchParams.get('question'), answer);
 };
 
-const handlePopupModal = (event) => {
-  const guessed = localStorage.getItem(`guessed${getQuestionNumber()}`);
-  const submitted = localStorage.getItem(`submitted${getQuestionNumber()}`);
-
-  // If user guessed and gave wrong answer within 5 seconds show popup
-  if (guessed !== 'no' && submitted !== 'yes' && !checkAnswer()) {
-    const popup = new bootstrap.Modal(document.getElementById('popupModal'));
-    popup.show();
-    event.preventDefault();
-    document.getElementById(SUBMIT_BUTTON_ID).click();
-  }
-};
-
-document.addEventListener('click', (event) => {
+const handleSelectAnswer = (event) => {
   const searchParams = new URLSearchParams(location.search);
   const submitted = localStorage.getItem(`submitted${getQuestionNumber()}`);
 
@@ -114,10 +99,8 @@ document.addEventListener('click', (event) => {
     document.querySelector(
       `#${quizData[getQuestionNumber()].correct}~label`
     ).style.color = 'green';
-  } else if (event.target?.id === NEXT_QUESTION_BUTTON_ID) {
-    handlePopupModal(event);
   }
-});
+};
 
 const handleAnswerKeys = (event) => {
   const [...inputElementsArray] = document.querySelectorAll(
@@ -130,7 +113,7 @@ const handleAnswerKeys = (event) => {
   selectedAnswer.focus();
 };
 
-document.addEventListener('keyup', (event) => {
+const handleKeyboardInput = (event) => {
   const answerKeys = ['a', 'A', 'b', 'B', 'c', 'C', 'd', 'D'];
 
   if (event.key === 'Enter') {
@@ -138,25 +121,28 @@ document.addEventListener('keyup', (event) => {
       document.getElementById(START_BUTTON).click();
     } else {
       document.getElementById(NEXT_QUESTION_BUTTON_ID).click();
-      handlePopupModal(event);
     }
   } else if (event.key === 's' || event.key === 'S') {
     handleSubmitAnswer();
   } else if (answerKeys.includes(event.key)) {
     handleAnswerKeys(event);
   }
-});
+};
 
 const initializeGuessCounter = () => {
   let multipleClickCounter = 0;
+  createPopupMessage(' &#128557; Stop guessing!', 'toastGuess');
+  const toastLive = document.getElementById('toastGuess');
+  const toast = new bootstrap.Toast(toastLive);
 
   const multiplePress = (event) => {
     const submitted = localStorage.getItem(`submitted${getQuestionNumber()}`);
 
     if (event.target?.classList.contains(ANSWER_LABEL) && submitted !== 'yes') {
       multipleClickCounter += 1;
+      console.log(multipleClickCounter);
       if (multipleClickCounter === 3) {
-        popupMessage();
+        toast.show();
       }
     }
   };
@@ -164,4 +150,33 @@ const initializeGuessCounter = () => {
   return multiplePress;
 };
 
+const initializeQuickAnswer = () => {
+  createPopupMessage('Wrong answer! Please take your time', 'toastQuickAnswer');
+  const toastLive = document.getElementById('toastQuickAnswer');
+  const toast = new bootstrap.Toast(toastLive);
+
+  const quickAnswer = (event) => {
+    const submitted = localStorage.getItem(`submitted${getQuestionNumber()}`);
+
+    if (
+      event.target?.id === NEXT_QUESTION_BUTTON_ID &&
+      !checkAnswer() &&
+      submitted !== 'yes'
+    ) {
+      toast.show();
+      event.preventDefault();
+    }
+  };
+
+  // Clear event listener after 5 seconds
+  setTimeout(() => {
+    document.removeEventListener('click', quickAnswer);
+  }, 5000);
+
+  return quickAnswer;
+};
+
+document.addEventListener('click', initializeQuickAnswer());
+document.addEventListener('click', handleSelectAnswer);
 document.addEventListener('click', initializeGuessCounter());
+document.addEventListener('keyup', handleKeyboardInput);
