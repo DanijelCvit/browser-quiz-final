@@ -93,9 +93,7 @@ const handleSelectAnswer = (event) => {
   if (event.target?.classList.contains(ANSWER_LABEL) && submitted !== 'yes') {
     storeAnswer(event.target.htmlFor);
   } else if (event.target?.id === SUBMIT_BUTTON_ID) {
-    if (question.video) {
-      createExplanationVideo(searchParams.get('question'));
-    }
+    createExplanationVideo(searchParams.get('question'));
     event.target.classList.add('disabled');
     document.getElementById(NEXT_QUESTION_BUTTON_ID).focus();
     localStorage.setItem(`submitted${searchParams.get('question')}`, 'yes');
@@ -167,6 +165,7 @@ const initializeQuickAnswer = () => {
     ) {
       toast.show();
       event.preventDefault();
+      document.getElementById(SUBMIT_BUTTON_ID).click();
     }
   };
 
