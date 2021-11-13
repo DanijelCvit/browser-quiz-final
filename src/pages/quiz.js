@@ -10,7 +10,7 @@ import {
   createExplanationVideo,
   createQuestion,
 } from '../views/question.html.js';
-import { popUpMassage } from '../views/question.html.js';
+import { popupMessage } from '../views/question.html.js';
 
 export const quiz = (qNumber) => {
   // Create path for next question
@@ -92,6 +92,7 @@ const handlePopupModal = (event) => {
   const guessed = localStorage.getItem(`guessed${getQuestionNumber()}`);
   const submitted = localStorage.getItem(`submitted${getQuestionNumber()}`);
 
+  // If user guessed and gave wrong answer within 5 seconds show popup
   if (guessed !== 'no' && submitted !== 'yes' && !checkAnswer()) {
     const popup = new bootstrap.Modal(document.getElementById('popupModal'));
     popup.show();
@@ -113,12 +114,6 @@ document.addEventListener('click', (event) => {
     document.querySelector(
       `#${quizData[getQuestionNumber()].correct}~label`
     ).style.color = 'green';
-
-    let selectedAnswer = localStorage[searchParams.get('question')];
-    // selectedCorrectOrIncorrectAnswer(
-    //   searchParams.get('question'),
-    //   selectedAnswer
-    // );
   } else if (event.target?.id === NEXT_QUESTION_BUTTON_ID) {
     handlePopupModal(event);
   }
@@ -143,7 +138,7 @@ document.addEventListener('keyup', (event) => {
       document.getElementById(START_BUTTON).click();
     } else {
       document.getElementById(NEXT_QUESTION_BUTTON_ID).click();
-      handlePopupModal();
+      handlePopupModal(event);
     }
   } else if (event.key === 's' || event.key === 'S') {
     handleSubmitAnswer();
@@ -152,22 +147,14 @@ document.addEventListener('keyup', (event) => {
   }
 });
 
-let multipleClickCounter = 0;
-
 const multiplePress = (event) => {
   const searchParams = new URLSearchParams(location.search);
 
   if (event.target?.classList.contains(ANSWER_LABEL)) {
-    let selectedItem = event.target;
-
-    localStorage.setItem(
-      searchParams.get('question'),
-      selectedItem.getAttribute('for')
-    );
     multipleClickCounter += 1;
     if (multipleClickCounter === 3) {
-      popUpMassage();
+      popupMessage();
     }
   }
 };
-// document.addEventListener('click', multiplePress);
+document.addEventListener('click', multiplePress);

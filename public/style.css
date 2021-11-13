@@ -57,6 +57,7 @@ input[type='radio']:checked:disabled ~ label {
 }
 
 .question-page {
+  position: relative;
   display: flex;
   text-align: center;
   padding: 40px;
@@ -174,7 +175,7 @@ input[type='radio']:checked:disabled ~ label {
   border-radius: 10px;
   margin: 1px;
 }
-
+/* 
 .toast1 {
   display: flex;
   flex-direction: column;
@@ -186,19 +187,17 @@ input[type='radio']:checked:disabled ~ label {
   top: 100px;
   right: 100px;
   background-color: #1d2228;
-}
+} */
 
 .bluer {
   opacity: 0.5;
 }
-.toast-body {
+/* .toast-body {
   text-align: center;
   padding: 15px;
   color: #e1e2e2;
-}
-.toast-header {
-  background-color: #fb8122;
-}
+} */
+
 .close {
   border: none;
   font-size: 20px;
