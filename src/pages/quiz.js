@@ -89,11 +89,15 @@ const storeAnswer = (answer) => {
 const handleSelectAnswer = (event) => {
   const searchParams = new URLSearchParams(location.search);
   const submitted = localStorage.getItem(`submitted${getQuestionNumber()}`);
+  const question = quizData[+searchParams.get('question')];
 
   if (event.target?.classList.contains(ANSWER_LABEL) && submitted !== 'yes') {
     storeAnswer(event.target.htmlFor);
   } else if (event.target?.id === SUBMIT_BUTTON_ID) {
-    createExplanationVideo(searchParams.get('question'));
+    if (question.video) {
+      createExplanationVideo(searchParams.get('question'));
+    }
+    event.target.classList.add('disabled');
     document.getElementById(NEXT_QUESTION_BUTTON_ID).focus();
     localStorage.setItem(`submitted${searchParams.get('question')}`, 'yes');
     document.querySelector(
@@ -140,7 +144,6 @@ const initializeGuessCounter = () => {
 
     if (event.target?.classList.contains(ANSWER_LABEL) && submitted !== 'yes') {
       multipleClickCounter += 1;
-      console.log(multipleClickCounter);
       if (multipleClickCounter === 3) {
         toast.show();
       }
