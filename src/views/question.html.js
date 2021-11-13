@@ -20,8 +20,9 @@ export const createQuestion = (question, answers, pathname) => {
 
 
   <li  class="${ANSWER_ITEM}">
-    <input class="${ANSWER_INPUT}" type="radio" id="${answers[0].key
-    }" name="answer" />
+    <input class="${ANSWER_INPUT}" type="radio" id="${
+    answers[0].key
+  }" name="answer" />
     <span class="your-choice">a</span>
     <label class="${ANSWER_LABEL}"  for="${answers[0].key}"
 
@@ -33,8 +34,9 @@ export const createQuestion = (question, answers, pathname) => {
   <li  class="${ANSWER_ITEM}">
 
 
-    <input class="${ANSWER_INPUT}" type="radio" id="${answers[1].key
-    }" name="answer" />
+    <input class="${ANSWER_INPUT}" type="radio" id="${
+    answers[1].key
+  }" name="answer" />
     <span class="your-choice">b</span>
     <label class="${ANSWER_LABEL}" for="${answers[1].key}"
 
@@ -46,8 +48,9 @@ export const createQuestion = (question, answers, pathname) => {
   <li  class="${ANSWER_ITEM}">
 
 
-    <input class="${ANSWER_INPUT}" type="radio" id="${answers[2].key
-    }" name="answer" />
+    <input class="${ANSWER_INPUT}" type="radio" id="${
+    answers[2].key
+  }" name="answer" />
     <span class="your-choice">c</span>
     <label class="${ANSWER_LABEL}"  for="${answers[2].key}"
 
@@ -58,8 +61,9 @@ export const createQuestion = (question, answers, pathname) => {
 
 
   <li  class="${ANSWER_ITEM}">
-    <input class="${ANSWER_INPUT}" type="radio" id="${answers[3].key
-    }" name="answer" />
+    <input class="${ANSWER_INPUT}" type="radio" id="${
+    answers[3].key
+  }" name="answer" />
     <span class="your-choice">d</span>
     <label class="${ANSWER_LABEL}" for="${answers[3].key}"
 
@@ -70,8 +74,9 @@ export const createQuestion = (question, answers, pathname) => {
 
 </ul>
 
-<a  class="next-question-button btn btn-block btn-dark btn-block" id="${NEXT_QUESTION_BUTTON_ID}" href="?page=${pathname.page
-    }&question=${pathname.question + 1}">Next question</a>
+<a  class="next-question-button btn btn-block btn-dark btn-block" id="${NEXT_QUESTION_BUTTON_ID}" href="?page=${
+    pathname.page
+  }&question=${pathname.question + 1}">Next question</a>
  <a class="submit-button btn btn-block btn-dark btn-block" id="${SUBMIT_BUTTON_ID}" >Submit</a>
 
  </div>
@@ -96,8 +101,17 @@ export const createPopupMessage = (message, id) => {
 };
 
 export const createExplanationVideo = (question) => {
+  document.getElementById(SUBMIT_BUTTON_ID).classList.add('disabled');
+  const inputElementArray = document.querySelectorAll("input[type='radio']");
+  inputElementArray.forEach((input) => (input.disabled = true));
+
   const videoLink = quizData[question].video;
   const resources = quizData[question].links;
+
+  if (!videoLink) {
+    return;
+  }
+
   const questionPage = document.querySelector('.question-page');
 
   const explanationVideoDiv = document.createElement('div');
@@ -114,8 +128,5 @@ export const createExplanationVideo = (question) => {
 
   questionPage.appendChild(explanationVideoDiv);
 
-  document.getElementById(SUBMIT_BUTTON_ID).classList.add('disabled');
-  const inputElementArray = document.querySelectorAll("input[type='radio']");
-  inputElementArray.forEach((input) => (input.disabled = true));
   inputElementArray;
 };
