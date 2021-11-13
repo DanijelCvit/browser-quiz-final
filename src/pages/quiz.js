@@ -49,6 +49,7 @@ export const quiz = (qNumber) => {
     document.getElementById('a').focus();
   }
 
+
   // If user already submitted his answer show that answer again
   const submittedAnswer = localStorage.getItem(`submitted${qNumber}`);
   if (submittedAnswer === 'yes') {
@@ -147,6 +148,11 @@ document.addEventListener('keyup', (event) => {
   }
 });
 
+
+
+let multipleClickCounter = 0;
+
+
 const multiplePress = (event) => {
   const searchParams = new URLSearchParams(location.search);
 
@@ -158,3 +164,4 @@ const multiplePress = (event) => {
   }
 };
 document.addEventListener('click', multiplePress);
+
