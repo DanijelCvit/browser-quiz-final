@@ -33,7 +33,6 @@ body {
   border-radius: 10px;
 }
 
-
 .label {
   padding: 10px;
   width: 100%;
@@ -49,8 +48,10 @@ input[type='radio']:checked ~ label {
   color: blue;
 }
 
-.main-question-page{
+.main-question-page {
   width: 70%;
+}
+
 input[type='radio']:checked:disabled ~ label {
   color: red;
 }
@@ -65,18 +66,17 @@ input[type='radio']:checked:disabled ~ label {
   height: 700px;
   border-radius: 10px;
 }
-.question-and-answers{
+.question-and-answers {
   background: #fff;
   padding: 40px;
   width: 100%;
-  transition:width 1.8s;
+  transition: width 1.8s;
   border-radius: 10px 0 0 10px;
   overflow: auto;
-
 }
-.explanation-section{
+.explanation-section {
   background: #333;
-  padding:40px 20px;
+  padding: 40px 20px;
   width: 50%;
   overflow: auto;
   color: #fff;
@@ -175,7 +175,6 @@ input[type='radio']:checked:disabled ~ label {
   margin: 1px;
 }
 
-
 .toast1 {
   display: flex;
   flex-direction: column;
@@ -220,4 +219,3 @@ input[type='radio']:checked:disabled ~ label {
 
 }
  */
-

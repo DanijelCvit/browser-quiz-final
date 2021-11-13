@@ -1,18 +1,16 @@
+import { quizData } from '../data.js';
 import {
   SUBMIT_BUTTON_ID,
   ANSWER_LABEL,
   NEXT_QUESTION_BUTTON_ID,
   START_BUTTON,
 } from '../constants.js';
-
-import { popUpMassage } from '../views/question.html.js';
-
 import {
-  selectedCorrectOrIncorrectAnswer,
+  // selectedCorrectOrIncorrectAnswer,
   createExplanationVideo,
   createQuestion,
 } from '../views/question.html.js';
-export const quizData = JSON.parse(localStorage.getItem('questions'));
+import { popUpMassage } from '../views/question.html.js';
 
 export const quiz = (qNumber) => {
   // Create path for next question
@@ -43,7 +41,7 @@ export const quiz = (qNumber) => {
 
   // Restore any saved answer from local storage
   const savedAnswer = localStorage.getItem(qNumber);
-  if (savedAnswer) {
+  if (savedAnswer && savedAnswer !== 'undefined') {
     const savedAnswerElement = document.getElementById(savedAnswer);
     savedAnswerElement.checked = true;
     savedAnswerElement.focus();
@@ -67,16 +65,17 @@ const popupTimer = (delay) => {
   }, delay);
 };
 
-const checkAnswer = () => {
-  const currentQuestion = getQuestionNumber();
-  const selectedAnswer = localStorage.getItem(currentQuestion);
-  const correctAnswer = quizData.questions[currentQuestion].correct;
-  return selectedAnswer === correctAnswer;
-};
-
 const getQuestionNumber = () => {
   const searchParams = new URLSearchParams(location.search);
   return searchParams.get('question');
+};
+
+const checkAnswer = () => {
+  const currentQuestion = getQuestionNumber();
+  const selectedAnswer = localStorage.getItem(currentQuestion);
+  const correctAnswer = quizData[currentQuestion].correct;
+  console.log(selectedAnswer === correctAnswer);
+  return selectedAnswer === correctAnswer;
 };
 
 const handleSubmitAnswer = () => {
@@ -88,8 +87,6 @@ const storeAnswer = (answer) => {
   const searchParams = new URLSearchParams(location.search);
   localStorage.setItem(searchParams.get('question'), answer);
 };
-
-//
 
 const handlePopupModal = (event) => {
   const guessed = localStorage.getItem(`guessed${getQuestionNumber()}`);
@@ -105,30 +102,23 @@ const handlePopupModal = (event) => {
 
 document.addEventListener('click', (event) => {
   const searchParams = new URLSearchParams(location.search);
+  const submitted = localStorage.getItem(`submitted${getQuestionNumber()}`);
 
-  if (event.target?.classList.contains(ANSWER_LABEL)) {
-    let selectedItem = event.target;
-
-    localStorage.setItem(
-      searchParams.get('question'),
-      selectedItem.getAttribute('for')
-    );
-  } else if (event.target?.id === SUBMIT_BUTTON_ID) {
-    createExplanationVideo(searchParams.get('question'));
-
+  if (event.target?.classList.contains(ANSWER_LABEL) && submitted !== 'yes') {
     storeAnswer(event.target.htmlFor);
   } else if (event.target?.id === SUBMIT_BUTTON_ID) {
-    let selectedAnswer = localStorage[searchParams.get('question')];
-    selectedCorrectOrIncorrectAnswer(
-      searchParams.get('question'),
-      selectedAnswer
-    );
-
-    // createExplanationItem(searchParams.get('question'));
     createExplanationVideo(searchParams.get('question'));
-
     document.getElementById(NEXT_QUESTION_BUTTON_ID).focus();
     localStorage.setItem(`submitted${searchParams.get('question')}`, 'yes');
+    document.querySelector(
+      `#${quizData[getQuestionNumber()].correct}~label`
+    ).style.color = 'green';
+
+    let selectedAnswer = localStorage[searchParams.get('question')];
+    // selectedCorrectOrIncorrectAnswer(
+    //   searchParams.get('question'),
+    //   selectedAnswer
+    // );
   } else if (event.target?.id === NEXT_QUESTION_BUTTON_ID) {
     handlePopupModal(event);
   }
@@ -175,9 +165,9 @@ const multiplePress = (event) => {
       selectedItem.getAttribute('for')
     );
     multipleClickCounter += 1;
-    if (multipleClickCounter === 3 || multipleClickCounter > 5) {
+    if (multipleClickCounter === 3) {
       popUpMassage();
     }
   }
 };
-document.addEventListener('click', multiplePress);
+// document.addEventListener('click', multiplePress);

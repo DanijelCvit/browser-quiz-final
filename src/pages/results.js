@@ -1,4 +1,4 @@
-import { quizData } from './quiz.js';
+import { quizData } from '../data.js';
 
 import { createResults } from '../views/results.html.js';
 
