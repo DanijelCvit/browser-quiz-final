@@ -143,7 +143,12 @@ const handleKeyboardInput = (event) => {
     handleSubmitAnswer();
   } else if (answerKeys.includes(event.key)) {
     handleAnswerKeys(event);
-  } else if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+  } else if (
+    event.key === 'ArrowUp' ||
+    event.key === 'ArrowDown' ||
+    event.key === 'ArrowLeft' ||
+    event.key === 'ArrowRight'
+  ) {
     const selectedAnswer = document.querySelector('input:checked');
     storeAnswer(selectedAnswer.id);
     setSelectedColor();
