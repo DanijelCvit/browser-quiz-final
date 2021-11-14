@@ -43,6 +43,7 @@ export const quiz = (qNumber) => {
   if (savedAnswer && savedAnswer !== 'undefined') {
     const savedAnswerElement = document.getElementById(savedAnswer);
     savedAnswerElement.checked = true;
+    savedAnswerElement.nextElementSibling.style.color = 'rgb(0,143,149';
     savedAnswerElement.focus();
   } else {
     document.getElementById('a').focus();
@@ -85,6 +86,18 @@ const storeAnswer = (answer) => {
   localStorage.setItem(searchParams.get('question'), answer);
 };
 
+const setSelectedColor = () => {
+  const [...spanElementsArray] = document.querySelectorAll('.your-choice');
+  spanElementsArray.forEach((span) => {
+    if (span.nextElementSibling.htmlFor === localStorage[getQuestionNumber()]) {
+      span.style.color = 'rgb(0,143,149';
+    } else {
+      span.style.color = 'white';
+    }
+  });
+  // spanElement.style.color = 'rgb(0,143,149';
+};
+
 const handleSelectAnswer = (event) => {
   const searchParams = new URLSearchParams(location.search);
   const submitted = localStorage.getItem(`submitted${getQuestionNumber()}`);
@@ -92,6 +105,7 @@ const handleSelectAnswer = (event) => {
 
   if (event.target?.classList.contains(ANSWER_LABEL) && submitted !== 'yes') {
     storeAnswer(event.target.htmlFor);
+    setSelectedColor();
   } else if (event.target?.id === SUBMIT_BUTTON_ID) {
     createExplanationVideo(searchParams.get('question'));
     event.target.classList.add('disabled');
@@ -112,6 +126,8 @@ const handleAnswerKeys = (event) => {
   );
   selectedAnswer.checked = true;
   selectedAnswer.focus();
+  storeAnswer(selectedAnswer.id);
+  setSelectedColor();
 };
 
 const handleKeyboardInput = (event) => {
@@ -127,6 +143,10 @@ const handleKeyboardInput = (event) => {
     handleSubmitAnswer();
   } else if (answerKeys.includes(event.key)) {
     handleAnswerKeys(event);
+  } else if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+    const selectedAnswer = document.querySelector('input:checked');
+    storeAnswer(selectedAnswer.id);
+    setSelectedColor();
   }
 };
 
