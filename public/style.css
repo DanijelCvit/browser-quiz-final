@@ -313,46 +313,13 @@ input[type='radio']:checked:disabled ~ label {
   border-radius: 10px;
   margin: 1px;
 }
-/* 
-.toast1 {
-  display: flex;
-  flex-direction: column;
-  border-radius: 5px;
-  margin: 0 auto;
-  width: 600px;
-  height: 200px;
-  position: absolute;
-  top: 100px;
-  right: 100px;
-  background-color: #1d2228;
-} */
 
 .bluer {
   opacity: 0.5;
 }
-/* .toast-body {
-  text-align: center;
-  padding: 15px;
-  color: #e1e2e2;
-} */
 
 .close {
   border: none;
   font-size: 20px;
   background-color: inherit;
 }
-
-/* 
-
-.selected-correct {
-  color: #fff;
-  background: green;
-  transition: 1.5s;
-}
-.selected-incorrect {
-  color: #fff;
-  background: red;
-  transition: 1.5s;
-
-}
- */

@@ -87,10 +87,9 @@ export const createQuestion = (question, answers, pathname) => {
 };
 
 export const createPopupMessage = (message, id) => {
-  const quizBody = document.getElementById('app');
   const msgBox = document.createElement('div');
   document.body.appendChild(msgBox);
-  msgBox.innerHTML = `<div id=${id} class="toast align-items-center position-absolute top-0 end-0"" role="alert" aria-live="assertive" aria-atomic="true">
+  msgBox.innerHTML = String.raw`<div id=${id} class="toast align-items-center position-absolute top-0 end-0"" role="alert" aria-live="assertive" aria-atomic="true">
   <div class="d-flex">
     <div class="toast-body">
    ${message}
@@ -127,6 +126,4 @@ export const createExplanationVideo = (question) => {
   `;
 
   questionPage.appendChild(explanationVideoDiv);
-
-  inputElementArray;
 };
