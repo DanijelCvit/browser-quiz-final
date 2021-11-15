@@ -15,7 +15,6 @@ export const storeRandomQuestionOrder = () => {
   const shuffledQuestions = questions.sort(() => Math.random() - 0.5);
   const shortageData = shuffledQuestions.slice(0, 10);
   localStorage.setItem('questions', JSON.stringify(shortageData));
-  return shortageData;
 };
 
 export const quizData = JSON.parse(localStorage.getItem('questions'));
