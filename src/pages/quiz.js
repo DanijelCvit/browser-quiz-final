@@ -149,6 +149,7 @@ const handleAnswerKeys = (event) => {
 
 const handleKeyboardInput = (event) => {
   const answerKeys = ['a', 'A', 'b', 'B', 'c', 'C', 'd', 'D'];
+  const submitted = localStorage.getItem(`submitted${getQuestionNumber()}`);
 
   if (event.key === 'Enter') {
     if (!location.search) {
@@ -156,9 +157,9 @@ const handleKeyboardInput = (event) => {
     } else {
       document.getElementById(NEXT_QUESTION_BUTTON_ID).click();
     }
-  } else if (event.key === 's' || event.key === 'S') {
+  } else if ((event.key === 's' || event.key === 'S') && submitted !== 'yes') {
     handleSubmitAnswer();
-  } else if (answerKeys.includes(event.key)) {
+  } else if (answerKeys.includes(event.key && submitted !== 'yes')) {
     handleAnswerKeys(event);
   } else if (
     event.key === 'ArrowUp' ||
