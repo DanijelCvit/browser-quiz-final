@@ -89,7 +89,7 @@ export const createQuestion = (question, answers, pathname) => {
 export const createPopupMessage = (message, id) => {
   const msgBox = document.createElement('div');
   document.body.appendChild(msgBox);
-  msgBox.innerHTML = String.raw`<div id=${id} class="toast align-items-center position-absolute top-0 end-0"" role="alert" aria-live="assertive" aria-atomic="true">
+  msgBox.innerHTML = String.raw`<div id=${id} class="toast align-items-center position-absolute top-0 end-0" role="alert" aria-live="assertive" aria-atomic="true">
   <div class="d-flex">
     <div class="toast-body">
    ${message}

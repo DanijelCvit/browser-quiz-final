@@ -109,7 +109,7 @@ const setSelectedColor = () => {
   });
 };
 
-const handleSubmitAnswer = (event) => {
+const handleSubmitAnswer = () => {
   localStorage.setItem(`submitted${getQuestionNumber()}`, 'yes');
 
   createExplanationVideo(getQuestionNumber());
@@ -118,7 +118,6 @@ const handleSubmitAnswer = (event) => {
   document.querySelector(`#${correct}~label`).style.color = 'green';
   document.querySelector(`#${correct}~span`).style.color = 'green';
 
-  event.target.classList.add('disabled');
   document.getElementById(NEXT_QUESTION_BUTTON_ID).focus();
 };
 
@@ -129,7 +128,7 @@ const handleSelectAnswer = (event) => {
     storeAnswer(event.target.htmlFor);
     setSelectedColor();
   } else if (event.target?.id === SUBMIT_BUTTON_ID) {
-    handleSubmitAnswer(event);
+    handleSubmitAnswer();
   }
 };
 
