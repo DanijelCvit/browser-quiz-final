@@ -159,7 +159,7 @@ const handleKeyboardInput = (event) => {
     }
   } else if ((event.key === 's' || event.key === 'S') && submitted !== 'yes') {
     handleSubmitAnswer();
-  } else if (answerKeys.includes(event.key && submitted !== 'yes')) {
+  } else if (answerKeys.includes(event.key) && submitted !== 'yes') {
     handleAnswerKeys(event);
   } else if (
     event.key === 'ArrowUp' ||
