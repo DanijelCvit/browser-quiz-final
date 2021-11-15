@@ -13,25 +13,15 @@ import {
 
 export const quiz = (qNumber) => {
   // Create path for next question
-  let pathname = { page: 'quiz', question: qNumber };
+  const pathname = getNextPathname(qNumber);
 
-  // Redirect to results if it's last question
-  if (qNumber === quizData.length - 1) {
-    pathname.page = 'results';
-  }
+  // Get the data for current question
+  const currentQuestion = getQuizData(qNumber);
 
-  const currentQuestionText = quizData[qNumber].text;
-  const currentAnswersObject = quizData[qNumber].answers;
-  const currentAnswersData = Object.entries(currentAnswersObject).map(
-    ([key, text]) => ({
-      key,
-      text,
-    })
-  );
   // Generate new HTML
   const quizTemplate = createQuestion(
-    currentQuestionText,
-    currentAnswersData,
+    currentQuestion.currentQuestionText,
+    currentQuestion.currentAnswersData,
     pathname
   );
 
@@ -39,29 +29,49 @@ export const quiz = (qNumber) => {
   document.getElementById('app').innerHTML = quizTemplate;
 
   // Restore any saved answer from local storage
+  restoreSavedAnswer(qNumber);
+
+  // If user already submitted his answer show that answer again
+  checkSubmitAnswer(qNumber);
+};
+
+const getNextPathname = (qNumber) => {
+  let pathname = { page: 'quiz', question: qNumber };
+
+  // Redirect to results if it's last question
+  if (qNumber === quizData.length - 1) {
+    pathname.page = 'results';
+  }
+
+  return pathname;
+};
+
+const getQuizData = (qNumber) => {
+  const currentQuestionText = quizData[qNumber].text;
+  const currentAnswersObject = quizData[qNumber].answers;
+
+  // Create an array of answer objects
+  const currentAnswersData = Object.entries(currentAnswersObject).map(
+    ([key, text]) => ({
+      key,
+      text,
+    })
+  );
+  return { currentQuestionText, currentAnswersData };
+};
+
+const restoreSavedAnswer = (qNumber) => {
   const savedAnswer = localStorage.getItem(qNumber);
+
   if (savedAnswer && savedAnswer !== 'undefined') {
     const savedAnswerElement = document.getElementById(savedAnswer);
     savedAnswerElement.checked = true;
     savedAnswerElement.nextElementSibling.style.color = 'rgb(0,143,149';
     savedAnswerElement.focus();
   } else {
-    document.getElementById('a').focus();
+    const selectedAnswer = document.getElementById('a');
+    selectedAnswer.focus();
   }
-
-  // If user already submitted his answer show that answer again
-  const submittedAnswer = localStorage.getItem(`submitted${qNumber}`);
-  if (submittedAnswer === 'yes') {
-    handleSubmitAnswer();
-  }
-  // popup timer
-  popupTimer(5000);
-};
-
-const popupTimer = (delay) => {
-  setTimeout(() => {
-    localStorage.setItem(`guessed${getQuestionNumber()}`, 'no');
-  }, delay);
 };
 
 const getQuestionNumber = () => {
@@ -76,56 +86,63 @@ const checkAnswer = () => {
   return selectedAnswer === correctAnswer;
 };
 
-const handleSubmitAnswer = () => {
-  document.getElementById(SUBMIT_BUTTON_ID).click();
-  document.getElementById(NEXT_QUESTION_BUTTON_ID).focus();
+const checkSubmitAnswer = (qNumber) => {
+  const submittedAnswer = localStorage.getItem(`submitted${qNumber}`);
+  if (submittedAnswer === 'yes') {
+    document.getElementById(SUBMIT_BUTTON_ID).click();
+    document.getElementById(NEXT_QUESTION_BUTTON_ID).focus();
+  }
 };
 
 const storeAnswer = (answer) => {
-  const searchParams = new URLSearchParams(location.search);
-  localStorage.setItem(searchParams.get('question'), answer);
+  localStorage.setItem(getQuestionNumber(), answer);
 };
 
 const setSelectedColor = () => {
-  const [...spanElementsArray] = document.querySelectorAll('.your-choice');
-  spanElementsArray.forEach((span) => {
+  const spanElementsList = document.querySelectorAll('.your-choice');
+  spanElementsList.forEach((span) => {
     if (span.nextElementSibling.htmlFor === localStorage[getQuestionNumber()]) {
       span.style.color = 'rgb(0,143,149';
     } else {
       span.style.color = 'white';
     }
   });
-  // spanElement.style.color = 'rgb(0,143,149';
+};
+
+const handleSubmitAnswer = (event) => {
+  localStorage.setItem(`submitted${getQuestionNumber()}`, 'yes');
+
+  createExplanationVideo(getQuestionNumber());
+
+  const correct = quizData[getQuestionNumber()].correct;
+  document.querySelector(`#${correct}~label`).style.color = 'green';
+  document.querySelector(`#${correct}~span`).style.color = 'green';
+
+  event.target.classList.add('disabled');
+  document.getElementById(NEXT_QUESTION_BUTTON_ID).focus();
 };
 
 const handleSelectAnswer = (event) => {
-  const searchParams = new URLSearchParams(location.search);
   const submitted = localStorage.getItem(`submitted${getQuestionNumber()}`);
-  const question = quizData[+searchParams.get('question')];
 
   if (event.target?.classList.contains(ANSWER_LABEL) && submitted !== 'yes') {
     storeAnswer(event.target.htmlFor);
     setSelectedColor();
   } else if (event.target?.id === SUBMIT_BUTTON_ID) {
-    createExplanationVideo(searchParams.get('question'));
-    event.target.classList.add('disabled');
-    document.getElementById(NEXT_QUESTION_BUTTON_ID).focus();
-    localStorage.setItem(`submitted${searchParams.get('question')}`, 'yes');
-    document.querySelector(
-      `#${quizData[getQuestionNumber()].correct}~label`
-    ).style.color = 'green';
+    handleSubmitAnswer(event);
   }
 };
 
 const handleAnswerKeys = (event) => {
-  const [...inputElementsArray] = document.querySelectorAll(
-    "input[type='radio']"
-  );
+  const inputElementsList = document.querySelectorAll("input[type='radio']");
+  const inputElementsArray = Array.from(inputElementsList);
+
   const selectedAnswer = inputElementsArray.find(
     (input) => input.id === event.key.toLowerCase()
   );
   selectedAnswer.checked = true;
   selectedAnswer.focus();
+
   storeAnswer(selectedAnswer.id);
   setSelectedColor();
 };
