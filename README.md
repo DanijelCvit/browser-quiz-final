@@ -19,15 +19,23 @@ There are no dependencies needed to run the website, everything is prepared to w
 Let's run through the folders:
 
 ```
-public
-src
-└── pages
-└── components
-└── init
-└── utils
-└── views
-└── data.js
-index.html
+.
+├── public
+│   └── style.css
+├── src
+│   ├── init
+│   │   └── app.js
+│   ├── pages
+│   │   ├── start.js
+│   │   ├── quiz.js
+│   │   └── results.js
+│   └── views
+│       ├── start.html.js
+│       ├── question.html.js
+│       └── results.html.js
+├── index.html
+└── README.md
+
 ```
 
 - `public` this contains the static files (images, stylesheets) that can be used by our `index.html` file
@@ -35,7 +43,6 @@ index.html
   - `init` this contains our initialisation code. Generally this code should only run once and starts the application.
     This is also where check the ?page=something from the url and load one page from /src/pages
   - `pages` all the logic needed for a single page (e.g. home, quiz or results) in plain javascript files.
-  - `utils` this contains code that are pure functions and can be used throughout the application. These functions take data and give back a result. They should not interact with anything outside of their scope!
   - `views` this contains code to define what the DOM will look like. They will create the DOM element and give it back. They should never read from/write to the dom, that is what the handlers do.
   - `data.js` this is our data model. Anything we need to store in the browser we place inside the data file
 
@@ -47,11 +54,11 @@ So what should be built? Below is a collection of user stories you can choose fr
 
 > these are necessary for basic usability
 
-- [ ] A user can see one question at a time, stepping through the quiz
-- [ ] A user can select an answer for each question
-- [ ] A user can know which questions they got correct and incorrect (either immediately or at the end of the quiz)
-- [ ] A user can see the correct answer for questions (either immediately or at the end of the quiz)
-- [ ] A user can see their score at the end of the quiz
+- [x] A user can see one question at a time, stepping through the quiz
+- [x] A user can select an answer for each question
+- [x] A user can know which questions they got correct and incorrect (either immediately or at the end of the quiz)
+- [x] A user can see the correct answer for questions (either immediately or at the end of the quiz)
+- [x] A user can see their score at the end of the quiz
 
 ## Nice-to-Haves
 
@@ -59,7 +66,7 @@ So what should be built? Below is a collection of user stories you can choose fr
 
 - [ ] A user can see their score update in real-time as they select answers
 - [ ] A user can modify a question in the quiz
-- [ ] A user has access to resources for further study on each question
+- [x] A user has access to resources for further study on each question
 - [ ] A user can "cheat" to see the correct answer, this forfeits the question
 - [ ] A user can remove questions from the quiz
 - [ ] A user can add questions to the quiz

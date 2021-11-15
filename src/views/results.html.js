@@ -7,7 +7,7 @@ const createListItems = (results) => {
     if (localStorage[results.indexOf(item)] !== item.correct) {
       list += String.raw`
     <h4>${item.text}</h4>
-    <button class="btn btn-outline-dark mb-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample${results.indexOf(
+    <button data-testid="learn-more" class="btn btn-outline-dark mb-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample${results.indexOf(
       item
     )}" aria-expanded="false" aria-controls="collapseExample${results.indexOf(
         item
@@ -79,7 +79,7 @@ export const createResults = (results) => {
     (correctAnswerResult * 100) / results.length
   }%</h5>
 <h5 class='mb-5'>Evaluate : ${evaluate(correctAnswerResult)}</h5>
-<a class="try-again btn btn-block btn-dark btn-block" id="" href="index.html">Try Again</a>
+<a data-testid="try-again" class="try-again btn btn-block btn-dark btn-block" id="" href="index.html">Try Again</a>
 </div>
 </div>`;
 };

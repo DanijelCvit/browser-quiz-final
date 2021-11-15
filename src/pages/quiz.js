@@ -109,7 +109,7 @@ const setSelectedColor = () => {
   });
 };
 
-const handleSubmitAnswer = (event) => {
+const handleSubmitAnswer = () => {
   localStorage.setItem(`submitted${getQuestionNumber()}`, 'yes');
 
   createExplanationVideo(getQuestionNumber());
@@ -118,7 +118,6 @@ const handleSubmitAnswer = (event) => {
   document.querySelector(`#${correct}~label`).style.color = 'green';
   document.querySelector(`#${correct}~span`).style.color = 'green';
 
-  event.target.classList.add('disabled');
   document.getElementById(NEXT_QUESTION_BUTTON_ID).focus();
 };
 
@@ -129,7 +128,7 @@ const handleSelectAnswer = (event) => {
     storeAnswer(event.target.htmlFor);
     setSelectedColor();
   } else if (event.target?.id === SUBMIT_BUTTON_ID) {
-    handleSubmitAnswer(event);
+    handleSubmitAnswer();
   }
 };
 
@@ -149,6 +148,7 @@ const handleAnswerKeys = (event) => {
 
 const handleKeyboardInput = (event) => {
   const answerKeys = ['a', 'A', 'b', 'B', 'c', 'C', 'd', 'D'];
+  const submitted = localStorage.getItem(`submitted${getQuestionNumber()}`);
 
   if (event.key === 'Enter') {
     if (!location.search) {
@@ -156,9 +156,9 @@ const handleKeyboardInput = (event) => {
     } else {
       document.getElementById(NEXT_QUESTION_BUTTON_ID).click();
     }
-  } else if (event.key === 's' || event.key === 'S') {
+  } else if ((event.key === 's' || event.key === 'S') && submitted !== 'yes') {
     handleSubmitAnswer();
-  } else if (answerKeys.includes(event.key)) {
+  } else if (answerKeys.includes(event.key) && submitted !== 'yes') {
     handleAnswerKeys(event);
   } else if (
     event.key === 'ArrowUp' ||

@@ -3,12 +3,8 @@ import { quizData } from '../data.js';
 import { createResults } from '../views/results.html.js';
 
 export const results = () => {
-  // Get selected and correct from each question and put it in an object
-  quizData;
-  const results = quizData;
-
   // Generate new HTML
-  const resultTemplate = createResults(results);
+  const resultTemplate = createResults(quizData);
 
   // Add HTML to app
   document.getElementById('app').innerHTML = resultTemplate;

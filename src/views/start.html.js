@@ -6,7 +6,7 @@ export const createStart = () => {
     <div class=${START_PAGE}>
     <p>WELCOME TO </p>
     <p>A-TEAM QUIZ</p>
-    <a class="start-button btn btn-block btn-dark btn-block" id='startButton' href='?page=quiz&question=0'>Start Quiz</a>
+    <a data-testid="start" class="start-button btn btn-block btn-dark btn-block" id='startButton' href='?page=quiz&question=0'>Start Quiz</a>
     </div>
     `;
 };
