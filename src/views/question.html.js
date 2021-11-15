@@ -24,7 +24,9 @@ export const createQuestion = (question, answers, pathname) => {
     answers[0].key
   }" name="answer" />
     <span class="your-choice">a</span>
-    <label class="${ANSWER_LABEL}"  for="${answers[0].key}"
+    <label data-testid="answer-a" class="${ANSWER_LABEL}"  for="${
+    answers[0].key
+  }"
 
       > ${answers[0].text}</label
     >
@@ -38,7 +40,9 @@ export const createQuestion = (question, answers, pathname) => {
     answers[1].key
   }" name="answer" />
     <span class="your-choice">b</span>
-    <label class="${ANSWER_LABEL}" for="${answers[1].key}"
+    <label data-testid="answer-b" class="${ANSWER_LABEL}" for="${
+    answers[1].key
+  }"
 
 
       >${answers[1].text}</label
@@ -52,7 +56,9 @@ export const createQuestion = (question, answers, pathname) => {
     answers[2].key
   }" name="answer" />
     <span class="your-choice">c</span>
-    <label class="${ANSWER_LABEL}"  for="${answers[2].key}"
+    <label data-testid="answer-c" class="${ANSWER_LABEL}"  for="${
+    answers[2].key
+  }"
 
 
       >${answers[2].text}</label
@@ -65,7 +71,9 @@ export const createQuestion = (question, answers, pathname) => {
     answers[3].key
   }" name="answer" />
     <span class="your-choice">d</span>
-    <label class="${ANSWER_LABEL}" for="${answers[3].key}"
+    <label data-testid="answer-d" class="${ANSWER_LABEL}" for="${
+    answers[3].key
+  }"
 
 
       >${answers[3].text}</label
@@ -74,10 +82,10 @@ export const createQuestion = (question, answers, pathname) => {
 
 </ul>
 
-<a  class="next-question-button btn btn-block btn-dark btn-block" id="${NEXT_QUESTION_BUTTON_ID}" href="?page=${
+<a  data-testid="next-button" class="next-question-button btn btn-block btn-dark btn-block" id="${NEXT_QUESTION_BUTTON_ID}" href="?page=${
     pathname.page
   }&question=${pathname.question + 1}">Next question</a>
- <a class="submit-button btn btn-block btn-dark btn-block" id="${SUBMIT_BUTTON_ID}" >Submit</a>
+ <a data-testid="submit" class="submit-button btn btn-block btn-dark btn-block" id="${SUBMIT_BUTTON_ID}" >Submit</a>
 
  </div>
 
